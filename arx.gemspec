@@ -7,6 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = Arx::VERSION
   spec.authors       = ['Edwin Onuonga']
   spec.email         = ['edwinonuonga@gmail.com']
+  spec.homepage      = 'https://github.com/eonu/arx'
 
   spec.summary       = %q{A Ruby interface for querying academic papers on the arXiv search API.}
   spec.license       = 'MIT'
@@ -21,4 +22,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'rake', '~> 12.3'
   spec.add_development_dependency 'rspec', '~> 3.7'
+
+  spec.metadata = {
+    'source_code_uri' => spec.homepage,
+    'documentation_uri' => 'https://www.rubydoc.info/github/eonu/arx/master/Arx'
+  }
 end
