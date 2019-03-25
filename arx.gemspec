@@ -27,6 +27,6 @@ Gem::Specification.new do |spec|
 
   spec.metadata = {
     'source_code_uri' => spec.homepage,
-    'documentation_uri' => 'https://www.rubydoc.info/gems/arx'
+    'documentation_uri' => 'https://www.rubydoc.info/gems/arx/toplevel'
   }
 end
