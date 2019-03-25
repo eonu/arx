@@ -103,35 +103,35 @@ module Arx
       define_method(symbol) { add_connective connective }
     end
 
-    # @!method title(*values, exact: false, connective: :and)
+    # @!method title(*values, exact: true, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#title title}.
     # @param values [Array<String>] Title(s) of papers to search for.
     # @param exact [Boolean] Whether to search for an exact match of the title(s).
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
     # @return [self]
 
-    # @!method author(*values, exact: false, connective: :and)
+    # @!method author(*values, exact: true, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#author author}.
     # @param values [Array<String>] Author(s) of papers to search for.
     # @param exact [Boolean] Whether to search for an exact match of the author's name(s).
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
     # @return [self]
 
-    # @!method abstract(*values, exact: false, connective: :and)
+    # @!method abstract(*values, exact: true, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#abstract abstract}.
     # @param values [Array<String>] Abstract(s) of papers to search for.
     # @param exact [Boolean] Whether to search for an exact match of the abstract(s).
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
     # @return [self]
 
-    # @!method comment(*values, exact: false, connective: :and)
+    # @!method comment(*values, exact: true, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#comments comment}.
     # @param values [Array<String>] Comment(s) of papers to search for.
     # @param exact [Boolean] Whether to search for an exact match of the comment(s).
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
     # @return [self]
 
-    # @!method journal(*values, exact: false, connective: :and)
+    # @!method journal(*values, exact: true, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#journal journal reference}.
     # @param values [Array<String>] Journal reference(s) of papers to search for.
     # @param exact [Boolean] Whether to search for an exact match of the journal refernece(s).
