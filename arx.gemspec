@@ -30,6 +30,6 @@ Gem::Specification.new do |spec|
     'homepage_uri' => spec.homepage,
     'documentation_uri' => 'https://www.rubydoc.info/gems/arx/toplevel',
     'bug_tracker_uri' => "#{spec.homepage}/issues",
-    "changelog_uri" => "#{spec.homepage}/blob/master/CHANGELOG.md",
+    "changelog_uri" => "#{spec.homepage}/blob/master/CHANGELOG.md"
   }
 end
