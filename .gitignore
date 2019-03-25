@@ -15,14 +15,14 @@
 ## Used by dotenv library to load environment variables
 .env
 
-## Documentation cache and generated files:
+## Documentation cache and generated files
 /.yardoc/
 /_yardoc/
 /doc/
 /rdoc/
 /coverage/
 
-## Environment normalization:
+## Environment normalization
 /.bundle/
 /vendor/bundle
 /lib/bundler/man/
