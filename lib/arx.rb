@@ -16,27 +16,30 @@ module Arx
   # The arXiv search API endpoint.
   ENDPOINT = 'http://export.arxiv.org/api/query?'
 
-  # Performs a search query for papers on the arXiv search API.
-  #
-  # @param ids [Array<String>] The IDs of the arXiv papers to restrict the query to.
-  # @param sort_by [Symbol] The sorting criteria for the returned results (see {Query::SORT_BY}).
-  # @param sort_order [Symbol] The sorting order for the returned results (see {Query::SORT_ORDER}).
-  # @return [Array<Paper>, Paper] The {Paper}(s) found by the search query.
-  def self.search(*ids, sort_by: :relevance, sort_order: :descending)
-    query = Query.new(*ids, sort_by: sort_by, sort_order: sort_order)
+  class << self
 
-    yield query if block_given?
+    # Performs a search query for papers on the arXiv search API.
+    #
+    # @param ids [Array<String>] The IDs of the arXiv papers to restrict the query to.
+    # @param sort_by [Symbol] The sorting criteria for the returned results (see {Query::SORT_BY}).
+    # @param sort_order [Symbol] The sorting order for the returned results (see {Query::SORT_ORDER}).
+    # @return [Array<Paper>, Paper] The {Paper}(s) found by the search query.
+    def search(*ids, sort_by: :relevance, sort_order: :descending)
+      query = Query.new(*ids, sort_by: sort_by, sort_order: sort_order)
 
-    document = Nokogiri::XML open(ENDPOINT + query.to_s + '&max_results=10000')
-    document.remove_namespaces!
+      yield query if block_given?
 
-    results = Paper.parse(document, single: false).reject {|paper| paper.id.empty?}
-    raise MissingPaper.new(ids.first) if results.empty? && ids.size == 1
-    ids.size == 1 && results.size == 1 ? results.first : results
+      document = Nokogiri::XML open(ENDPOINT + query.to_s + '&max_results=10000')
+      document.remove_namespaces!
+
+      results = Paper.parse(document, single: false).reject {|paper| paper.id.empty?}
+      raise MissingPaper.new(ids.first) if results.empty? && ids.size == 1
+      ids.size == 1 && results.size == 1 ? results.first : results
+    end
+
+    alias_method :find, :search
+    alias_method :get, :search
   end
-
-  alias_method :find, :search
-  alias_method :get, :search
 end
 
 # Performs a search query for papers on the arXiv search API.
