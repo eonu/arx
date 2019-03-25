@@ -161,6 +161,8 @@ module Arx
       define_method(name) do |*values, exact: true, connective: :and|
         return if values.empty?
 
+        values.flatten!
+
         Validate.values values
         Validate.categories values if name == :category
         Validate.exact exact
