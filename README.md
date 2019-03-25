@@ -2,7 +2,7 @@
 [![Gem](https://img.shields.io/gem/v/arx.svg)](https://rubygems.org/gems/arx)
 [![Build Status](https://travis-ci.com/eonu/arx.svg?branch=master)](https://travis-ci.com/eonu/arx)
 [![License](https://img.shields.io/github/license/eonu/arx.svg)](https://github.com/eonu/arx/blob/master/LICENSE)
-[![Documentation](https://img.shields.io/badge/docs-rubydoc-blue.svg)](https://www.rubydoc.info/github/eonu/arx/master/Arx)
+[![Documentation](https://img.shields.io/badge/docs-rubydoc-blue.svg)](https://www.rubydoc.info/gems/arx)
 
 # Arx
 
