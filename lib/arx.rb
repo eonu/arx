@@ -34,6 +34,9 @@ module Arx
     raise MissingPaper.new(ids.first) if results.empty? && ids.size == 1
     ids.size == 1 && results.size == 1 ? results.first : results
   end
+
+  alias_method :find, :search
+  alias_method :get, :search
 end
 
 # Performs a search query for papers on the arXiv search API.
