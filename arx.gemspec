@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'arx'
   spec.version       = Arx::VERSION
   spec.authors       = ['Edwin Onuonga']
-  spec.email         = ['edwinonuonga@gmail.com']
+  spec.email         = ['ed@mail.eonu.net']
   spec.homepage      = 'https://github.com/eonu/arx'
 
   spec.summary       = %q{A Ruby interface for querying academic papers on the arXiv search API.}
