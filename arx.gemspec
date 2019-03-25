@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'arx'
   spec.version       = Arx::VERSION
   spec.authors       = ['Edwin Onuonga']
-  spec.email         = ['edwinonuonga@gmail.com']
+  spec.email         = ['ed@mail.eonu.net']
   spec.homepage      = 'https://github.com/eonu/arx'
 
   spec.summary       = %q{A Ruby interface for querying academic papers on the arXiv search API.}
@@ -27,6 +27,9 @@ Gem::Specification.new do |spec|
 
   spec.metadata = {
     'source_code_uri' => spec.homepage,
-    'documentation_uri' => 'https://www.rubydoc.info/gems/arx/toplevel'
+    'homepage_uri' => spec.homepage,
+    'documentation_uri' => 'https://www.rubydoc.info/gems/arx/toplevel',
+    'bug_tracker_uri' => "#{spec.homepage}/issues",
+    'changelog_uri' => "#{spec.homepage}/blob/master/CHANGELOG.md"
   }
 end
