@@ -12,7 +12,7 @@
 
 **A Ruby interface for querying academic papers on the arXiv search API.**
 
-<img src="https://i.ibb.co/19Djpzk/arxiv.png" width="22%" align="left"></img>
+<img src="https://i.ibb.co/19Djpzk/arxiv.png" width="25%" align="left"></img>
 
 > arXiv is an e-print service in the fields of physics, mathematics, non-linear science, computer science, quantitative biology, quantitative finance and statistics.
 
