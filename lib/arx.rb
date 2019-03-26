@@ -51,9 +51,5 @@ end
 # @param sort_order [Symbol] The sorting order for the returned results (see {Arx::Query::SORT_ORDER}).
 # @return [Array<Paper>, Paper] The {Arx::Paper}(s) found by the search query.
 def Arx(*ids, sort_by: :relevance, sort_order: :descending, &block)
-  if block_given?
-    Arx.search *ids, sort_by: sort_by, sort_order: sort_order, &block
-  else
-    Arx.search *ids, sort_by: sort_by, sort_order: sort_order
-  end
+  Arx.search *ids, sort_by: sort_by, sort_order: sort_order, &block
 end
