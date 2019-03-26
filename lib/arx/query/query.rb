@@ -69,7 +69,7 @@ module Arx
       @query = String.new
 
       Validate.sort_by sort_by, permitted: SORT_BY.keys
-      @query << "&#{PARAMS[:sort_by]}=#{SORT_BY[sort_by]}"
+      @query << "#{PARAMS[:sort_by]}=#{SORT_BY[sort_by]}"
 
       Validate.sort_order sort_order, permitted: SORT_ORDER.keys
       @query << "&#{PARAMS[:sort_order]}=#{SORT_ORDER[sort_order]}"
