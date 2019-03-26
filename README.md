@@ -45,7 +45,7 @@ The documentation for Arx is hosted on [![rubydoc.info](https://img.shields.io/b
 
 ## Usage
 
-Before you start using `arx`, you'll have to ensure that the gem is required (either in your current working file, or shell such as [IRB](https://en.wikipedia.org/wiki/Interactive_Ruby_Shell)):
+Before you start using Arx, you'll have to ensure that the gem is required (either in your current working file, or shell such as [IRB](https://en.wikipedia.org/wiki/Interactive_Ruby_Shell)):
 
 ```ruby
 require 'arx'
