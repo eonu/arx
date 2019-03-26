@@ -20,14 +20,18 @@ module Arx
 
     # Performs a search query for papers on the arXiv search API.
     #
+    # @note The +sort_by+ and +sort_order+ arguments are ignored if passing in your own +query+.
     # @param ids [Array<String>] The IDs of the arXiv papers to restrict the query to.
+    # @param query [Query, NilClass] Predefined search query object.
     # @param sort_by [Symbol] The sorting criteria for the returned results (see {Query::SORT_BY}).
     # @param sort_order [Symbol] The sorting order for the returned results (see {Query::SORT_ORDER}).
     # @return [Array<Paper>, Paper] The {Paper}(s) found by the search query.
-    def search(*ids, sort_by: :relevance, sort_order: :descending)
-      query = Query.new(*ids, sort_by: sort_by, sort_order: sort_order)
-
-      yield query if block_given?
+    def search(*ids, query: nil, sort_by: :relevance, sort_order: :descending)
+      if query.nil?
+        yield query = Query.new(*ids, sort_by: sort_by, sort_order: sort_order) if block_given?
+      else
+        raise TypeError.new("Expected `query` to be an Arx::Query, got: #{query.class}") unless query.is_a? Query
+      end
 
       document = Nokogiri::XML open(ENDPOINT + query.to_s + '&max_results=10000')
       document.remove_namespaces!
@@ -45,11 +49,13 @@ end
 # Performs a search query for papers on the arXiv search API.
 #
 # @note This is an alias of the {Arx.search} method.
+# @note The +sort_by+ and +sort_order+ arguments are ignored if passing in your own +query+.
 # @see Arx.search
 # @param ids [Array<String>] The IDs of the arXiv papers to restrict the query to.
+# @param query [Query, NilClass] Predefined search query object.
 # @param sort_by [Symbol] The sorting criteria for the returned results (see {Arx::Query::SORT_BY}).
 # @param sort_order [Symbol] The sorting order for the returned results (see {Arx::Query::SORT_ORDER}).
 # @return [Array<Paper>, Paper] The {Arx::Paper}(s) found by the search query.
-def Arx(*ids, sort_by: :relevance, sort_order: :descending, &block)
-  Arx.search *ids, sort_by: sort_by, sort_order: sort_order, &block
+def Arx(*ids, query: nil, sort_by: :relevance, sort_order: :descending, &block)
+  Arx.search *ids, query: query, sort_by: sort_by, sort_order: sort_order, &block
 end
