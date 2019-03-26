@@ -10,6 +10,12 @@
 [![Documentation](https://img.shields.io/badge/docs-rubydoc.info-blue.svg)](https://www.rubydoc.info/gems/arx/toplevel)
 [![Build Status](https://travis-ci.com/eonu/arx.svg?branch=master)](https://travis-ci.com/eonu/arx)
 
-<img src="https://i.ibb.co/19Djpzk/arxiv.png" width="15%" align="left"></img>
+**A Ruby interface for querying academic papers on the arXiv search API.**
 
-A Ruby interface for querying academic papers on the arXiv search API.
+<img src="https://i.ibb.co/19Djpzk/arxiv.png" width="20%" align="left"></img>
+
+> arXiv is an e-print service in the fields of physics, mathematics, non-linear science, computer science, quantitative biology, quantitative finance and statistics.
+
+[arXiv](https://arxiv.org/) provides an advanced search utility (shown left) on their website, as well as an extensive [search API](https://arxiv.org/help/api) that allows for the external querying of academic papers hosted on their website.
+
+Although [Scholastica](https://github.com/scholastica) offer a great [Ruby gem](https://github.com/scholastica/arxiv) for retrieving papers from arXiv through the search API, this gem is only intended for retrieving one paper at a time, and only supports searching for paper by ID.
