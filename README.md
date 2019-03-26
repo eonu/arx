@@ -33,7 +33,7 @@ Although [Scholastica](https://github.com/scholastica) offer a great [Ruby gem](
 
 ## Installation
 
-To install the gem, run:
+To install Arx, run the following in your terminal:
 
 ```bash
 $ gem install arx
