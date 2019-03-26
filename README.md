@@ -30,3 +30,27 @@ Although [Scholastica](https://github.com/scholastica) offer a great [Ruby gem](
 - Supports querying by a paper's ID, title, author(s), abstract, subject category, comment, journal reference, or report number.
 - Provides a small embedded DSL for writing queries.
 - Supports searching fields by exact match.
+
+## Installation
+
+To install the gem, run:
+
+```bash
+$ gem install arx
+```
+
+## Documentation
+
+The documentation for Arx is hosted on [![Documentation](https://img.shields.io/badge/docs-rubydoc.info-blue.svg)](https://www.rubydoc.info/gems/arx/toplevel).
+
+## Usage
+
+Before you start using `arx`, you'll have to ensure that the gem is required (either in your current working file, or shell such as [IRB](https://en.wikipedia.org/wiki/Interactive_Ruby_Shell)):
+
+```ruby
+require 'arx'
+```
+
+### Building search queries
+
+### Query results and entities
