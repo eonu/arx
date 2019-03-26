@@ -41,7 +41,7 @@ $ gem install arx
 
 ## Documentation
 
-The documentation for Arx is hosted on [![Documentation](https://img.shields.io/badge/docs-rubydoc.info-blue.svg)](https://www.rubydoc.info/gems/arx/toplevel).
+The documentation for Arx is hosted on [![rubydoc.info](https://img.shields.io/badge/docs-rubydoc.info-blue.svg)](https://www.rubydoc.info/gems/arx/toplevel).
 
 ## Usage
 
