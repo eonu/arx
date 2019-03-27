@@ -1,3 +1,16 @@
+# 0.3.1
+
+#### Major changes
+
+- Add `.yardopts` for document generation configuration. ([#26](https://github.com/eonu/arx/pull/26))
+- Namespace errors in `Arx::Error` module and remove `Error` prefix from error classes. ([#26](https://github.com/eonu/arx/pull/26))
+- Move identifier format regular expression constant definitions from `Arx::Validate` to top-level namespace `Arx`. ([#26](https://github.com/eonu/arx/pull/26))
+
+#### Minor changes
+
+- Rename `lib/arx/exceptions.rb` to `lib/arx/errors.rb`. ([#26](https://github.com/eonu/arx/pull/26))
+- Make `Arx::Cleaner`, `Arx::Validate`, `Arx::Inspector`, `Arx::Link` private (hidden from `yard` documentation). ([#26](https://github.com/eonu/arx/pull/26))
+
 # 0.3.0
 
 #### Major changes
