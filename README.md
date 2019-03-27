@@ -276,9 +276,9 @@ paper.categories
 #=> [#<Arx::Category:0x00007fb657b60e80>]
 
 # Dates
-paper.publish_date
+paper.published_at
 #=> #<DateTime: 2018-09-25T11:40:39+00:00 ((2458387j,42039s,0n),+0s,2299161j)>
-paper.last_updated
+paper.updated_at
 #=> #<DateTime: 2018-09-25T11:40:39+00:00 ((2458387j,42039s,0n),+0s,2299161j)>
 paper.revision?
 #=> false
