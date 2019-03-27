@@ -241,4 +241,102 @@ result.class #=> Arx::Paper
 
 Otherwise, an `Array` of `Arx::Paper`s is returned.
 
-### Query results and entities
+### Query results
+
+Search results are typically:
+
+- an `Array`, either empty if no papers matched the supplied query, or containing `Arx::Paper` objects.
+- a single `Arx::Paper` object (when the search method is only supplied with one ID).
+
+### Entities
+
+The `Arx::Paper`, `Arx::Author` and `Arx::Category` classes provide a simple interface for the metadata concerning a single arXiv paper:
+
+#### `Arx::Paper`
+
+```ruby
+paper = Arx('1809.09415')
+#=> #<Arx::Paper:0x00007fb657b59bd0>
+
+paper.id
+#=> "1809.09415v1"
+paper.url
+#=> "http://arxiv.org/abs/1809.09415v1"
+paper.title
+#=> "On finitely ambiguous Büchi automata"
+paper.summary
+#=> "Unambiguous B\\\"uchi automata, i.e. B\\\"uchi automata allowing..."
+paper.authors
+#=> [#<Arx::Author:0x00007fb657b63108>, #<Arx::Author:0x00007fb657b62438>]
+
+# Paper's categories
+paper.primary_category
+#=> #<Arx::Category:0x00007fb657b61830>
+paper.categories
+#=> [#<Arx::Category:0x00007fb657b60e80>]
+
+# Dates
+paper.publish_date
+#=> #<DateTime: 2018-09-25T11:40:39+00:00 ((2458387j,42039s,0n),+0s,2299161j)>
+paper.last_updated
+#=> #<DateTime: 2018-09-25T11:40:39+00:00 ((2458387j,42039s,0n),+0s,2299161j)>
+paper.revision?
+#=> false
+
+# Paper's comment
+paper.comment?
+#=> false
+paper.comment
+#=> Arx::MissingFieldError (This arXiv paper is missing the `comment` field)
+
+# Paper's journal reference
+paper.journal?
+#=> false
+paper.journal
+#=> Arx::MissingFieldError (This arXiv paper is missing the `journal` field)
+
+# Paper's PDF URL
+paper.pdf?
+#=> true
+paper.pdf_url
+#=> "http://arxiv.org/pdf/1809.09415v1"
+
+# Paper's DOI (Digital Object Identifier) URL
+paper.doi?
+#=> true
+paper.doi_url
+#=> "http://dx.doi.org/10.1007/978-3-319-98654-8_41"
+```
+
+#### `Arx::Author`
+
+```ruby
+paper = Arx('cond-mat/9609089')
+#=> #<Arx::Paper:0x00007fb657a7b8d0>
+
+author = paper.authors.first
+#=> #<Arx::Author:0x00007fb657a735e0>
+
+author.name
+#=> "F. Gebhard"
+
+author.affiliations?
+#=> true
+author.affiliations
+#=> ["ILL Grenoble, France"]
+```
+
+#### `Arx::Category`
+
+```ruby
+paper = Arx('cond-mat/9609089')
+#=> #<Arx::Paper:0x00007fb657b59bd0>
+
+category = paper.primary_category
+#=> #<Arx::Category:0x00007fb6570609b8>
+
+category.name
+#=> "cond-mat"
+category.full_name
+#=> "Condensed Matter"
+```
