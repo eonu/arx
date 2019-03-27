@@ -18,7 +18,7 @@ module Arx
     # @see CATEGORIES
     # @return [String]
     def full_name
-      CATEGORIES[term]
+      CATEGORIES[name]
     end
   end
 end
