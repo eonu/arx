@@ -1,11 +1,9 @@
-require 'happymapper'
-require 'arx/cleaner'
-
 module Arx
 
   # Entity/model representing an arXiv paper's author.
   class Author
     include HappyMapper
+    include Inspector
 
     tag 'author'
 
@@ -25,5 +23,7 @@ module Arx
     def affiliations?
       !affiliations.empty?
     end
+
+    inspector :name, :affiliations?, :affiliations
   end
 end

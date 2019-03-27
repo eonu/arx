@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'cgi'
-require_relative 'validate'
-
 module Arx
 
   # Class for generating arXiv search API query strings.

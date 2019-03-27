@@ -1,11 +1,9 @@
-require 'arx/categories'
-require 'arx/cleaner'
-
 module Arx
 
   # Entity/model representing an arXiv paper's category.
   class Category
     include HappyMapper
+    include Inspector
 
     tag 'category'
 
@@ -20,5 +18,7 @@ module Arx
     def full_name
       CATEGORIES[name]
     end
+
+    inspector :name, :full_name
   end
 end

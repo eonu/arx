@@ -1,13 +1,19 @@
 # frozen_string_literal: true
 
+require 'cgi'
 require 'nokogiri'
 require 'open-uri'
+require 'happymapper'
 require 'arx/version'
+require 'arx/cleaner'
+require 'arx/inspector'
 require 'arx/categories'
-require 'arx/query/query'
+require 'arx/exceptions'
 require 'arx/query/validate'
+require 'arx/query/query'
 require 'arx/entities/author'
 require 'arx/entities/category'
+require 'arx/entities/link'
 require 'arx/entities/paper'
 
 # A Ruby interface for querying academic papers on the arXiv search API.

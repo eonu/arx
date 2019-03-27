@@ -1,15 +1,9 @@
-require 'happymapper'
-require 'arx/exceptions'
-require 'arx/cleaner'
-require_relative 'author'
-require_relative 'category'
-require_relative 'link'
-
 module Arx
 
   # Entity/model representing an arXiv paper.
   class Paper
     include HappyMapper
+    include Inspector
 
     tag 'entry'
 
@@ -159,5 +153,15 @@ module Arx
         end
       end
     end
+
+    inspector *%i[
+      id url title summary authors
+      primary_category categories
+      publish_date last_updated revision?
+      comment? comment
+      journal? journal
+      pdf? pdf_url
+      doi? doi_url
+    ]
   end
 end
