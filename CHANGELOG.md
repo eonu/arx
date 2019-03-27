@@ -1,3 +1,17 @@
+# 0.3.0
+
+#### Major changes
+
+- Add documentation, images, installation and usage instructions to `README.md`. ([#22](https://github.com/eonu/arx/pull/22), [#17](https://github.com/eonu/arx/pull/17))
+- Allow prior construction of a search query in `Arx.search`. ([#18](https://github.com/eonu/arx/pull/18))
+- Fix `Arx.search` query object yielding. ([#20](https://github.com/eonu/arx/pull/20))
+
+#### Minor changes
+
+- Remove conditional with `block_given?` in `Arx()` method. ([#16](https://github.com/eonu/arx/pull/16))
+- Remove leading ampersand (&) from search query string. ([#19](https://github.com/eonu/arx/pull/19))
+- Add base paper categories and more aliases. ([#21](https://github.com/eonu/arx/pull/21))
+
 # 0.2.0
 
 #### Major changes
