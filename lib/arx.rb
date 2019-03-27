@@ -28,13 +28,13 @@ module Arx
     # @return [Array<Paper>, Paper] The {Paper}(s) found by the search query.
     def search(*ids, query: nil, sort_by: :relevance, sort_order: :descending)
       if query.nil?
-        yield query = Query.new(*ids, sort_by: sort_by, sort_order: sort_order) if block_given?
+        query = Query.new(*ids, sort_by: sort_by, sort_order: sort_order)
+        yield query if block_given?
       else
         raise TypeError.new("Expected `query` to be an Arx::Query, got: #{query.class}") unless query.is_a? Query
       end
 
-      document = Nokogiri::XML open(ENDPOINT + query.to_s + '&max_results=10000')
-      document.remove_namespaces!
+      document = Nokogiri::XML(open ENDPOINT + query.to_s + '&max_results=10000').remove_namespaces!
 
       results = Paper.parse(document, single: false).reject {|paper| paper.id.empty?}
       raise MissingPaper.new(ids.first) if results.empty? && ids.size == 1
