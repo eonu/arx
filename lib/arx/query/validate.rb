@@ -1,5 +1,3 @@
-require_relative '../categories'
-
 module Arx
 
   # Validations for arXiv search query fields and identifier schemes.

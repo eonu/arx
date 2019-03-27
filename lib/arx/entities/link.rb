@@ -1,5 +1,3 @@
-require 'happymapper'
-
 module Arx
 
   # Helper entity/model representing a link on an arXiv paper.
