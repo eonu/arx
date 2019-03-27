@@ -2,6 +2,7 @@ module Arx
 
   # Restricts +inspect+ to dump a whitelist of methods on an object.
   # It will always provide `object_id` at a minimum.
+  # @private
   module Inspector
 
     # Overwrites the object's own inspect method.
