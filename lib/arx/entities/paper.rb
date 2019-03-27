@@ -9,7 +9,7 @@ module Arx
 
     element :id, Cleaner, parser: :clean, tag: 'id'
     # The identifier of the paper.
-    # @note This is either in {Validate::OLD_IDENTIFIER_FORMAT} or {Validate::NEW_IDENTIFIER_FORMAT}.
+    # @note This is either in {OLD_IDENTIFIER_FORMAT} or {NEW_IDENTIFIER_FORMAT}.
     # @example
     #   1705.01662v1
     #   cond-mat/0211034
@@ -81,7 +81,7 @@ module Arx
     # @!method comment
     # The comment of the paper.
     # @note This is an optional metadata field on an arXiv paper. To check whether the paper has a comment, use {comment?}
-    # @raise {MissingFieldError} If the paper does not have a comment.
+    # @raise {Error::MissingField} If the paper does not have a comment.
     # @return [String]
     element :comment, Cleaner, parser: :clean, tag: 'comment'
 
@@ -92,7 +92,7 @@ module Arx
     # @!method journal
     # The journal reference of the paper.
     # @note This is an optional metadata field on an arXiv paper. To check whether the paper has a journal reference, use {journal?}
-    # @raise {MissingFieldError} If the paper does not have a journal reference.
+    # @raise {Error::MissingField} If the paper does not have a journal reference.
     # @return [String]
     element :journal, Cleaner, parser: :clean, tag: 'journal_ref'
 
@@ -107,7 +107,7 @@ module Arx
         if self.send "#{optional}?"
           instance_variable_get("@#{optional}")
         else
-          raise MissingFieldError.new(optional)
+          raise Error::MissingField.new(optional)
         end
       end
     end
@@ -121,7 +121,7 @@ module Arx
     # @!method pdf_url
     # Link to the PDF version of the paper.
     # @note This is an optional metadata field on an arXiv paper. To check whether the paper has a PDF link, use {pdf?}
-    # @raise {MissingLinkError} If the paper does not have a PDF link.
+    # @raise {Error::MissingLink} If the paper does not have a PDF link.
     # @return [String]
 
     # @!method doi?
@@ -135,7 +135,7 @@ module Arx
     # @see https://arxiv.org/help/jref#doi
     # @see https://arxiv.org/help/prep#doi
     # @note This is an optional metadata field on an arXiv paper. To check whether the paper has a DOI link, use {doi?}
-    # @raise {MissingLinkError} If the paper does not have a DOI link.
+    # @raise {Error::MissingLink} If the paper does not have a DOI link.
     # @return [String]
 
     %i[pdf doi].each do |link_type|
@@ -149,7 +149,7 @@ module Arx
         if self.send exists
           links.find(&exists).href
         else
-          raise MissingLinkError.new link_type.to_s.upcase
+          raise Error::MissingLink.new link_type.to_s.upcase
         end
       end
     end

@@ -1,28 +1,8 @@
 module Arx
 
   # Validations for arXiv search query fields and identifier schemes.
+  # @private
   module Validate
-
-    # The current arxiv paper identifier scheme (1 April 2007 and onwards).
-    #   The last block of digits can either be five digits (if the paper was published after 1501 - January 2015),
-    #   or four digits (if the paper was published before 1501).
-    #
-    # @see https://arxiv.org/help/arxiv_identifier#new arXiv identifier (new)
-    # @example
-    #   1501.00001
-    #   1705.01662v1
-    #   1412.0135
-    #   0706.0001v2
-    NEW_IDENTIFIER_FORMAT = %r"^\d{4}\.\d{4,5}(v\d+)?$"
-
-    # The legacy arXiv paper identifier scheme (before 1 April 2007).
-    #
-    # @see https://arxiv.org/help/arxiv_identifier#old arXiv identifier (old)
-    # @example
-    #   math/0309136v1
-    #   cond-mat/0211034
-    OLD_IDENTIFIER_FORMAT = %r"^[a-z]+(\-[a-z]+)?\/\d{7}(v\d+)?$"
-
     class << self
       # Validates the +sortBy+ field of the query string.
       #

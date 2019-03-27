@@ -1,6 +1,7 @@
 module Arx
 
   # Class for cleaning strings.
+  # @private
   class Cleaner
 
     # Cleans strings.

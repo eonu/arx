@@ -287,13 +287,13 @@ paper.revision?
 paper.comment?
 #=> false
 paper.comment
-#=> Arx::MissingFieldError (This arXiv paper is missing the `comment` field)
+#=> Arx::Error::MissingField (This arXiv paper is missing the `comment` field)
 
 # Paper's journal reference
 paper.journal?
 #=> false
 paper.journal
-#=> Arx::MissingFieldError (This arXiv paper is missing the `journal` field)
+#=> Arx::Error::MissingField (This arXiv paper is missing the `journal` field)
 
 # Paper's PDF URL
 paper.pdf?
