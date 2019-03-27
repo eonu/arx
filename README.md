@@ -69,13 +69,13 @@ The `Arx::Query` class provides a small embedded DSL for writing these query str
 
 The order in which search results are returned can be modified through the `sort_by` and `sort_order` keyword arguments (in the `Arx::Query` initializer):
 
-- `sort_by` accepts the symbols: `:relevance`, `:last_updated` or `:date_submitted` 
+- `sort_by` accepts the symbols: `:relevance`, `:last_updated` or `:date_submitted`
 
 - `sort_order` accepts the symbols: `:ascending` or `:descending`
 
 ```ruby
 # Sort by submission date in ascending order (earliest first)
-Arx::Query.new(sort_by: :date_submitted, sort_order: :ascending) 
+Arx::Query.new(sort_by: :date_submitted, sort_order: :ascending)
 #=> sortBy=submittedDate&sortOrder=ascending
 ```
 
@@ -87,7 +87,7 @@ Arx::Query.new #=> sortBy=relevance&sortOrder=descending
 
 #### Searching by ID
 
-The arXiv search API doesn't only support searching for papers by metadata fields, but also by ID. When searching by ID, a different URL query string parameter `id_list` is used (instead of `search_query` as seen before). 
+The arXiv search API doesn't only support searching for papers by metadata fields, but also by ID. When searching by ID, a different URL query string parameter `id_list` is used (instead of `search_query` as seen before).
 
 Although the `id_list` can be used to *"search by ID"*, it is better to **think of it as restricting the search space to the papers with the provided IDs**:
 
@@ -189,5 +189,56 @@ q.category('math.NA', 'math.CO', connective: :or)
 ```
 
 ### Running search queries
+
+Search queries can be executed with the `Arx()` method (alias of `Arx.search`). This method contains the same parameters as the `Arx::Query` initializer - including the list of IDs.
+
+#### Without a predefined query
+
+Calling the `Arx()` method with a block allows for the construction and execution of a new query.
+
+**Note**: If running a search query this way, then the `sort_by` and `sort_order` parameters can be added as additional keyword arguments.
+
+```ruby
+# Papers in the cs.FL category whose title contains "Buchi Automata", not authored by Tomáš Babiak
+results = Arx(sort_by: :date_submitted) do |query|
+  query.category('cs.FL')
+  query.title('Buchi Automata')
+  query.!()
+  query.author('Tomáš Babiak')
+end
+
+results.size #=> 18
+```
+
+#### With a predefined query
+
+The `Arx()` method accepts a predefined `Arx::Query` object through the `query` keyword parameter.
+
+**Note**: If using the `query` parameter, the `sort_by` and `sort_order` criteria should be defined in the `Arx::Query` object initializer rather than as arguments in `Arx()`.
+
+```ruby
+# Papers in the cs.FL category whose title contains "Buchi Automata", not authored by Tomáš Babiak
+q = Arx::Query.new(sort_by: :date_submitted)
+q.category('cs.FL')
+q.title('Buchi Automata')
+q.!()
+q.author('Tomáš Babiak')
+
+results = Arx(query: q)
+results.size #=> 18
+```
+
+#### With IDs
+
+The `Arx()` methods accepts a list of IDs as a splat parameter, just like the `Arx::Query` initializer.
+
+If only one ID is specified, then a single `Arx::Paper` is returned:
+
+```ruby
+result = Arx('1809.09415')
+result.class #=> Arx::Paper
+```
+
+Otherwise, an `Array` of `Arx::Paper`s is returned.
 
 ### Query results and entities
