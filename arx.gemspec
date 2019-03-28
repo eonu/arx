@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.metadata = {
     'source_code_uri' => spec.homepage,
     'homepage_uri' => spec.homepage,
-    'documentation_uri' => 'https://www.rubydoc.info/gems/arx/toplevel',
+    'documentation_uri' => 'https://www.rubydoc.info/github/eonu/arx/master/toplevel',
     'bug_tracker_uri' => "#{spec.homepage}/issues",
     'changelog_uri' => "#{spec.homepage}/blob/master/CHANGELOG.md"
   }
