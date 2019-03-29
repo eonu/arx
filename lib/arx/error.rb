@@ -5,15 +5,15 @@ module Arx
 
     # Custom error for missing links on an arXiv paper.
     class MissingLink < StandardError
-      def initialize(link_type)
-        super "This arXiv paper does not have a #{link_type} link"
+      def initialize(id, link_type)
+        super "arXiv paper #{id} does not have a #{link_type} link"
       end
     end
 
     # Custom error for missing fields on an arXiv paper.
     class MissingField < StandardError
-      def initialize(field)
-        super "This arXiv paper is missing the `#{field}` field"
+      def initialize(id, field)
+        super "arXiv paper #{id} is missing the `#{field}` metadata field"
       end
     end
 
