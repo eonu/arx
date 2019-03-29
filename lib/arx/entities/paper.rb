@@ -27,17 +27,15 @@ module Arx
       @id
     end
 
-    # @!method last_updated
+    # @!method updated_at
     # The date that the paper was last updated.
     # @return [DateTime]
-    element :last_updated, DateTime, tag: 'updated'
-    alias_method :updated_at, :last_updated
+    element :updated_at, DateTime, tag: 'updated'
 
-    # @!method publish_date
+    # @!method published_at
     # The original publish/submission date of the paper.
     # @return [DateTime]
-    element :publish_date, DateTime, tag: 'published'
-    alias_method :published_at, :publish_date
+    element :published_at, DateTime, tag: 'published'
 
     # @!method title
     # The title of the paper.
@@ -53,19 +51,18 @@ module Arx
     # The primary category of the paper.
     # @return [Category]
     element :primary_category, Category, tag: 'primary_category'
-    alias_method :primary_subject, :primary_category
+    alias_method :category, :primary_category
 
     # @!method categories
     # The categories of the paper.
     # @return [Array<Category>]
     has_many :categories, Category, tag: 'category'
-    alias_method :subjects, :categories
 
     # Whether the paper is a revision or not.
-    # @note A paper is a revision if {last_updated} differs from {publish_date}.
+    # @note A paper is a revision if {updated_at} differs from {published_at}.
     # @return [Boolean]
     def revision?
-      @publish_date != @last_updated
+      @published_at != @updated_at
     end
 
     # @!method summary
@@ -157,7 +154,7 @@ module Arx
     inspector *%i[
       id url title summary authors
       primary_category categories
-      publish_date last_updated revision?
+      published_at updated_at revision?
       comment? comment
       journal? journal
       pdf? pdf_url

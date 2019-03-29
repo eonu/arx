@@ -320,7 +320,7 @@ author = paper.authors.first
 author.name
 #=> "F. Gebhard"
 
-author.affiliations?
+author.affiliated?
 #=> true
 author.affiliations
 #=> ["ILL Grenoble, France"]
