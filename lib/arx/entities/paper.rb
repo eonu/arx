@@ -53,13 +53,12 @@ module Arx
     # The primary category of the paper.
     # @return [Category]
     element :primary_category, Category, tag: 'primary_category'
-    alias_method :primary_subject, :primary_category
+    alias_method :category
 
     # @!method categories
     # The categories of the paper.
     # @return [Array<Category>]
     has_many :categories, Category, tag: 'category'
-    alias_method :subjects, :categories
 
     # Whether the paper is a revision or not.
     # @note A paper is a revision if {last_updated} differs from {publish_date}.
