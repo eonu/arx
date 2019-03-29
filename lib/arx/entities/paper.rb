@@ -104,7 +104,7 @@ module Arx
         if self.send "#{optional}?"
           instance_variable_get("@#{optional}")
         else
-          raise Error::MissingField.new(optional)
+          raise Error::MissingField.new id, optional
         end
       end
     end
@@ -146,7 +146,7 @@ module Arx
         if self.send exists
           links.find(&exists).href
         else
-          raise Error::MissingLink.new link_type.to_s.upcase
+          raise Error::MissingLink.new id, link_type.to_s.upcase
         end
       end
     end
