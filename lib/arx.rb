@@ -53,15 +53,12 @@ module Arx
     # @param sort_order [Symbol] The sorting order for the returned results (see {Query::SORT_ORDER}).
     # @return [Array<Paper>, Paper] The {Paper}(s) found by the search query.
     def search(*ids, query: nil, sort_by: :relevance, sort_order: :descending)
-      if query.nil?
-        query = Query.new(*ids, sort_by: sort_by, sort_order: sort_order)
-        yield query if block_given?
-      else
-        raise TypeError.new("Expected `query` to be an Arx::Query, got: #{query.class}") unless query.is_a? Query
-      end
+      query ||= Query.new(*ids, sort_by: sort_by, sort_order: sort_order)
+      raise TypeError.new("Expected `query` to be an Arx::Query, got: #{query.class}") unless query.is_a? Query
+
+      yield query if block_given?
 
       document = Nokogiri::XML(open ENDPOINT + query.to_s + '&max_results=10000').remove_namespaces!
-
       results = Paper.parse(document, single: false).reject {|paper| paper.id.empty?}
       raise Error::MissingPaper.new(ids.first) if results.empty? && ids.size == 1
       ids.size == 1 && results.size == 1 ? results.first : results
