@@ -53,7 +53,7 @@ module Arx
     # The primary category of the paper.
     # @return [Category]
     element :primary_category, Category, tag: 'primary_category'
-    alias_method :category
+    alias_method :category, :primary_category
 
     # @!method categories
     # The categories of the paper.

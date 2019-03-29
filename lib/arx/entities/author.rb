@@ -17,13 +17,12 @@ module Arx
     # @return [Array<String>]
     has_many :affiliations, Cleaner, tag: 'affiliation', parser: :clean
 
-    # @!method affiliations?
     # Whether or not the author has any affiliations.
     # @return [Boolean]
-    def affiliations?
+    def affiliated?
       !affiliations.empty?
     end
 
-    inspector :name, :affiliations?, :affiliations
+    inspector :name, :affiliated?, :affiliations
   end
 end
