@@ -7,6 +7,6 @@ module Arx
     major: 0,
     minor: 3,
     patch: 1,
-    meta: nil
+    meta: nil,
   }.compact.values.join('.').freeze
 end
