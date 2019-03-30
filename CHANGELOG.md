@@ -1,3 +1,22 @@
+# 0.3.2
+
+#### Major changes
+
+- Add `Paper#category` alias for `Paper#primary_category`. ([#34](https://github.com/eonu/arx/pull/34))
+- Change `Author#affiliations?` to `Author#affiliated?`. ([#34](https://github.com/eonu/arx/pull/34))
+- Change `Paper#last_updated` to `Paper#updated_at` (and remove `updated_at` alias). ([#34](https://github.com/eonu/arx/pull/34))
+- Change `Paper#publish_date` to `Paper#published_at` (and remove `published_at` alias). ([#34](https://github.com/eonu/arx/pull/34))
+- Conditionally assign query object in `Arx.search` with `||=` operator. ([#33](https://github.com/eonu/arx/pull/33))
+- Add `gem:debug` rake task for loading the gem into an interactive console. ([#28](https://github.com/eonu/arx/pull/28))
+- Add `gem:release` rake task for preparing gem releases. ([#36](https://github.com/eonu/arx/pull/36))
+- Add `thor` gem development dependency. ([#36](https://github.com/eonu/arx/pull/36))
+
+#### Minor changes
+
+- Update documentation links to `rubydoc.info`'s GitHub service. ([#30](https://github.com/eonu/arx/pull/30))
+- Add email address to `LICENSE`. ([#31](https://github.com/eonu/arx/pull/31))
+- Improve `Error::MissingField` and `Error::MissingLink` error messages. ([#35](https://github.com/eonu/arx/pull/35))
+
 # 0.3.1
 
 #### Major changes
