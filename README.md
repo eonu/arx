@@ -24,6 +24,23 @@ Although [Scholastica](https://github.com/scholastica) offer a great [Ruby gem](
 
 *Arx is a gem that allows for quick and easy querying of the arXiv search API, without having to worry about manually writing your own search query strings or parse the resulting XML query response to find the data you need.*
 
+## Typical example
+
+Suppose we wish to search for:
+
+> Papers in the `cs.FL` (Formal Languages and Automata Theory) category whose title contains `"Buchi Automata"`, not authored by `Tomáš Babiak`, sorted by submission date (latest first).
+
+This query can be executed with the following code:
+
+```ruby
+require 'arx'
+
+papers = Arx(sort_by: :date_submitted) do |query|
+  query.category('cs.FL')
+  query.title('Buchi Automata').and_not.author('Tomáš Babiak')
+end
+```
+
 ## Features
 
 - Ruby classes `Arx::Paper`, `Arx::Author` and `Arx::Category` that wrap the resulting Atom XML query result from the search API.
@@ -178,13 +195,13 @@ q.author('Dominik Edelmann')
 q.category('math.NA')
 ```
 
-To change the logical connective used to chain subqueries, use the `&()` (and), `|()` (or) and `!()` (and not) instance methods between the subquery calls:
+To change the logical connective used to chain subqueries, use the `and`, `or`, `and_not` instance methods between the subquery calls:
 
 ```ruby
 # Papers authored by "Eleonora Andreotti" in neither the "Numerical Analysis" (math.NA) or "Combinatorics (math.CO)" categories.
 q = Arx::Query.new
 q.author('Eleonora Andreotti')
-q.!()
+q.and_not
 q.category('math.NA', 'math.CO', connective: :or)
 ```
 
@@ -202,9 +219,7 @@ Calling the `Arx()` method with a block allows for the construction and executio
 # Papers in the cs.FL category whose title contains "Buchi Automata", not authored by Tomáš Babiak
 results = Arx(sort_by: :date_submitted) do |query|
   query.category('cs.FL')
-  query.title('Buchi Automata')
-  query.!()
-  query.author('Tomáš Babiak')
+  query.title('Buchi Automata').and_not.author('Tomáš Babiak')
 end
 
 results.size #=> 18
@@ -220,9 +235,7 @@ The `Arx()` method accepts a predefined `Arx::Query` object through the `query` 
 # Papers in the cs.FL category whose title contains "Buchi Automata", not authored by Tomáš Babiak
 q = Arx::Query.new(sort_by: :date_submitted)
 q.category('cs.FL')
-q.title('Buchi Automata')
-q.!()
-q.author('Tomáš Babiak')
+q.title('Buchi Automata').and_not.author('Tomáš Babiak')
 
 results = Arx(query: q)
 results.size #=> 18
