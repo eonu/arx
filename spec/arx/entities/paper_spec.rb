@@ -1,9 +1,11 @@
 require 'spec_helper'
-require 'matchers/paper'
 
 describe Paper do
   subject { Paper }
-  let(:papers) { Arx.get 'cond-mat/9609089', '1105.5379', '1710.02185' }
+
+  let :papers do
+    Arx.get 'cond-mat/9609089', '1105.5379', '1710.02185'
+  end
 
   context '#id' do
     context 'cond-mat/9609089' do
@@ -167,24 +169,24 @@ describe Paper do
   end
   context '#revision?' do
     context 'cond-mat/9609089' do
-      it { expect(papers[0].revision?).to eq false }
+      it { expect(papers[0].revision?).to be false }
     end
     context '1105.5379' do
-      it { expect(papers[1].revision?).to eq false }
+      it { expect(papers[1].revision?).to be false }
     end
     context '1710.02185' do
-      it { expect(papers[2].revision?).to eq true }
+      it { expect(papers[2].revision?).to be true }
     end
   end
   context '#comment?' do
     context 'cond-mat/9609089' do
-      it { expect(papers[0].comment?).to eq true }
+      it { expect(papers[0].comment?).to be true }
     end
     context '1105.5379' do
-      it { expect(papers[1].comment?).to eq false }
+      it { expect(papers[1].comment?).to be false }
     end
     context '1710.02185' do
-      it { expect(papers[2].comment?).to eq true }
+      it { expect(papers[2].comment?).to be true }
     end
   end
   context '#comment' do
@@ -200,13 +202,13 @@ describe Paper do
   end
   context '#journal?' do
     context 'cond-mat/9609089' do
-      it { expect(papers[0].journal?).to eq true }
+      it { expect(papers[0].journal?).to be true }
     end
     context '1105.5379' do
-      it { expect(papers[1].journal?).to eq true }
+      it { expect(papers[1].journal?).to be true }
     end
     context '1710.02185' do
-      it { expect(papers[2].journal?).to eq false }
+      it { expect(papers[2].journal?).to be false }
     end
   end
   context '#journal' do
@@ -222,13 +224,13 @@ describe Paper do
   end
   context '#pdf?' do
     context 'cond-mat/9609089' do
-      it { expect(papers[0].pdf?).to eq true }
+      it { expect(papers[0].pdf?).to be true }
     end
     context '1105.5379' do
-      it { expect(papers[1].pdf?).to eq true }
+      it { expect(papers[1].pdf?).to be true }
     end
     context '1710.02185' do
-      it { expect(papers[2].pdf?).to eq true }
+      it { expect(papers[2].pdf?).to be true }
     end
   end
   context '#pdf_url' do
@@ -244,13 +246,13 @@ describe Paper do
   end
   context '#doi?' do
     context 'cond-mat/9609089' do
-      it { expect(papers[0].doi?).to eq true }
+      it { expect(papers[0].doi?).to be true }
     end
     context '1105.5379' do
-      it { expect(papers[1].doi?).to eq false }
+      it { expect(papers[1].doi?).to be false }
     end
     context '1710.02185' do
-      it { expect(papers[2].doi?).to eq true }
+      it { expect(papers[2].doi?).to be true }
     end
   end
   context '#doi_url' do
