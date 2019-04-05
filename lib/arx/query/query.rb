@@ -22,13 +22,6 @@ module Arx
       and_not: 'ANDNOT'
     }
 
-    # Logical connective method names.
-    CONNECTIVE_METHODS = {
-      '&': :and,
-      '!': :and_not,
-      '|': :or
-    }
-
     # Supported fields for the search queries made to the arXiv search API.
     # @see https://arxiv.org/help/prep arXiv metadata fields
     # @see https://arxiv.org/help/api/user-manual#query_details arXiv user manual (query details)
@@ -81,23 +74,23 @@ module Arx
       yield self if block_given?
     end
 
-    # @!method &
+    # @!method and
     # Logical conjunction (+AND+) of subqueries.
     # @see https://arxiv.org/help/api/user-manual#query_details arXiv user manual
     # @return [self]
 
-    # @!method !
+    # @!method and_not
     # Logical negated conjunction (+ANDNOT+) of subqueries.
     # @see https://arxiv.org/help/api/user-manual#query_details arXiv user manual
     # @return [self]
 
-    # @!method |
+    # @!method or
     # Logical disjunction (+OR+) of subqueries.
     # @see https://arxiv.org/help/api/user-manual#query_details arXiv user manual
     # @return [self]
 
-    CONNECTIVE_METHODS.each do |symbol, connective|
-      define_method(symbol) { add_connective connective }
+    CONNECTIVES.keys.each do |connective|
+      define_method(connective) { add_connective connective }
     end
 
     # @!method title(*values, exact: true, connective: :and)
