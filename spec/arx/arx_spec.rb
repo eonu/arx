@@ -34,6 +34,9 @@ describe Arx do
       context '(invalid)' do
         it { expect { Arx.search '1234.1234' }.to raise_error Error::MissingPaper }
       end
+      context '(invalid format)' do
+        it { expect { Arx.search 'abc' }.to raise_error ArgumentError }
+      end
     end
     context 'with multiple IDs' do
       context '(valid)' do
@@ -48,6 +51,9 @@ describe Arx do
 
         it { is_expected.to be_an Array }
         it { is_expected.to be_empty }
+      end
+      context '(invalid format)' do
+        it { expect { Arx.search '1105.5379', 'cond-mat/9609089', 'a' }.to raise_error ArgumentError }
       end
     end
     context 'with a predefined query' do

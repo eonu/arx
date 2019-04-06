@@ -22,11 +22,17 @@ module Arx
       # @param version [Boolean] Whether or not to include the paper's version.
       # @return [String] The extracted ID.
       def extract_id(string, version: false)
-        raise TypeError.new("Expected `version` to be boolean (TrueClass or FalseClass), got: #{version.class}") unless version == !!version
-        raise TypeError.new("Expected `string` to be a String, got: #{string.class}") unless string.is_a? String
-        string.gsub!(/(#{URL_PREFIX})|(\/$)/, '') if /#{URL_PREFIX}.+\/?$/.match? string
-        raise ArgumentError.new("Couldn't extract arXiv identifier from: #{string}") unless Validate.id? string
-        version ? string : string.sub(/v[0-9]+$/, '')
+        if version == !!version
+          if string.is_a? String
+            trimmed = /#{URL_PREFIX}.+\/?$/.match?(string) ? string.gsub(/(#{URL_PREFIX})|(\/$)/, '') : string
+            raise ArgumentError.new("Couldn't extract arXiv identifier from: #{string}") unless Validate.id? trimmed
+            version ? trimmed : trimmed.sub(/v[0-9]+$/, '')
+          else
+            raise TypeError.new("Expected `string` to be a String, got: #{string.class}")
+          end
+        else
+          raise TypeError.new("Expected `version` to be boolean (TrueClass or FalseClass), got: #{version.class}")
+        end
       end
 
       # Attempt to extract a version number from an arXiv identifier.
