@@ -272,9 +272,18 @@ paper = Arx('1809.09415')
 #=> #<Arx::Paper:0x00007fb657b59bd0>
 
 paper.id
+#=> "1809.09415"
+paper.id(version: true)
 #=> "1809.09415v1"
 paper.url
+#=> "http://arxiv.org/abs/1809.09415"
+paper.url(version: true)
 #=> "http://arxiv.org/abs/1809.09415v1"
+paper.version
+#=> 1
+paper.revision?
+#=> false
+
 paper.title
 #=> "On finitely ambiguous Büchi automata"
 paper.summary
@@ -293,8 +302,6 @@ paper.published_at
 #=> #<DateTime: 2018-09-25T11:40:39+00:00 ((2458387j,42039s,0n),+0s,2299161j)>
 paper.updated_at
 #=> #<DateTime: 2018-09-25T11:40:39+00:00 ((2458387j,42039s,0n),+0s,2299161j)>
-paper.revision?
-#=> false
 
 # Paper's comment
 paper.comment?

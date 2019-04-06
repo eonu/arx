@@ -66,8 +66,7 @@ module Arx
 
       ids.flatten!
       unless ids.empty?
-        ids.map! {|id| extract_id id}
-        Validate.ids ids
+        ids.map! &Cleaner.method(:extract_id)
         @query << "&#{PARAMS[:id_list]}=#{ids * ','}"
       end
 
@@ -240,19 +239,6 @@ module Arx
     # @return [String] The enquoted string.
     def enquote(string)
       CGI.escape("\"") + string + CGI.escape("\"")
-    end
-
-    # Attempt to extract an ID from an arXiv URL.
-    #
-    # @param url [String] The URL to extract the ID from.
-    # @return [String] The extracted ID if successful, otherwise the original string.
-    def extract_id(url)
-      prefix = %r"^(https?\:\/\/)?(www.)?arxiv\.org\/abs\/"
-      if %r"#{prefix}.*$".match? url
-        url.sub(prefix, '').sub(%r"\/$", '')
-      else
-        url
-      end
     end
   end
 end
