@@ -32,7 +32,7 @@ module Arx
   #   1705.01662v1
   #   1412.0135
   #   0706.0001v2
-  NEW_IDENTIFIER_FORMAT = %r"^\d{4}\.\d{4,5}(v\d+)?$"
+  NEW_IDENTIFIER_FORMAT = /^\d{4}\.\d{4,5}(v\d+)?$/
 
   # The legacy arXiv paper identifier scheme (before 1 April 2007).
   #
@@ -40,7 +40,7 @@ module Arx
   # @example
   #   math/0309136v1
   #   cond-mat/0211034
-  OLD_IDENTIFIER_FORMAT = %r"^[a-z]+(\-[a-z]+)?\/\d{7}(v\d+)?$"
+  OLD_IDENTIFIER_FORMAT = /^[a-z]+(\-[a-z]+)?\/\d{7}(v\d+)?$/
 
   class << self
 
