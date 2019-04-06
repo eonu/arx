@@ -13,18 +13,33 @@ module Arx
     # @example
     #   1705.01662v1
     #   cond-mat/0211034
+    # @param version [Boolean] Whether or not to include the paper's version.
     # @return [String] The paper's identifier.
-    def id
-      @id.sub /https?\:\/\/arxiv\.org\/abs\//, ''
+    def id(version: false)
+      Cleaner.extract_id @id, version: version
     end
 
     # The URL of the paper on the arXiv website.
     # @example
     #   http://arxiv.org/abs/1705.01662v1
     #   http://arxiv.org/abs/cond-mat/0211034
+    # @param version [Boolean] Whether or not to include the paper's version.
     # @return [String] The paper's arXiv URL.
-    def url
-      @id
+    def url(version: false)
+      "http://arxiv.org/abs/#{id version: version}"
+    end
+
+    # The version of the paper.
+    # @return [Integer] The paper's version.
+    def version
+      Cleaner.extract_version @id
+    end
+
+    # Whether the paper is a revision or not.
+    # @note A paper is a revision if its {version} is greater than 1.
+    # @return [Boolean]
+    def revision?
+      version > 1
     end
 
     # @!method updated_at
@@ -57,13 +72,6 @@ module Arx
     # The categories of the paper.
     # @return [Array<Category>]
     has_many :categories, Category, tag: 'category'
-
-    # Whether the paper is a revision or not.
-    # @note A paper is a revision if {updated_at} differs from {published_at}.
-    # @return [Boolean]
-    def revision?
-      @published_at != @updated_at
-    end
 
     # @!method summary
     # The summary (or abstract) of the paper.
@@ -152,9 +160,10 @@ module Arx
     end
 
     inspector *%i[
-      id url title summary authors
+      id url version revision?
+      title summary authors
       primary_category categories
-      published_at updated_at revision?
+      published_at updated_at
       comment? comment
       journal? journal
       pdf? pdf_url
