@@ -31,6 +31,12 @@ describe Arx do
         it { is_expected.to be_a Paper }
         it { is_expected.to get_paper papers.first }
       end
+      context '(valid URL)' do
+        subject { Arx.search 'https://arxiv.org/abs/1105.5379' }
+
+        it { is_expected.to be_a Paper }
+        it { is_expected.to get_paper papers.first }
+      end
       context '(invalid)' do
         it { expect { Arx.search '1234.1234' }.to raise_error Error::MissingPaper }
       end
