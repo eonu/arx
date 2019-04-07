@@ -53,10 +53,7 @@ describe Arx do
         it { is_expected.to get_papers papers }
       end
       context '(invalid)' do
-        subject { Arx.search '1234.1234', 'invalid-category/1234567' }
-
-        it { is_expected.to be_an Array }
-        it { is_expected.to be_empty }
+        it { expect { Arx.search '1234.1234', 'invalid-category/1234567' }.to raise_error ArgumentError }
       end
       context '(invalid format)' do
         it { expect { Arx.search '1105.5379', 'cond-mat/9609089', 'a' }.to raise_error ArgumentError }
