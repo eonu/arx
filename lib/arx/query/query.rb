@@ -188,8 +188,9 @@ module Arx
     # @param connective [Symbol] The symbol of the logical connective to add.
     # @return [self]
     def add_connective(connective)
-      return unless search_query?
-      @query << "+#{CONNECTIVES[connective]}" unless ends_with_connective?
+      if search_query?
+        @query << "+#{CONNECTIVES[connective]}" unless ends_with_connective?
+      end
       self
     end
 
