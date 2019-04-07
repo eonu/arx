@@ -203,7 +203,7 @@ describe Paper do
       it { is_expected.to be_an Array }
       it { is_expected.to all be_an Category }
       it { expect(subject.map &:name).to eq ['cs.FL', '03D05', 'F.1.1; F.4.1'] }
-      it { expect(subject[1...2].map &:full_name).to all be nil } # MSC or ACM classes
+      it { expect(subject[1...2].map &:full_name).to all be_nil } # MSC or ACM classes
     end
   end
   context '#published_at' do
