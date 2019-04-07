@@ -43,7 +43,7 @@ module Arx
         reversed = extract_id(string, version: true).reverse
 
         if /^[0-9]+v/.match? reversed
-          reversed.partition('v').first.to_i
+          reversed.partition('v').first.reverse.to_i
         else
           raise ArgumentError.new("Couldn't extract version number from identifier: #{string}")
         end
