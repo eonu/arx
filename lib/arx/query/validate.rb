@@ -94,7 +94,9 @@ module Arx
       # @see NEW_IDENTIFIER_FORMAT
       # @see OLD_IDENTIFIER_FORMAT
       def id?(id)
-        NEW_IDENTIFIER_FORMAT.match?(id) || OLD_IDENTIFIER_FORMAT.match?(id)
+        return true if NEW_IDENTIFIER_FORMAT.match? id
+        return true if OLD_IDENTIFIER_FORMAT.match?(id) && Arx::CATEGORIES.keys.include?(id.split('/').first)
+        false
       end
     end
   end

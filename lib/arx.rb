@@ -59,9 +59,15 @@ module Arx
       yield query if block_given?
 
       document = Nokogiri::XML(open ENDPOINT + query.to_s + '&max_results=10000').remove_namespaces!
-      results = Paper.parse(document, single: false).reject {|paper| paper.id.empty?}
-      raise Error::MissingPaper.new(ids.first) if results.empty? && ids.size == 1
-      ids.size == 1 && results.size == 1 ? results.first : results
+      results = Paper.parse(document, single: ids.size == 1)
+
+      if results.is_a? Paper
+        raise Error::MissingPaper.new(ids.first) if results.title.empty?
+      elsif results.is_a? Array
+        results.reject! {|paper| paper.title.empty?}
+      end
+
+      results
     end
 
     alias_method :find, :search

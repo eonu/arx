@@ -24,7 +24,7 @@ Although [Scholastica](https://github.com/scholastica) offer a great [Ruby gem](
 
 *Arx is a gem that allows for quick and easy querying of the arXiv search API, without having to worry about manually writing your own search query strings or parse the resulting XML query response to find the data you need.*
 
-## Typical example
+## Example
 
 Suppose we wish to search for:
 
