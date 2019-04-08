@@ -4,9 +4,9 @@ module Arx
 
   # The current version of Arx.
   VERSION = {
-    major: 0,
-    minor: 3,
-    patch: 2,
+    major: 1,
+    minor: 0,
+    patch: 0,
     meta: nil,
   }.compact.values.join('.').freeze
 end
