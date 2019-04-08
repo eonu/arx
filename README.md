@@ -7,7 +7,6 @@
 [![License](https://img.shields.io/github/license/eonu/arx.svg)](https://github.com/eonu/arx/blob/master/LICENSE)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/e94073dfa8c3e2442298/maintainability)](https://codeclimate.com/github/eonu/arx/maintainability)
-[![Documentation](https://img.shields.io/badge/docs-rubydoc.info-blue.svg)](https://www.rubydoc.info/github/eonu/arx/master/toplevel)
 [![Build Status](https://travis-ci.com/eonu/arx.svg?branch=master)](https://travis-ci.com/eonu/arx)
 [![Coverage Status](https://coveralls.io/repos/github/eonu/arx/badge.svg?branch=feature%2Fcoveralls)](https://coveralls.io/github/eonu/arx?branch=feature%2Fcoveralls)
 
