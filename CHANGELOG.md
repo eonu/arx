@@ -1,3 +1,23 @@
+# 1.0.0
+
+#### Major changes
+
+- Change `Query` connective instance methods ([#38](https://github.com/eonu/arx/pull/38)):
+  - `#&` -> `#and`
+  - `#|` -> `#or`
+  - `#!` -> `#and_not`
+- Split version number from paper identifier in `Paper` (add `version` key-word argument to `#id` and `#url`, and add `#version`). ([#39](https://github.com/eonu/arx/pull/39))
+- Add `Cleaner.extract_id` and `Cleaner.extract_version`. ([#39](https://github.com/eonu/arx/pull/39))
+- Make `Query#add_connective` always return `self`. ([#40](https://github.com/eonu/arx/pull/40))
+- Redefine `Arx.search` to user `Paper.parse`'s `search` key-word argument. ([#40](https://github.com/eonu/arx/pull/40))
+- Implement all tests. ([#40](https://github.com/eonu/arx/pull/40))
+
+#### Minor changes
+
+- Change declared regular expression literals from `%r""` to standard `//`. ([#39](https://github.com/eonu/arx/pull/39))
+- Remove `#extract_id` from `Query` and use `Cleaner.extract_id` instead. ([#39](https://github.com/eonu/arx/pull/39))
+- Redefine `Paper#revision?` to use the new `#version` instead of `#updated_at` and`#published_at`. ([#39](https://github.com/eonu/arx/pull/39))
+
 # 0.3.2
 
 #### Major changes
