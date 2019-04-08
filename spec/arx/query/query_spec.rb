@@ -57,11 +57,71 @@ describe Query do
     end
   end
 
-  %i[and or and_not].each do |connective|
+  Query::CONNECTIVES.keys.each do |connective|
     context "##{connective}" do
       let(:query) { Query.new }
 
-      it {  }
+      context 'without a query string' do
+        it do
+          before = query.to_s
+          expect(query.send(connective).to_s).to eq before
+        end
+      end
+      context 'with a query string' do
+        it { expect(query.title('Test').send(connective).to_s).to eq "sortBy=relevance&sortOrder=descending&search_query=ti:%22Test%22+#{Query::CONNECTIVES[connective]}" }
+      end
+      context 'with connective already present' do
+        Query::CONNECTIVES.keys.each do |existing|
+          it { expect(query.title('Test').send(existing).send(connective).to_s).to eq "sortBy=relevance&sortOrder=descending&search_query=ti:%22Test%22+#{Query::CONNECTIVES[existing]}" }
+        end
+      end
     end
+  end
+
+  Query::FIELDS.keys.each do |field|
+    context "##{field}" do
+      let(:query) { Query.new }
+
+      context 'without a query string' do
+        it { expect(query.send(field, 'cs.AI').to_s).to eq "sortBy=relevance&sortOrder=descending&search_query=#{Query::FIELDS[field]}:%22cs.AI%22" }
+      end
+      context 'without a prior connective' do
+        it { expect(query.title('test').send(field, 'cs.AI').to_s).to eq "sortBy=relevance&sortOrder=descending&search_query=ti:%22test%22+AND+#{Query::FIELDS[field]}:%22cs.AI%22" }
+      end
+      context 'with a prior connective' do
+        Query::CONNECTIVES.keys.each do |connective|
+          it { expect(query.title('test').send(connective).send(field, 'cs.AI').to_s).to eq "sortBy=relevance&sortOrder=descending&search_query=ti:%22test%22+#{Query::CONNECTIVES[connective]}+#{Query::FIELDS[field]}:%22cs.AI%22" }
+        end
+      end
+      context 'exact: false' do
+        it { expect(query.send(field, 'cs.AI', exact: false).to_s).to eq "sortBy=relevance&sortOrder=descending&search_query=#{Query::FIELDS[field]}:cs.AI" }
+      end
+      context 'with multiple values' do
+        it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG').to_s).to eq "sortBy=relevance&sortOrder=descending&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:%22cs.AI%22+AND+#{Query::FIELDS[field]}:%22cs.LG%22%29" }
+
+        context 'exact: false' do
+          it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG', exact: false).to_s).to eq "sortBy=relevance&sortOrder=descending&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:cs.AI+AND+#{Query::FIELDS[field]}:cs.LG%29" }
+        end
+
+        Query::CONNECTIVES.keys.each do |connective|
+          context "connective: #{connective}" do
+            it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG', connective: connective).to_s).to eq "sortBy=relevance&sortOrder=descending&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:%22cs.AI%22+#{Query::CONNECTIVES[connective]}+#{Query::FIELDS[field]}:%22cs.LG%22%29" }
+          end
+        end
+      end
+    end
+  end
+
+  context '#parenthesize' do
+    subject { Query }
+
+    it { expect(subject.new.send :parenthesize, 'test').to eq '%28test%29' }
+    it { expect(subject.new.send :parenthesize, '(test)').to eq '%28(test)%29' }
+  end
+  context '#enquote' do
+    subject { Query }
+
+    it { expect(subject.new.send :enquote, 'test').to eq '%22test%22' }
+    it { expect(subject.new.send :enquote, '"test"').to eq '%22"test"%22' }
   end
 end
