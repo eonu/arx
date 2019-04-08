@@ -199,12 +199,8 @@ module Arx
     # @param subquery [String] The subquery to add.
     def add_subquery(subquery)
       if search_query?
-        if ends_with_connective?
-          @query << "+#{subquery}"
-        else
-          add_connective :and
-          @query << "+#{subquery}"
-        end
+        add_connective :and unless ends_with_connective?
+        @query << "+#{subquery}"
       else
         @query << "&#{PARAMS[:search_query]}=#{subquery}"
       end
