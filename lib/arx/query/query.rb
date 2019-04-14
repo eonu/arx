@@ -189,7 +189,7 @@ module Arx
     # @return [self]
     def add_connective(connective)
       if search_query?
-        @query << "+#{CONNECTIVES[connective]}" unless ends_with_connective?
+        @query << "+#{CONNECTIVES[connective]}" unless end_with_connective?
       end
       self
     end
@@ -199,7 +199,7 @@ module Arx
     # @param subquery [String] The subquery to add.
     def add_subquery(subquery)
       if search_query?
-        add_connective :and unless ends_with_connective?
+        add_connective :and unless end_with_connective?
         @query << "+#{subquery}"
       else
         @query << "&#{PARAMS[:search_query]}=#{subquery}"
@@ -218,7 +218,7 @@ module Arx
     #
     # @see CONNECTIVES
     # @return [Boolean]
-    def ends_with_connective?
+    def end_with_connective?
       CONNECTIVES.values.any? &@query.method(:end_with?)
     end
 
