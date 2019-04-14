@@ -1,3 +1,19 @@
+# 1.0.1
+
+#### Major changes
+
+- Add cases to handle `nil` query returns. ([#45](https://github.com/eonu/arx/pull/45))
+- Add support for the `coveralls` gem (`.coveralls.yml` configuration file). ([#42](https://github.com/eonu/arx/pull/42))
+
+#### Minor changes
+
+- Add code coverage badge to `README.md`. ([#42](https://github.com/eonu/arx/pull/42))
+- Remove documentation badge from top of `README.md`. ([#42](https://github.com/eonu/arx/pull/42))
+- Change author email from `ed@mail.eonu.net` to `ed@eonu.net`. ([#43](https://github.com/eonu/arx/pull/43))
+- Change `ends_with_connective?` to `end_with_connective?` to follow typical Ruby patterns. ([#44](https://github.com/eonu/arx/pull/44))
+- Add `/coverage/` directory to `.gitignore`. ([#45](https://github.com/eonu/arx/pull/45))
+- Remove version numbers from paper identifiers in error message in `README.md`. ([#46](https://github.com/eonu/arx/pull/46))
+
 # 1.0.0
 
 #### Major changes
