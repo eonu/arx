@@ -31,6 +31,9 @@ describe Arx do
         it { is_expected.to be_a Paper }
         it { is_expected.to get_paper papers.first }
       end
+      context '(valid restricted)' do
+        it { expect { Arx.search('1809.09415') {|q| q.title 'bob'} }.to raise_error Error::MissingPaper }
+      end
       context '(valid URL)' do
         subject { Arx.search 'https://arxiv.org/abs/1105.5379' }
 
@@ -39,6 +42,8 @@ describe Arx do
       end
       context '(invalid)' do
         it { expect { Arx.search '1234.1234' }.to raise_error Error::MissingPaper }
+        it { expect { Arx.search '1809.0000' }.to raise_error Error::MissingPaper }
+        it { expect { Arx.search '1809.00000' }.to raise_error Error::MissingPaper }
       end
       context '(invalid format)' do
         it { expect { Arx.search 'abc' }.to raise_error ArgumentError }
@@ -51,6 +56,9 @@ describe Arx do
         it { is_expected.to be_an Array }
         it { is_expected.to all be_a Paper }
         it { is_expected.to get_papers papers }
+      end
+      context '(valid restricted)' do
+        it { expect(Arx.search('1809.09415', 'cond-mat/9609089') {|q| q.title 'bob'}).to eq [] }
       end
       context '(invalid)' do
         it { expect { Arx.search '1234.1234', 'invalid-category/1234567' }.to raise_error ArgumentError }

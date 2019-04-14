@@ -65,6 +65,12 @@ module Arx
         raise Error::MissingPaper.new(ids.first) if results.title.empty?
       elsif results.is_a? Array
         results.reject! {|paper| paper.title.empty?}
+      elsif results.nil?
+        if ids.size == 1
+          raise Error::MissingPaper.new(ids.first)
+        else
+          results = []
+        end
       end
 
       results
