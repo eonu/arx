@@ -109,3 +109,7 @@ The `specifier` should be one of:
 - `docs`: Changes to any documentation configuration (`.yardopts`), or `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`.
 
 Continuous integration (Travis CI) builds must pass in order for your pull request to be merged.
+
+## License
+
+By contributing, you agree that your contributions will be licensed under the same [MIT License](/LICENSE) that covers this repository.
