@@ -1,0 +1,111 @@
+# Contributing
+
+As Arx is an open source library, any contributions from the community are greatly appreciated. This document details the guidelines for making contributions to Arx.
+
+## Reporting issues
+
+Prior to reporting an issue, please use the search utility provided on GitHub issues
+
+Issues may be one of three different types listed below. Please use the respective issue template when creating an issue:
+
+### Error or warning
+
+````markdown
+# Issue title
+
+- **Type**: Error or warning
+- **Operating system**: ...
+- **Ruby version manager (and version)**: e.g. `rbenv` (`1.1.1`)
+- **Ruby version**: ...
+- **Arx version**: ...
+
+Full description of the error or warning, including the error or warning message itself.
+
+​```
+Any error or warning messages should be placed in code blocks.
+​```
+
+## Steps to reproduce
+
+1. Provide the necessary steps to reproduce the warning or error.
+````
+
+### Unexpected or incorrect functionality
+
+```markdown
+# Issue title
+
+- **Type**: Unexpected or incorrect functionality
+- **Operating system**: ...
+- **Ruby version manager (and version)**: e.g. `rbenv` (`1.1.1`)
+- **Ruby version**: ...
+- **Arx version**: ...
+
+## Expected functionality
+
+Description of the expected functionality.
+
+## Actual functionality
+
+Description of the actual functionality.
+```
+
+### Improvement to an existing feature
+
+```markdown
+# Issue title
+
+## Existing feature
+
+Description of the current feature, detailing exactly what should be changed and why.
+
+## Improvement
+
+Description of your proposed improvement.
+```
+
+### Suggesting a new feature
+
+```markdown
+# Issue title
+
+Detailed description of your proposed improvement, explaining why it would be a useful feature.
+```
+
+## Making changes to Arx
+
+- **Add specs**: Your pull request won't be accepted if it doesn't have any specs.
+
+- **Document any change in behaviour**: Make sure the README, YARD documentation and all other relevant documentation is kept up-to-date.
+
+- **Create topic branches**: Will not pull from your master branch!
+
+- **One pull request per feature**: If you wish to add more than one new feature, please make multiple pull requests.
+
+- **Meaningful commit messages**: Make sure each individual commit in your pull request has a meaningful message.
+
+- **De-clutter commit history**: If you had to make multiple intermediate commits while developing, please squash them before making your pull request.
+
+### Branch naming conventions
+
+Branch names must be of the form `type/short-phrase-or-description`, where `type` is either a:
+
+- `patch`: Making a change (including removal) of an existing feature.
+- `feature`: Adding a new feature.
+
+Branches should typically feature only one main change. If making multiple unrelated changes, please create separate branches and open separate pull requests.
+
+### Making pull requests
+
+Pull request titles must be of the form `[type:specifier] Pull request title`, where `type` is the same as the branch type (read above).
+
+The `specifier` should be one of:
+
+- `lib`: Changes to any code in the `lib` directory.
+- `gem`: Changes to any gem related files, such as `arx.gemspec`, `Rakefile` or `LICENSE`.
+- `ci`: Changes to `.travis.yml` or `.coveralls.yml`.
+- `specs`: Changes to any code in the `specs` directory.
+- `git`: Changes to any Git-related code, such as `.gitignore`.
+- `docs`: Changes to any documentation configuration (`.yardopts`), or `README.md`, `CONTRIBUTING.md`, `CHANGELOG.md`.
+
+Continuous integration (Travis CI) builds must pass in order for your pull request to be merged.
