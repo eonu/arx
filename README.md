@@ -60,6 +60,10 @@ $ gem install arx
 
 The documentation for Arx is hosted on [![rubydoc.info](https://img.shields.io/badge/docs-rubydoc.info-blue.svg)](https://www.rubydoc.info/github/eonu/arx/master/toplevel).
 
+## Contributing
+
+All contributions to Arx are greatly appreciated. Contribution guidelines can be found [here](/CONTRIBUTING.md).
+
 ## Usage
 
 Before you start using Arx, you'll have to ensure that the gem is required (either in your current working file, or shell such as [IRB](https://en.wikipedia.org/wiki/Interactive_Ruby_Shell)):
