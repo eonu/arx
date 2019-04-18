@@ -1,0 +1,8 @@
+---
+name: Suggesting a new feature
+about: For proposing a new feature to Arx that would be beneficial
+---
+
+# Issue title
+
+Detailed description of your proposed improvement, explaining why it would be a useful feature.
