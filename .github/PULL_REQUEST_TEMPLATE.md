@@ -5,7 +5,7 @@ Before you submit your pull request, please make sure to check the following box
 
 ### Checklist
 - [ ] All old and new tests pass (ran `bundle exec rspec spec` in the root directory).
-- [ ] Read the [contribution guidelines](/CONTRIBUTING.md)
+- [ ] Read the [contribution guidelines](/CONTRIBUTING.md).
 - [ ] Updated documentation (if necessary).
 
 ### Reason (or issue)
