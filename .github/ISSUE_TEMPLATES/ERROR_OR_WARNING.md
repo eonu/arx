@@ -20,4 +20,3 @@ Any error or warning messages should be placed in code blocks.
 ## Steps to reproduce
 
 1. Provide the necessary steps to reproduce the warning or error.
-````
