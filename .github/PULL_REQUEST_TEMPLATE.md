@@ -8,7 +8,7 @@ Before you submit your pull request, please make sure to check the following box
 - [ ] Read the [contribution guidelines](/CONTRIBUTING.md)
 - [ ] Updated documentation (if necessary).
 
-### Motivation and Context
+### Reason (or issue)
 <!-- Why is this change required? What problem does it solve? -->
 <!-- If it fixes an open issue, please link to the issue here. -->
 
