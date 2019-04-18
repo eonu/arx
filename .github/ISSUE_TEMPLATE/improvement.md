@@ -1,6 +1,7 @@
 ---
 name: Improvement to an existing feature
 about: For suggesting an improvement to a feature already offered by Arx
+labels: improvement
 ---
 
 # Issue title
