@@ -85,11 +85,9 @@ describe Arx do
     end
   end
 
-  %i[find get].each do |alternative|
-    context ".#{alternative}" do
-      it "should alias .search" do
-        expect(subject.method(alternative).original_name).to eq :search
-      end
+  context ".get" do
+    it "should alias .search" do
+      expect(subject.method(:get).original_name).to eq :search
     end
   end
 end
