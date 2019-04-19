@@ -1,6 +1,7 @@
 ---
 name: Suggesting a new feature
 about: For proposing a new feature to Arx that would be beneficial
+labels: feature
 ---
 
 # Issue title
