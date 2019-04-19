@@ -76,7 +76,6 @@ module Arx
       results
     end
 
-    alias_method :find, :search
     alias_method :get, :search
   end
 end
