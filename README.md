@@ -364,3 +364,15 @@ category.name
 category.full_name
 #=> "Condensed Matter"
 ```
+
+# Thanks
+
+A large portion of this library is based on the brilliant work done by [Scholastica](https://github.com/scholastica) in their [`arxiv`](https://github.com/scholastica/arxiv) gem for retrieving individual papers from arXiv through the search API.
+
+Arx was created mostly due to the seemingly inactive nature of Scholastica's repository. Additionally, it would have been infeasible to contribute such large changes to an already well-established gem, especially since https://scholasticahq.com/ appears to be dependent upon this gem.
+
+And thus, Arx was born.
+
+---
+
+Nevertheless, a special thanks goes out to Scholastica for providing the influence for Arx.
