@@ -13,7 +13,7 @@ namespace :gem do
 
   desc 'Debug the gem (load into IRB)'
   task :debug do
-    exec 'bundle exec rake install && irb -I lib/arx.rb -r arx'
+    exec 'bin/console'
   end
 
   desc 'Prepare a new gem release'
