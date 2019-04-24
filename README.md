@@ -211,9 +211,9 @@ q.category('math.NA', 'math.CO', connective: :or)
 
 #### Grouping subqueries
 
-Sometimes you'll have a query that requires nested or grouped logic, with parentheses. This can be done using the `Arx::Query#group` method.
+Sometimes you'll have a query that requires nested or grouped logic, using parentheses. This can be done using the `Arx::Query#group` method.
 
-This method accepts a block, and basically parenthesises the result of whichever methods were called in the block.
+This method accepts a block and basically parenthesises the result of whichever methods were called within the block.
 
 For example, this will allow the last query from the previous section to be written as:
 
