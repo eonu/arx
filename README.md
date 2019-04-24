@@ -209,6 +209,39 @@ q.and_not
 q.category('math.NA', 'math.CO', connective: :or)
 ```
 
+#### Grouping subqueries
+
+Sometimes you'll have a query that requires nested or grouped logic, using parentheses. This can be done using the `Arx::Query#group` method.
+
+This method accepts a block and basically parenthesises the result of whichever methods were called within the block.
+
+For example, this will allow the last query from the previous section to be written as:
+
+```ruby
+# Papers authored by "Eleonora Andreotti" in neither the "Numerical Analysis" (math.NA) or "Combinatorics (math.CO)" categories.
+q = Arx::Query.new
+q.author('Eleonora Andreotti')
+q.and_not
+q.group do
+  q.category('math.NA').or.category('math.CO')
+end
+```
+
+Another more complicated example with two grouped subqueries:
+
+```ruby
+# Papers whose title contains "Buchi Automata", either authored by "Tomáš Babiak", or in the "Formal Languages and Automata Theory (cs.FL)" category and not the "Computational Complexity (cs.CC)" category.
+q = Arx::Query.new
+q.title('Buchi Automata')
+q.group do
+  q.author('Tomáš Babiak')
+  q.or
+  q.group do
+    q.category('cs.FL').and_not.category('cs.CC')
+  end
+end
+```
+
 ### Running search queries
 
 Search queries can be executed with the `Arx()` method (alias of `Arx.search`). This method contains the same parameters as the `Arx::Query` initializer - including the list of IDs.
@@ -370,8 +403,6 @@ category.full_name
 A large portion of this library is based on the brilliant work done by [Scholastica](https://github.com/scholastica) in their [`arxiv`](https://github.com/scholastica/arxiv) gem for retrieving individual papers from arXiv through the search API.
 
 Arx was created mostly due to the seemingly inactive nature of Scholastica's repository. Additionally, it would have been infeasible to contribute such large changes to an already well-established gem, especially since https://scholasticahq.com/ appears to be dependent upon this gem.
-
-And thus, Arx was born.
 
 ---
 

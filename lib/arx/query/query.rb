@@ -173,6 +173,20 @@ module Arx
       end
     end
 
+    # Creates a nested subquery (grouped statements with parentheses).
+    #
+    # @return [self]
+    def group
+      add_connective :and unless end_with_connective?
+      @query << (search_query? ? '+' : "&#{PARAMS[:search_query]}=")
+
+      @query << CGI.escape('(')
+      yield
+      @query << CGI.escape(')')
+
+      self
+    end
+
     # Returns the query string.
     #
     # @return [String]
@@ -189,7 +203,7 @@ module Arx
     # @return [self]
     def add_connective(connective)
       if search_query?
-        @query << "+#{CONNECTIVES[connective]}" unless end_with_connective?
+        @query << "+#{CONNECTIVES[connective]}" unless end_with_connective? || start_of_group?
       end
       self
     end
@@ -198,9 +212,10 @@ module Arx
     #
     # @param subquery [String] The subquery to add.
     def add_subquery(subquery)
+      add_connective :and unless end_with_connective?
+
       if search_query?
-        add_connective :and unless end_with_connective?
-        @query << "+#{subquery}"
+        @query << (start_of_group? ? "#{subquery}" : "+#{subquery}")
       else
         @query << "&#{PARAMS[:search_query]}=#{subquery}"
       end
@@ -220,6 +235,13 @@ module Arx
     # @return [Boolean]
     def end_with_connective?
       CONNECTIVES.values.any? &@query.method(:end_with?)
+    end
+
+    # Whether the query string ends in a start-of-group character '('.
+    #
+    # @return [Boolean]
+    def start_of_group?
+      @query.end_with? CGI.escape('(')
     end
 
     # Parenthesizes a string with CGI-escaped parentheses.

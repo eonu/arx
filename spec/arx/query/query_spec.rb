@@ -112,6 +112,115 @@ describe Query do
     end
   end
 
+  context '#group' do
+    subject { Query }
+
+    context 'with no search query' do
+      it { expect(subject.new.group {}.to_s).to eq 'sortBy=relevance&sortOrder=descending&search_query=%28%29' }
+      it do
+        query = subject.new.tap do |q|
+          q.group { q.title 'Buchi automata' }
+        end
+        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&search_query=%28ti:%22Buchi+automata%22%29'
+      end
+      it do
+        query = subject.new.tap do |q|
+          q.group { q.group { q.group {} } }
+        end
+        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&search_query=%28+%28+%28%29%29%29'
+      end
+    end
+    context 'with no block' do
+      it { expect{ subject.new.title('').group }.to raise_error LocalJumpError }
+    end
+    context 'with no search query and no block' do
+      it { expect{ subject.new.group }.to raise_error LocalJumpError }
+    end
+    context 'with a search query and block' do
+      it do
+        query = subject.new.tap do |q|
+          q.title 'Buchi automata'
+          q.group do
+            q.category 'cs.FL'
+            q.and_not
+            q.author 'Tomáš Babiak'
+          end
+        end
+        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&search_query=ti:%22Buchi+automata%22+AND+%28cat:%22cs.FL%22+ANDNOT+au:%22Tom%C3%A1%C5%A1+Babiak%22%29'
+      end
+      it do
+        query = subject.new.tap do |q|
+          q.title 'Buchi automata'
+          q.group do
+            q.category 'cs.FL', 'cs.CC', connective: :or
+            q.and_not
+            q.author 'Tomáš Babiak'
+          end
+        end
+        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&search_query=ti:%22Buchi+automata%22+AND+%28%28cat:%22cs.FL%22+OR+cat:%22cs.CC%22%29+ANDNOT+au:%22Tom%C3%A1%C5%A1+Babiak%22%29'
+      end
+      it do
+        query = subject.new.tap do |q|
+          q.title 'Buchi automata'
+          q.group do
+            q.author 'Tomáš Babiak'
+            q.or
+            q.category 'cs.FL', 'cs.CC', connective: :or
+          end
+        end
+        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&search_query=ti:%22Buchi+automata%22+AND+%28au:%22Tom%C3%A1%C5%A1+Babiak%22+OR+%28cat:%22cs.FL%22+OR+cat:%22cs.CC%22%29%29'
+      end
+      it do
+        query = subject.new.tap do |q|
+          q.title 'Buchi automata'
+          q.group do
+            q.category 'cs.FL', 'cs.CC', connective: :and_not
+          end
+        end
+        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&search_query=ti:%22Buchi+automata%22+AND+%28%28cat:%22cs.FL%22+ANDNOT+cat:%22cs.CC%22%29%29'
+      end
+    end
+  end
+  context '#search_query?' do
+    subject { Query }
+
+    context 'with no search query' do
+      it { expect(subject.new.send :search_query?).to be false }
+    end
+    context 'with a search query' do
+      it { expect(subject.new.title('').send :search_query?).to be true }
+    end
+  end
+  context '#end_with_connective?' do
+    subject { Query }
+
+    context 'with no connective' do
+      it { expect(subject.new.send :end_with_connective?).to be false }
+      it { expect(subject.new.title('').send :end_with_connective?).to be false }
+    end
+    context 'with connective' do
+      Query::CONNECTIVES.keys.each do |connective|
+        context connective.to_s do
+          it { expect(subject.new.title('').send(connective).send :end_with_connective?).to be true }
+        end
+      end
+    end
+  end
+  context '#start_of_group?' do
+    subject { Query }
+
+    context 'with no start-of-group' do
+      it { expect(subject.new.send :start_of_group?).to be false }
+      it { expect(subject.new.title('a', 'b').send :start_of_group?).to be false }
+    end
+    context 'with a start-of-group' do
+      it do
+        query = subject.new.title('')
+        query.instance_variable_set "@query", query.to_s << "+#{CGI.escape '('}"
+        expect(query.send :start_of_group?).to be true
+      end
+    end
+  end
   context '#parenthesize' do
     subject { Query }
 
