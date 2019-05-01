@@ -42,11 +42,11 @@ describe Author do
     end
     context '1105.5379' do
       subject { Arx.get('1105.5379').authors.first.to_h }
-      it { expect(subject).to eq({ name: "Joseph K. Bradley", affiliated?: false, affiliations: []})
+      it { expect(subject).to eq({ name: "Joseph K. Bradley", affiliated?: false, affiliations: []}) }
     end
     context '1710.02185' do
       subject { Arx.get('1710.02185').authors.first.to_h }
-      it { expect(subject).to eq({name: "The LIGO Scientific Collaboration", affiliated?: false, affiliations: []})
+      it { expect(subject).to eq({name: "The LIGO Scientific Collaboration", affiliated?: false, affiliations: []}) }
     end
   end
 end
