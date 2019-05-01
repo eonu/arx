@@ -35,4 +35,21 @@ describe Category do
       it { expect(subject[2].full_name).to be_nil } # ACM classes
     end
   end
+  context '#to_h' do
+    context 'cond-mat/9609089' do
+      subject { Arx.get('cond-mat/9609089').primary_category.to_h }
+
+      it { is_expected.to be_a Hash }
+      it { expect(subject.keys).to all be_a Symbol }
+      it { expect(subject).to eq({full_name: "Condensed Matter", name: "cond-mat"}) }
+    end
+    context '1105.5379' do
+      subject { Arx.get('1105.5379').primary_category.to_h }
+      it { expect(subject).to eq({full_name: "Learning", name: "cs.LG"}) }
+    end
+    context '1710.02185' do
+      subject { Arx.get('1710.02185').primary_category.to_h }
+      it { expect(subject).to eq({full_name: "General Relativity and Quantum Cosmology", name: "gr-qc"}) }
+    end
+  end
 end
