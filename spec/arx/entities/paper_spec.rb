@@ -386,10 +386,8 @@ describe Paper do
   end
   context '#to_h' do
     context 'cond-mat/9609089' do
-      let(:paper) { Arx.get('cond-mat/9609089') }
-
       context 'deep: true' do
-        subject { paper.to_h(true) }
+        subject { papers[0].to_h(true) }
 
         it { is_expected.to be_a Hash }
         it { expect(subject.keys).to all be_a Symbol }
@@ -427,7 +425,7 @@ describe Paper do
         end
       end
       context 'deep: false' do
-        subject { paper.to_h(false) }
+        subject { papers[0].to_h(false) }
 
         it { is_expected.to be_a Hash }
         it { expect(subject.keys).to all be_a Symbol }
@@ -457,10 +455,8 @@ describe Paper do
       end
     end
     context '1105.5379' do
-      let(:paper) { Arx.get('1105.5379') }
-
       context 'deep: true' do
-        subject { paper.to_h(true) }
+        subject { papers[1].to_h(true) }
 
         it { is_expected.to be_a Hash }
         it { expect(subject.keys).to all be_a Symbol }
@@ -496,7 +492,7 @@ describe Paper do
         end
       end
       context 'deep: false' do
-        subject { paper.to_h(false) }
+        subject { papers[1].to_h(false) }
 
         it { is_expected.to be_a Hash }
         it { expect(subject.keys).to all be_a Symbol }
