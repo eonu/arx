@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'thor', '~> 0.19.4'
   spec.add_development_dependency 'rspec', '~> 3.7'
   spec.add_development_dependency 'coveralls', '0.8.22'
+  spec.add_development_dependency 'awesome_print', '~> 1.8'
 
   spec.metadata = {
     'source_code_uri' => spec.homepage,
