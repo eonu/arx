@@ -398,12 +398,23 @@ category.full_name
 #=> "Condensed Matter"
 ```
 
-# Thanks
+# Acknowledgements
 
 A large portion of this library is based on the brilliant work done by [Scholastica](https://github.com/scholastica) in their [`arxiv`](https://github.com/scholastica/arxiv) gem for retrieving individual papers from arXiv through the search API.
 
 Arx was created mostly due to the seemingly inactive nature of Scholastica's repository. Additionally, it would have been infeasible to contribute such large changes to an already well-established gem, especially since https://scholasticahq.com/ appears to be dependent upon this gem.
 
+Nevertheless, a special thanks goes out to Scholastica for providing the influence for Arx.
+
 ---
 
-Nevertheless, a special thanks goes out to Scholastica for providing the influence for Arx.
+<p align="center">
+  <b>Arx</b> &copy; 2019-2020, Edwin Onuonga - Released under the <a href="http://mit-license.org/">MIT</a> License.<br/>
+  <em>Authored and maintained by Edwin Onuonga.</em>
+
+  <p align="center">
+    <a href="https://eonu.net">eonu.net</a>&nbsp;&middot;&nbsp;
+    GitHub: <a href="https://github.com/eonu">@eonu</a>&nbsp;&middot;&nbsp;
+    Email: <a href="mailto:ed@eonu.net">ed@eonu.net</a>
+  </p>
+</p>
