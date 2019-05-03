@@ -28,6 +28,7 @@
   > # New
   > paper.id(true) #=> "cond-mat/9609089v1"
   > paper.url(true) #=> "http://arxiv.org/abs/cond-mat/9609089v1"
+  > ```
 - Add equality operator (`==`) to entities. ([#68](https://github.com/eonu/arx/pull/68))
 
 #### Minor changes
