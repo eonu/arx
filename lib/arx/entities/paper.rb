@@ -29,7 +29,7 @@ module Arx
     #   cond-mat/0211034
     # @param version [Boolean] Whether or not to include the paper's version.
     # @return [String] The paper's identifier.
-    def id(version: false)
+    def id(version = false)
       Cleaner.extract_id @id, version: version
     end
 
@@ -40,8 +40,8 @@ module Arx
     #   http://arxiv.org/abs/cond-mat/0211034
     # @param version [Boolean] Whether or not to include the paper's version.
     # @return [String] The paper's arXiv URL.
-    def url(version: false)
-      "http://arxiv.org/abs/#{id version: version}"
+    def url(version = false)
+      "http://arxiv.org/abs/#{id version}"
     end
 
     # The version of the paper.

@@ -310,11 +310,11 @@ paper = Arx('1809.09415')
 
 paper.id
 #=> "1809.09415"
-paper.id(version: true)
+paper.id(true)
 #=> "1809.09415v1"
 paper.url
 #=> "http://arxiv.org/abs/1809.09415"
-paper.url(version: true)
+paper.url(true)
 #=> "http://arxiv.org/abs/1809.09415v1"
 paper.version
 #=> 1
