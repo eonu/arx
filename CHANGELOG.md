@@ -13,6 +13,7 @@
   > Arx.get('1807.06918v1').version #=> 2
   > Arx.get('1807.06918v2').version #=> 2
   > ```
+
 - Adds `ATTRIBUTES` constant for `Paper`, `Author` and `Category` entities, as a list of which attributes are available for the entity. ([#63](https://github.com/eonu/arx/pull/63))
 - Remove key-word arguments from `Paper#id` and `Paper#url`. ([#70](https://github.com/eonu/arx/pull/70))
   > Previously, `Paper#id` and `Paper#url` accepted a `version` key-word argument, which was a boolean variable indicating whether or not to include the version number in the ID or URL.
@@ -29,6 +30,7 @@
   > paper.id(true) #=> "cond-mat/9609089v1"
   > paper.url(true) #=> "http://arxiv.org/abs/cond-mat/9609089v1"
   > ```
+
 - Add equality operator (`==`) to entities. ([#68](https://github.com/eonu/arx/pull/68))
 
 #### Minor changes
