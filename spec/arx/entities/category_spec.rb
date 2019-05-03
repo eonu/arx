@@ -118,4 +118,25 @@ describe Category do
       end
     end
   end
+  context '#==' do
+    context 'with an Arx::Category' do
+      context 'with equal names' do
+        it do
+          category1 = categories[1]
+          category2 = Arx.get('1904.12901').primary_category
+          expect(category1).to eq category2
+        end
+      end
+      context 'with different names' do
+        it { expect(categories[0]).not_to eq categories[1] }
+      end
+    end
+    context 'with other objects' do
+      subject { categories[1] }
+
+      it { is_expected.not_to eq 'cs.LG' }
+      it { is_expected.not_to eq :'cs.LG' }
+      it { is_expected.not_to eq 1 }
+    end
+  end
 end

@@ -606,4 +606,35 @@ describe Paper do
       it { is_expected.to eq("{\"id\":\"1703.04834\",\"url\":\"http://arxiv.org/abs/1703.04834\",\"version\":1,\"revision?\":false,\"title\":\"A Quasi-Linear Time Algorithm Deciding Whether Weak Büchi Automata Reading Vectors of Reals Recognize Saturated Languages\",\"summary\":\"This work considers weak deterministic B\\\\\\\"uchi automata reading encodings of non-negative $d$-vectors of reals in a fixed base. A saturated language is a language which contains all encoding of elements belonging to a set of $d$-vectors of reals. A Real Vector Automaton is an automaton which recognizes a saturated language. It is explained how to decide in quasi-linear time whether a minimal weak deterministic B\\\\\\\"uchi automaton is a Real Vector Automaton. The problem is solved both for the two standard encodings of vectors of numbers: the sequential encoding and the parallel encoding. This algorithm runs in linear time for minimal weak B\\\\\\\"uchi automata accepting set of reals. Finally, the same problem is also solved for parallel encoding of automata reading vectors of relative reals.\",\"authors\":[{\"name\":\"Arthur Milchior\",\"affiliated?\":false,\"affiliations\":[]}],\"primary_category\":{\"name\":\"cs.FL\",\"full_name\":\"Formal Languages and Automata Theory\"},\"categories\":[{\"name\":\"cs.FL\",\"full_name\":\"Formal Languages and Automata Theory\"},{\"name\":\"03D05\",\"full_name\":null},{\"name\":\"F.1.1; F.4.1\",\"full_name\":null}],\"published_at\":\"2017-03-14T23:41:24+00:00\",\"updated_at\":\"2017-03-14T23:41:24+00:00\",\"comment?\":false,\"journal?\":false,\"pdf?\":true,\"pdf_url\":\"http://arxiv.org/pdf/1703.04834v1\",\"doi?\":false}") }
     end
   end
+  context '#==' do
+    context 'with an Arx::Paper' do
+      context 'with equal IDs' do
+        subject { papers[0] }
+
+        it { is_expected.to eq papers[0] }
+      end
+      context 'with different IDs' do
+        subject { papers[0] }
+
+        it { is_expected.not_to eq papers[1] }
+      end
+      context 'with equal IDs and different versions' do
+        it do
+          version1 = Arx.get('1807.06918v1')
+          version2 = Arx.get('1807.06918v2')
+
+          pending "Allow query IDs in id_list to include version numbers, don't filter them!"
+
+          expect(version1).not_to eq version2
+        end
+      end
+    end
+    context 'with other objects' do
+      subject { papers[0] }
+
+      it { is_expected.not_to eq 'cond-mat/9609089' }
+      it { is_expected.not_to eq :'cond-mat/9609089' }
+      it { is_expected.not_to eq 1 }
+    end
+  end
 end
