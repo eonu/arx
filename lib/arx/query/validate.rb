@@ -1,6 +1,7 @@
 module Arx
 
   # Validations for arXiv search query fields and identifier schemes.
+  #
   # @private
   module Validate
     class << self

@@ -1,6 +1,7 @@
 module Arx
 
   # Helper entity/model representing a link on an arXiv paper.
+  #
   # @private
   class Link
     include HappyMapper

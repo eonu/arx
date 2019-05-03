@@ -9,6 +9,7 @@ module Arx
 
     element :id, Cleaner, parser: :clean, tag: 'id'
     # The identifier of the paper.
+    #
     # @note This is either in {OLD_IDENTIFIER_FORMAT} or {NEW_IDENTIFIER_FORMAT}.
     # @example
     #   1705.01662v1
@@ -20,6 +21,7 @@ module Arx
     end
 
     # The URL of the paper on the arXiv website.
+    #
     # @example
     #   http://arxiv.org/abs/1705.01662v1
     #   http://arxiv.org/abs/cond-mat/0211034
@@ -30,12 +32,14 @@ module Arx
     end
 
     # The version of the paper.
+    #
     # @return [Integer] The paper's version.
     def version
       Cleaner.extract_version @id
     end
 
     # Whether the paper is a revision or not.
+    #
     # @note A paper is a revision if its {version} is greater than 1.
     # @return [Boolean]
     def revision?
@@ -44,47 +48,56 @@ module Arx
 
     # @!method updated_at
     # The date that the paper was last updated.
+    #
     # @return [DateTime]
     element :updated_at, DateTime, tag: 'updated'
 
     # @!method published_at
     # The original publish/submission date of the paper.
+    #
     # @return [DateTime]
     element :published_at, DateTime, tag: 'published'
 
     # @!method title
     # The title of the paper.
+    #
     # @return [DateTime]
     element :title, Cleaner, parser: :clean, tag: 'title'
 
     # @!method authors
     # The authors of the paper.
+    #
     # @return [Array<Author>]
     has_many :authors, Author, tag: 'author'
 
     # @!method primary_category
     # The primary category of the paper.
+    #
     # @return [Category]
     element :primary_category, Category, tag: 'primary_category'
     alias_method :category, :primary_category
 
     # @!method categories
     # The categories of the paper.
+    #
     # @return [Array<Category>]
     has_many :categories, Category, tag: 'category'
 
     # @!method summary
     # The summary (or abstract) of the paper.
+    #
     # @return [String]
     element :summary, Cleaner, parser: :clean, tag: 'summary'
     alias_method :abstract, :summary
 
     # @!method comment?
     # Whether or not the paper has a comment.
+    #
     # @return [Boolean]
 
     # @!method comment
     # The comment of the paper.
+    #
     # @note This is an optional metadata field on an arXiv paper. To check whether the paper has a comment, use {comment?}
     # @raise {Error::MissingField} If the paper does not have a comment.
     # @return [String]
@@ -92,10 +105,12 @@ module Arx
 
     # @!method journal?
     # Whether or not the paper has a journal reference.
+    #
     # @return [Boolean]
 
     # @!method journal
     # The journal reference of the paper.
+    #
     # @note This is an optional metadata field on an arXiv paper. To check whether the paper has a journal reference, use {journal?}
     # @raise {Error::MissingField} If the paper does not have a journal reference.
     # @return [String]
@@ -121,22 +136,26 @@ module Arx
 
     # @!method pdf?
     # Whether or not the paper has a PDF link.
+    #
     # @return [Boolean]
 
     # @!method pdf_url
     # Link to the PDF version of the paper.
+    #
     # @note This is an optional metadata field on an arXiv paper. To check whether the paper has a PDF link, use {pdf?}
     # @raise {Error::MissingLink} If the paper does not have a PDF link.
     # @return [String]
 
     # @!method doi?
     # Whether or not the paper has a DOI (Digital Object Identifier) link.
+    #
     # @see https://arxiv.org/help/jref#doi
     # @see https://arxiv.org/help/prep#doi
     # @return [Boolean]
 
     # @!method doi_url
     # Link to the DOI (Digital Object Identifier) of the paper.
+    #
     # @see https://arxiv.org/help/jref#doi
     # @see https://arxiv.org/help/prep#doi
     # @note This is an optional metadata field on an arXiv paper. To check whether the paper has a DOI link, use {doi?}
