@@ -67,7 +67,7 @@ module Arx
 
       ids.flatten!
       unless ids.empty?
-        ids.map! &Cleaner.method(:extract_id)
+        ids.map! {|id| Cleaner.extract_id(id, version: true)}
         @query << "&#{PARAMS[:id_list]}=#{ids * ','}"
       end
 

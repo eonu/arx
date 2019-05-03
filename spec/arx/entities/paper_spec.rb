@@ -80,6 +80,16 @@ describe Paper do
     context '1703.04834' do
       it { expect(papers[3].version).to eq 1 }
     end
+    context '1807.06918v1' do
+      subject { Arx.get('1807.06918v1').version }
+
+      it { is_expected.to eq 1 }
+    end
+    context '1807.06918v2' do
+      subject { Arx.get('1807.06918v2').version }
+
+      it { is_expected.to eq 2 }
+    end
   end
   context '#title' do
     context 'cond-mat/9609089' do
@@ -623,9 +633,7 @@ describe Paper do
           version1 = Arx.get('1807.06918v1')
           version2 = Arx.get('1807.06918v2')
 
-          pending "Allow query IDs in id_list to include version numbers, don't filter them!"
-
-          expect(version1).not_to eq version2
+          expect(version1).to eq version2
         end
       end
     end
