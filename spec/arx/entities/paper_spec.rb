@@ -384,4 +384,226 @@ describe Paper do
       it { expect { papers[3].doi_url }.to raise_error Error::MissingLink }
     end
   end
+  context '#to_h' do
+    context 'cond-mat/9609089' do
+      context 'deep: true' do
+        subject { papers[0].to_h(true) }
+
+        it { is_expected.to be_a Hash }
+        it { expect(subject.keys).to all be_a Symbol }
+        it do
+          is_expected.to eq({
+            id: "cond-mat/9609089",
+            url: "http://arxiv.org/abs/cond-mat/9609089",
+            version: 1,
+            revision?: false,
+            title: "Optical absorption of non-interacting tight-binding electrons in a Peierls-distorted chain at half band-filling",
+            summary: "In this first of three articles on the optical absorption of electrons in half-filled Peierls-distorted chains we present analytical results for non-interacting tight-binding electrons. We carefully derive explicit expressions for the current operator, the dipole transition matrix elements, and the optical absorption for electrons with a cosine dispersion relation of band width $W$ and dimerization parameter $\\delta$. New correction (``$\\eta$''-)terms to the current operator are identified. A broad band-to-band transition is found in the frequency range $W\\delta < \\omega < W$ whose shape is determined by the joint density of states for the upper and lower Peierls subbands and the strong momentum dependence of the transition matrix elements.",
+            authors: [
+              {name: "F. Gebhard", affiliated?: true, affiliations: ["ILL Grenoble, France"]},
+              {name: "K. Bott", affiliated?: true, affiliations: ["Philipps University Marburg, Germany"]},
+              {name: "M. Scheidler", affiliated?: true, affiliations: ["Philipps University Marburg, Germany"]},
+              {name: "P. Thomas", affiliated?: true, affiliations: ["Philipps University Marburg, Germany"]},
+              {name: "S. W. Koch", affiliated?: true, affiliations: ["Philipps University Marburg, Germany"]}
+            ],
+            primary_category: {name: "cond-mat", full_name: "Condensed Matter"},
+            categories: [
+              {name: "cond-mat", full_name: "Condensed Matter"},
+              {name: "chem-ph", full_name: nil}
+            ],
+            published_at: DateTime.parse('1996-09-10T13:52:54+00:00'),
+            updated_at: DateTime.parse('1996-09-10T13:52:54+00:00'),
+            comment?: true,
+            comment: "17 pages REVTEX 3.0, 2 postscript figures; hardcopy versions before May 96 are obsolete; accepted for publication in The Philosophical Magazine B",
+            journal?: true,
+            journal: "Phil. Mag. B 75, pp. 1-12 (1997)",
+            pdf?: true,
+            pdf_url: "http://arxiv.org/pdf/cond-mat/9609089v1",
+            doi?: true,
+            doi_url: "http://dx.doi.org/10.1080/13642819708205700"
+          })
+        end
+      end
+      context 'deep: false' do
+        subject { papers[0].to_h(false) }
+
+        it { is_expected.to be_a Hash }
+        it { expect(subject.keys).to all be_a Symbol }
+        it { expect(subject[:authors]).to all be_an Author }
+        it { expect(subject[:categories]).to all be_a Category }
+        it { expect(subject[:primary_category]).to be_a Category }
+        it do
+          is_expected.to include({
+            id: "cond-mat/9609089",
+            url: "http://arxiv.org/abs/cond-mat/9609089",
+            version: 1,
+            revision?: false,
+            title: "Optical absorption of non-interacting tight-binding electrons in a Peierls-distorted chain at half band-filling",
+            summary: "In this first of three articles on the optical absorption of electrons in half-filled Peierls-distorted chains we present analytical results for non-interacting tight-binding electrons. We carefully derive explicit expressions for the current operator, the dipole transition matrix elements, and the optical absorption for electrons with a cosine dispersion relation of band width $W$ and dimerization parameter $\\delta$. New correction (``$\\eta$''-)terms to the current operator are identified. A broad band-to-band transition is found in the frequency range $W\\delta < \\omega < W$ whose shape is determined by the joint density of states for the upper and lower Peierls subbands and the strong momentum dependence of the transition matrix elements.",
+            published_at: DateTime.parse('1996-09-10T13:52:54+00:00'),
+            updated_at: DateTime.parse('1996-09-10T13:52:54+00:00'),
+            comment?: true,
+            comment: "17 pages REVTEX 3.0, 2 postscript figures; hardcopy versions before May 96 are obsolete; accepted for publication in The Philosophical Magazine B",
+            journal?: true,
+            journal: "Phil. Mag. B 75, pp. 1-12 (1997)",
+            pdf?: true,
+            pdf_url: "http://arxiv.org/pdf/cond-mat/9609089v1",
+            doi?: true,
+            doi_url: "http://dx.doi.org/10.1080/13642819708205700"
+          })
+        end
+      end
+    end
+    context '1105.5379' do
+      context 'deep: true' do
+        subject { papers[1].to_h(true) }
+
+        it { is_expected.to be_a Hash }
+        it { expect(subject.keys).to all be_a Symbol }
+        it do
+          is_expected.to eq({
+            id: "1105.5379",
+            url: "http://arxiv.org/abs/1105.5379",
+            version: 1,
+            revision?: false,
+            title: "Parallel Coordinate Descent for L1-Regularized Loss Minimization",
+            summary: "We propose Shotgun, a parallel coordinate descent algorithm for minimizing L1-regularized losses. Though coordinate descent seems inherently sequential, we prove convergence bounds for Shotgun which predict linear speedups, up to a problem-dependent limit. We present a comprehensive empirical study of Shotgun for Lasso and sparse logistic regression. Our theoretical predictions on the potential for parallelism closely match behavior on real data. Shotgun outperforms other published solvers on a range of large problems, proving to be one of the most scalable algorithms for L1.",
+            authors: [
+              {name: "Joseph K. Bradley", affiliated?: false, affiliations: []},
+              {name: "Aapo Kyrola", affiliated?: false, affiliations: []},
+              {name: "Danny Bickson", affiliated?: false, affiliations: []},
+              {name: "Carlos Guestrin", affiliated?: false, affiliations: []}
+            ],
+            primary_category: {name: "cs.LG", full_name: "Learning"},
+            categories: [
+              {name: "cs.LG", full_name: "Learning"},
+              {name: "cs.IT", full_name: "Information Theory"},
+              {name: "math.IT", full_name: "Information Theory"}
+            ],
+            published_at: DateTime.parse('2011-05-26T19:19:30+00:00'),
+            updated_at: DateTime.parse('2011-05-26T19:19:30+00:00'),
+            comment?: false,
+            journal?: true,
+            journal: "In the 28th International Conference on Machine Learning, July 2011, Washington, USA",
+            pdf?: true,
+            pdf_url: "http://arxiv.org/pdf/1105.5379v1",
+            doi?: false
+          })
+        end
+      end
+      context 'deep: false' do
+        subject { papers[1].to_h(false) }
+
+        it { is_expected.to be_a Hash }
+        it { expect(subject.keys).to all be_a Symbol }
+        it { expect(subject[:authors]).to all be_an Author }
+        it { expect(subject[:categories]).to all be_a Category }
+        it { expect(subject[:primary_category]).to be_a Category }
+        it do
+          is_expected.to include({
+            id: "1105.5379",
+            url: "http://arxiv.org/abs/1105.5379",
+            version: 1,
+            revision?: false,
+            title: "Parallel Coordinate Descent for L1-Regularized Loss Minimization",
+            summary: "We propose Shotgun, a parallel coordinate descent algorithm for minimizing L1-regularized losses. Though coordinate descent seems inherently sequential, we prove convergence bounds for Shotgun which predict linear speedups, up to a problem-dependent limit. We present a comprehensive empirical study of Shotgun for Lasso and sparse logistic regression. Our theoretical predictions on the potential for parallelism closely match behavior on real data. Shotgun outperforms other published solvers on a range of large problems, proving to be one of the most scalable algorithms for L1.",
+            published_at: DateTime.parse('2011-05-26T19:19:30+00:00'),
+            updated_at: DateTime.parse('2011-05-26T19:19:30+00:00'),
+            comment?: false,
+            journal?: true,
+            journal: "In the 28th International Conference on Machine Learning, July 2011, Washington, USA",
+            pdf?: true,
+            pdf_url: "http://arxiv.org/pdf/1105.5379v1",
+            doi?: false
+          })
+        end
+      end
+    end
+  end
+  context '#as_json' do
+    context 'cond-mat/9609089' do
+      subject { papers[0].as_json }
+
+      it { is_expected.to be_a Hash }
+      it { expect(subject.keys).to all be_a String }
+      it do
+        is_expected.to eq({
+          "id"=>"cond-mat/9609089",
+          "url"=>"http://arxiv.org/abs/cond-mat/9609089",
+          "version"=>1,
+          "revision?"=>false,
+          "title"=>"Optical absorption of non-interacting tight-binding electrons in a Peierls-distorted chain at half band-filling",
+          "summary"=>"In this first of three articles on the optical absorption of electrons in half-filled Peierls-distorted chains we present analytical results for non-interacting tight-binding electrons. We carefully derive explicit expressions for the current operator, the dipole transition matrix elements, and the optical absorption for electrons with a cosine dispersion relation of band width $W$ and dimerization parameter $\\delta$. New correction (``$\\eta$''-)terms to the current operator are identified. A broad band-to-band transition is found in the frequency range $W\\delta < \\omega < W$ whose shape is determined by the joint density of states for the upper and lower Peierls subbands and the strong momentum dependence of the transition matrix elements.",
+          "authors"=>[
+            {"name"=>"F. Gebhard", "affiliated?"=>true, "affiliations"=>["ILL Grenoble, France"]},
+            {"name"=>"K. Bott", "affiliated?"=>true, "affiliations"=>["Philipps University Marburg, Germany"]},
+            {"name"=>"M. Scheidler", "affiliated?"=>true, "affiliations"=>["Philipps University Marburg, Germany"]},
+            {"name"=>"P. Thomas", "affiliated?"=>true, "affiliations"=>["Philipps University Marburg, Germany"]},
+            {"name"=>"S. W. Koch", "affiliated?"=>true, "affiliations"=>["Philipps University Marburg, Germany"]}
+          ],
+          "primary_category"=>{"name"=>"cond-mat", "full_name"=>"Condensed Matter"},
+          "categories"=>[
+            {"name"=>"cond-mat", "full_name"=>"Condensed Matter"},
+            {"name"=>"chem-ph", "full_name"=>nil}
+          ],
+          "published_at"=>"1996-09-10T13:52:54+00:00",
+          "updated_at"=>"1996-09-10T13:52:54+00:00",
+          "comment?"=>true,
+          "comment"=>"17 pages REVTEX 3.0, 2 postscript figures; hardcopy versions before May 96 are obsolete; accepted for publication in The Philosophical Magazine B",
+          "journal?"=>true,
+          "journal"=>"Phil. Mag. B 75, pp. 1-12 (1997)",
+          "pdf?"=>true,
+          "pdf_url"=>"http://arxiv.org/pdf/cond-mat/9609089v1",
+          "doi?"=>true,
+          "doi_url"=>"http://dx.doi.org/10.1080/13642819708205700"
+        })
+      end
+    end
+    context '1703.04834' do
+      subject { papers[3].as_json }
+
+      it { is_expected.to be_a Hash }
+      it { expect(subject.keys).to all be_a String }
+      it do
+        is_expected.to eq({
+          "id"=>"1703.04834",
+          "url"=>"http://arxiv.org/abs/1703.04834",
+          "version"=>1,
+          "revision?"=>false,
+          "title"=>"A Quasi-Linear Time Algorithm Deciding Whether Weak Büchi Automata Reading Vectors of Reals Recognize Saturated Languages",
+          "summary"=>"This work considers weak deterministic B\\\"uchi automata reading encodings of non-negative $d$-vectors of reals in a fixed base. A saturated language is a language which contains all encoding of elements belonging to a set of $d$-vectors of reals. A Real Vector Automaton is an automaton which recognizes a saturated language. It is explained how to decide in quasi-linear time whether a minimal weak deterministic B\\\"uchi automaton is a Real Vector Automaton. The problem is solved both for the two standard encodings of vectors of numbers: the sequential encoding and the parallel encoding. This algorithm runs in linear time for minimal weak B\\\"uchi automata accepting set of reals. Finally, the same problem is also solved for parallel encoding of automata reading vectors of relative reals.",
+          "authors"=>[
+            {"name"=>"Arthur Milchior", "affiliated?"=>false, "affiliations"=>[]}
+          ],
+          "primary_category"=>{"name"=>"cs.FL", "full_name"=>"Formal Languages and Automata Theory"},
+          "categories"=>[
+            {"name"=>"cs.FL", "full_name"=>"Formal Languages and Automata Theory"},
+            {"name"=>"03D05", "full_name"=>nil},
+            {"name"=>"F.1.1; F.4.1", "full_name"=>nil}
+          ],
+          "published_at"=>"2017-03-14T23:41:24+00:00",
+          "updated_at"=>"2017-03-14T23:41:24+00:00",
+          "comment?"=>false,
+          "journal?"=>false,
+          "pdf?"=>true,
+          "pdf_url"=>"http://arxiv.org/pdf/1703.04834v1",
+          "doi?"=>false
+        })
+      end
+    end
+  end
+  context '#to_json' do
+    context 'cond-mat/9609089' do
+      subject { papers[0].to_json }
+
+      it { is_expected.to be_a String }
+      it { is_expected.to eq("{\"id\":\"cond-mat/9609089\",\"url\":\"http://arxiv.org/abs/cond-mat/9609089\",\"version\":1,\"revision?\":false,\"title\":\"Optical absorption of non-interacting tight-binding electrons in a Peierls-distorted chain at half band-filling\",\"summary\":\"In this first of three articles on the optical absorption of electrons in half-filled Peierls-distorted chains we present analytical results for non-interacting tight-binding electrons. We carefully derive explicit expressions for the current operator, the dipole transition matrix elements, and the optical absorption for electrons with a cosine dispersion relation of band width $W$ and dimerization parameter $\\\\delta$. New correction (``$\\\\eta$''-)terms to the current operator are identified. A broad band-to-band transition is found in the frequency range $W\\\\delta < \\\\omega < W$ whose shape is determined by the joint density of states for the upper and lower Peierls subbands and the strong momentum dependence of the transition matrix elements.\",\"authors\":[{\"name\":\"F. Gebhard\",\"affiliated?\":true,\"affiliations\":[\"ILL Grenoble, France\"]},{\"name\":\"K. Bott\",\"affiliated?\":true,\"affiliations\":[\"Philipps University Marburg, Germany\"]},{\"name\":\"M. Scheidler\",\"affiliated?\":true,\"affiliations\":[\"Philipps University Marburg, Germany\"]},{\"name\":\"P. Thomas\",\"affiliated?\":true,\"affiliations\":[\"Philipps University Marburg, Germany\"]},{\"name\":\"S. W. Koch\",\"affiliated?\":true,\"affiliations\":[\"Philipps University Marburg, Germany\"]}],\"primary_category\":{\"name\":\"cond-mat\",\"full_name\":\"Condensed Matter\"},\"categories\":[{\"name\":\"cond-mat\",\"full_name\":\"Condensed Matter\"},{\"name\":\"chem-ph\",\"full_name\":null}],\"published_at\":\"1996-09-10T13:52:54+00:00\",\"updated_at\":\"1996-09-10T13:52:54+00:00\",\"comment?\":true,\"comment\":\"17 pages REVTEX 3.0, 2 postscript figures; hardcopy versions before May 96 are obsolete; accepted for publication in The Philosophical Magazine B\",\"journal?\":true,\"journal\":\"Phil. Mag. B 75, pp. 1-12 (1997)\",\"pdf?\":true,\"pdf_url\":\"http://arxiv.org/pdf/cond-mat/9609089v1\",\"doi?\":true,\"doi_url\":\"http://dx.doi.org/10.1080/13642819708205700\"}") }
+    end
+    context '1703.04834' do
+      subject { papers[3].to_json }
+
+      it { is_expected.to be_a String }
+      it { is_expected.to eq("{\"id\":\"1703.04834\",\"url\":\"http://arxiv.org/abs/1703.04834\",\"version\":1,\"revision?\":false,\"title\":\"A Quasi-Linear Time Algorithm Deciding Whether Weak Büchi Automata Reading Vectors of Reals Recognize Saturated Languages\",\"summary\":\"This work considers weak deterministic B\\\\\\\"uchi automata reading encodings of non-negative $d$-vectors of reals in a fixed base. A saturated language is a language which contains all encoding of elements belonging to a set of $d$-vectors of reals. A Real Vector Automaton is an automaton which recognizes a saturated language. It is explained how to decide in quasi-linear time whether a minimal weak deterministic B\\\\\\\"uchi automaton is a Real Vector Automaton. The problem is solved both for the two standard encodings of vectors of numbers: the sequential encoding and the parallel encoding. This algorithm runs in linear time for minimal weak B\\\\\\\"uchi automata accepting set of reals. Finally, the same problem is also solved for parallel encoding of automata reading vectors of relative reals.\",\"authors\":[{\"name\":\"Arthur Milchior\",\"affiliated?\":false,\"affiliations\":[]}],\"primary_category\":{\"name\":\"cs.FL\",\"full_name\":\"Formal Languages and Automata Theory\"},\"categories\":[{\"name\":\"cs.FL\",\"full_name\":\"Formal Languages and Automata Theory\"},{\"name\":\"03D05\",\"full_name\":null},{\"name\":\"F.1.1; F.4.1\",\"full_name\":null}],\"published_at\":\"2017-03-14T23:41:24+00:00\",\"updated_at\":\"2017-03-14T23:41:24+00:00\",\"comment?\":false,\"journal?\":false,\"pdf?\":true,\"pdf_url\":\"http://arxiv.org/pdf/1703.04834v1\",\"doi?\":false}") }
+    end
+  end
 end
