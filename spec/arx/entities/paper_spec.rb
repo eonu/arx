@@ -24,16 +24,16 @@ describe Paper do
     end
     context 'with version' do
       context 'cond-mat/9609089' do
-        it { expect(papers[0].id version: true).to eq 'cond-mat/9609089v1' }
+        it { expect(papers[0].id true).to eq 'cond-mat/9609089v1' }
       end
       context '1105.5379' do
-        it { expect(papers[1].id version: true).to eq '1105.5379v1' }
+        it { expect(papers[1].id true).to eq '1105.5379v1' }
       end
       context '1710.02185' do
-        it { expect(papers[2].id version: true).to eq '1710.02185v3' }
+        it { expect(papers[2].id true).to eq '1710.02185v3' }
       end
       context '1703.04834' do
-        it { expect(papers[3].id version: true).to eq '1703.04834v1' }
+        it { expect(papers[3].id true).to eq '1703.04834v1' }
       end
     end
   end
@@ -54,16 +54,16 @@ describe Paper do
     end
     context 'with version' do
       context 'cond-mat/9609089' do
-        it { expect(papers[0].url version: true).to eq 'http://arxiv.org/abs/cond-mat/9609089v1' }
+        it { expect(papers[0].url true).to eq 'http://arxiv.org/abs/cond-mat/9609089v1' }
       end
       context '1105.5379' do
-        it { expect(papers[1].url version: true).to eq 'http://arxiv.org/abs/1105.5379v1' }
+        it { expect(papers[1].url true).to eq 'http://arxiv.org/abs/1105.5379v1' }
       end
       context '1710.02185' do
-        it { expect(papers[2].url version: true).to eq 'http://arxiv.org/abs/1710.02185v3' }
+        it { expect(papers[2].url true).to eq 'http://arxiv.org/abs/1710.02185v3' }
       end
       context '1703.04834' do
-        it { expect(papers[3].url version: true).to eq 'http://arxiv.org/abs/1703.04834v1' }
+        it { expect(papers[3].url true).to eq 'http://arxiv.org/abs/1703.04834v1' }
       end
     end
   end
