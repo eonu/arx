@@ -45,6 +45,17 @@ module Arx
       to_h.to_json
     end
 
+    # Equality check against another category.
+    #
+    # @param category [Category] The category to compare against.
+    def ==(category)
+      if category.is_a? Category
+        name == category.name
+      else
+        false
+      end
+    end
+
     inspector *ATTRIBUTES
   end
 end

@@ -50,6 +50,18 @@ module Arx
       to_h.to_json
     end
 
+    # Equality check against another author.
+    #
+    # @note This only performs a basic equality check between the authors' names.
+    # @param author [Author] The author to compare against.
+    def ==(author)
+      if author.is_a? Author
+        name == author.name
+      else
+        false
+      end
+    end
+
     inspector *ATTRIBUTES
   end
 end
