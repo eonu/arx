@@ -5,6 +5,19 @@ module Arx
     include HappyMapper
     include Inspector
 
+    # The attributes of an arXiv paper.
+    # @note {comment}, {journal}, {pdf_url} and {doi_url} may raise errors when called.
+    ATTRIBUTES = %i[
+      id url version revision?
+      title summary authors
+      primary_category categories
+      published_at updated_at
+      comment? comment
+      journal? journal
+      pdf? pdf_url
+      doi? doi_url
+    ]
+
     tag 'entry'
 
     element :id, Cleaner, parser: :clean, tag: 'id'
@@ -178,15 +191,36 @@ module Arx
       end
     end
 
-    inspector *%i[
-      id url version revision?
-      title summary authors
-      primary_category categories
-      published_at updated_at
-      comment? comment
-      journal? journal
-      pdf? pdf_url
-      doi? doi_url
-    ]
+    # Serializes the {Paper} object into a +Hash+.
+    #
+    # @param deep [Boolean] Whether to deep-serialize {Author} and {Category} objects.
+    # @return [Hash]
+    def to_h(deep = false)
+      Hash[*ATTRIBUTES.map {|_| [_, send(_)] rescue nil}.compact.flatten(1)].tap do |hash|
+        if deep
+          hash[:authors].map! &:to_h
+          hash[:categories].map! &:to_h
+          hash[:primary_category] = hash[:primary_category].to_h
+        end
+      end
+    end
+
+    # Serializes the {Paper} object into a valid JSON hash.
+    #
+    # @note Deep-serializes {Author} and {Category} objects.
+    # @return [Hash] The resulting JSON hash.
+    def as_json
+      JSON.parse to_json
+    end
+
+    # Serializes the {Paper} object into a valid JSON string.
+    #
+    # @note Deep-serializes {Author} and {Category} objects.
+    # @return [String] The resulting JSON string.
+    def to_json
+      to_h(true).to_json
+    end
+
+    inspector *ATTRIBUTES
   end
 end

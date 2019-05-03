@@ -5,6 +5,9 @@ module Arx
     include HappyMapper
     include Inspector
 
+    # The attributes of an arXiv paper's author.
+    ATTRIBUTES = %i[name affiliated? affiliations]
+
     tag 'author'
 
     # @!method name
@@ -26,6 +29,27 @@ module Arx
       !affiliations.empty?
     end
 
-    inspector :name, :affiliated?, :affiliations
+    # Serializes the {Author} object into a +Hash+.
+    #
+    # @return [Hash]
+    def to_h
+      Hash[*ATTRIBUTES.map {|_| [_, send(_)]}.flatten(1)]
+    end
+
+    # Serializes the {Author} object into a valid JSON hash.
+    #
+    # @return [Hash] The resulting JSON hash.
+    def as_json
+      JSON.parse to_json
+    end
+
+    # Serializes the {Author} object into a valid JSON string.
+    #
+    # @return [String] The resulting JSON string.
+    def to_json
+      to_h.to_json
+    end
+
+    inspector *ATTRIBUTES
   end
 end

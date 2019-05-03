@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'cgi'
+require 'json'
 require 'nokogiri'
 require 'open-uri'
 require 'happymapper'
