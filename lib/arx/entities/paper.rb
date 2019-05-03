@@ -173,6 +173,7 @@ module Arx
     end
 
     # Serializes the {Paper} object into a +Hash+.
+    #
     # @param deep [Boolean] Whether to deep-serialize {Author} and {Category} objects.
     # @return [Hash]
     def to_h(deep = false)
@@ -183,6 +184,22 @@ module Arx
           hash[:primary_category] = hash[:primary_category].to_h
         end
       end
+    end
+
+    # Serializes the {Paper} object into a valid JSON hash.
+    #
+    # @note Deep-serializes {Author} and {Category} objects.
+    # @return [Hash] The resulting JSON hash.
+    def as_json
+      JSON.parse to_json
+    end
+
+    # Serializes the {Paper} object into a valid JSON string.
+    #
+    # @note Deep-serializes {Author} and {Category} objects.
+    # @return [String] The resulting JSON string.
+    def to_json
+      to_h(true).to_json
     end
 
     inspector *ATTRIBUTES
