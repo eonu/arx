@@ -1,3 +1,45 @@
+# 1.2.0
+
+#### Major changes
+
+- Adds serialization support through the following methods ([#63](https://github.com/eonu/arx/pull/63)):
+  - `to_h`: Serialize into a Ruby hash (with symbol keys). Accepts a boolean argument, representing whether or not to deep-serialize nested `Author` and `Category` objects (defaults to `false`).
+  - `as_json`: Serialize into a Ruby hash which is also a valid JSON hash.
+  - `to_json`: Serialize into a valid JSON string.
+- Remove version filter from query ID list. ([#69](https://github.com/eonu/arx/pull/69))
+  > Previously, all of the following would return the latest paper, `1807.06918v2`:
+  > ```ruby
+  > Arx.get('1807.06918').version #=> 2
+  > Arx.get('1807.06918v1').version #=> 2
+  > Arx.get('1807.06918v2').version #=> 2
+  > ```
+- Adds `ATTRIBUTES` constant for `Paper`, `Author` and `Category` entities, as a list of which attributes are available for the entity. ([#63](https://github.com/eonu/arx/pull/63))
+- Remove key-word arguments from `Paper#id` and `Paper#url`. ([#70](https://github.com/eonu/arx/pull/70))
+  > Previously, `Paper#id` and `Paper#url` accepted a `version` key-word argument, which was a boolean variable indicating whether or not to include the version number in the ID or URL.
+  >
+  > This has now been changed to a regular argument, which still defaults to `false`.
+  > ```ruby
+  > paper = Arx.get('cond-mat/9609089')
+  >
+  > # Old (no longer works)
+  > paper.id(version: true)
+  > paper.url(version: true)
+  >
+  > # New
+  > paper.id(true) #=> "cond-mat/9609089v1"
+  > paper.url(true) #=> "http://arxiv.org/abs/cond-mat/9609089v1"
+- Add equality operator (`==`) to entities. ([#68](https://github.com/eonu/arx/pull/68))
+
+#### Minor changes
+
+- Add more category mappings to `CATEGORIES`. ([#71](https://github.com/eonu/arx/pull/71))
+- Add licensing information to `README.md` under the *Acknowledgements* section. ([#66](https://github.com/eonu/arx/pull/66))
+- Add `yard` development dependency for documentation. ([#65](https://github.com/eonu/arx/pull/65))
+- Make documentation spacing uniform. ([#64](https://github.com/eonu/arx/pull/64))
+- Coveralls:
+  - `coveralls` [`= 0.8.22` to `= 0.8.23`] ([#62](https://github.com/eonu/arx/pull/62))
+  - `thor` [`~> 0.19.4` to `~> 0.20.3`] ([#67](https://github.com/eonu/arx/pull/67))
+
 # 1.1.0
 
 #### Major changes
