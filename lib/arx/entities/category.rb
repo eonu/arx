@@ -12,10 +12,12 @@ module Arx
 
     # @!method name
     # The abbreviated name of the category.
+    #
     # @return [String]
     attribute :name, Cleaner, parser: :clean, tag: 'term'
 
     # The full name of the category.
+    #
     # @see CATEGORIES
     # @return [String]
     def full_name

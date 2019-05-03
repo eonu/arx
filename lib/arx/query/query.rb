@@ -23,6 +23,7 @@ module Arx
     }
 
     # Supported fields for the search queries made to the arXiv search API.
+    #
     # @see https://arxiv.org/help/prep arXiv metadata fields
     # @see https://arxiv.org/help/api/user-manual#query_details arXiv user manual (query details)
     FIELDS = {
@@ -75,16 +76,19 @@ module Arx
 
     # @!method and
     # Logical conjunction (+AND+) of subqueries.
+    #
     # @see https://arxiv.org/help/api/user-manual#query_details arXiv user manual
     # @return [self]
 
     # @!method and_not
     # Logical negated conjunction (+ANDNOT+) of subqueries.
+    #
     # @see https://arxiv.org/help/api/user-manual#query_details arXiv user manual
     # @return [self]
 
     # @!method or
     # Logical disjunction (+OR+) of subqueries.
+    #
     # @see https://arxiv.org/help/api/user-manual#query_details arXiv user manual
     # @return [self]
 
@@ -94,6 +98,7 @@ module Arx
 
     # @!method title(*values, exact: true, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#title title}.
+    #
     # @param values [Array<String>] Title(s) of papers to search for.
     # @param exact [Boolean] Whether to search for an exact match of the title(s).
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
@@ -101,6 +106,7 @@ module Arx
 
     # @!method author(*values, exact: true, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#author author}.
+    #
     # @param values [Array<String>] Author(s) of papers to search for.
     # @param exact [Boolean] Whether to search for an exact match of the author's name(s).
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
@@ -108,6 +114,7 @@ module Arx
 
     # @!method abstract(*values, exact: true, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#abstract abstract}.
+    #
     # @param values [Array<String>] Abstract(s) of papers to search for.
     # @param exact [Boolean] Whether to search for an exact match of the abstract(s).
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
@@ -115,6 +122,7 @@ module Arx
 
     # @!method comment(*values, exact: true, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#comments comment}.
+    #
     # @param values [Array<String>] Comment(s) of papers to search for.
     # @param exact [Boolean] Whether to search for an exact match of the comment(s).
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
@@ -122,6 +130,7 @@ module Arx
 
     # @!method journal(*values, exact: true, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#journal journal reference}.
+    #
     # @param values [Array<String>] Journal reference(s) of papers to search for.
     # @param exact [Boolean] Whether to search for an exact match of the journal refernece(s).
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
@@ -129,18 +138,21 @@ module Arx
 
     # @!method category(*values, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#category category}.
+    #
     # @param values [Array<String>] Category(s) of papers to search for.
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
     # @return [self]
 
     # @!method report(*values, connective: :and)
     # Search for papers by {https://arxiv.org/help/prep#report report number}.
+    #
     # @param values [Array<String>] Report number(s) of papers to search for.
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
     # @return [self]
 
     # @!method all(*values, exact: true, connective: :and)
     # Search for papers by all fields (see {FIELDS}).
+    #
     # @param values [Array<String>] Field value(s) of papers to search for.
     # @param exact [Boolean] Whether to search for an exact match of the comment(s).
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.

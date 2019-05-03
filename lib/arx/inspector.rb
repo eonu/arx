@@ -2,6 +2,7 @@ module Arx
 
   # Restricts +inspect+ to dump a whitelist of methods on an object.
   # It will always provide `object_id` at a minimum.
+  #
   # @private
   module Inspector
 
@@ -24,6 +25,7 @@ module Arx
       end
 
       # Defines helper +inspector_fields+ instance variable & method, and +inspector+ instance method on the target object.
+      #
       # @param [Object] source An arbitrary object (the object that +includes+ the +Inspector+ module).
       def included(source)
         inspected << source
