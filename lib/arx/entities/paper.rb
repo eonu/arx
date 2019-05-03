@@ -221,6 +221,19 @@ module Arx
       to_h(true).to_json
     end
 
+    # Equality check against another paper.
+    #
+    # @note This only performs a basic equality check between the papers' identifiers (disregarding version).
+    #   This means that a different version of the same paper will be viewed as equal.
+    # @param paper [Paper] The paper to compare against.
+    def ==(paper)
+      if paper.is_a? Paper
+        id == paper.id
+      else
+        false
+      end
+    end
+
     inspector *ATTRIBUTES
   end
 end

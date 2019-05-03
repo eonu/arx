@@ -80,4 +80,36 @@ describe Author do
       it { is_expected.to eq "{\"name\":\"Aapo Kyrola\",\"affiliated?\":false,\"affiliations\":[]}" }
     end
   end
+  context '#==' do
+    context 'with an Arx::Author' do
+      context 'with equal names' do
+        it do
+          author1 = Arx.get('1903.12015').authors[2]
+          author2 = Arx.get('1903.08844').authors[2]
+          expect(author1).to eq author2
+        end
+      end
+      context 'with different names' do
+        it do
+          author1 = Arx.get('1903.12015').authors[2]
+          author2 = Arx.get('1903.08844').authors[3]
+          expect(author1).not_to eq author2
+        end
+      end
+      context 'with equal affiliations' do
+        it do
+          author1 = Arx.get('1903.12015').authors[2]
+          author2 = Arx.get('1903.08844').authors[3]
+          expect(author1).not_to eq author2
+        end
+      end
+    end
+    context 'with other objects' do
+      subject { authors[1] }
+
+      it { is_expected.not_to eq 'Aapo Kyrola' }
+      it { is_expected.not_to eq :'Aapo Kyrola' }
+      it { is_expected.not_to eq 1 }
+    end
+  end
 end
