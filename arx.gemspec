@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'nokogiri-happymapper', '~> 0.8'
 
   spec.add_development_dependency 'bundler', '>= 1.17'
-  spec.add_development_dependency 'rake', '~> 12.3'
+  spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'thor', '~> 0.20.3'
   spec.add_development_dependency 'rspec', '~> 3.7'
   spec.add_development_dependency 'coveralls', '0.8.23'
