@@ -30,7 +30,7 @@ describe Paper do
         it { expect(papers[1].id true).to eq '1105.5379v1' }
       end
       context '1710.02185' do
-        it { expect(papers[2].id true).to eq '1710.02185v3' }
+        it { expect(papers[2].id true).to eq '1710.02185v4' }
       end
       context '1703.04834' do
         it { expect(papers[3].id true).to eq '1703.04834v1' }
@@ -60,7 +60,7 @@ describe Paper do
         it { expect(papers[1].url true).to eq 'http://arxiv.org/abs/1105.5379v1' }
       end
       context '1710.02185' do
-        it { expect(papers[2].url true).to eq 'http://arxiv.org/abs/1710.02185v3' }
+        it { expect(papers[2].url true).to eq 'http://arxiv.org/abs/1710.02185v4' }
       end
       context '1703.04834' do
         it { expect(papers[3].url true).to eq 'http://arxiv.org/abs/1703.04834v1' }
@@ -75,7 +75,7 @@ describe Paper do
       it { expect(papers[1].version).to eq 1 }
     end
     context '1710.02185' do
-      it { expect(papers[2].version).to eq 3 }
+      it { expect(papers[2].version).to eq 4 }
     end
     context '1703.04834' do
       it { expect(papers[3].version).to eq 1 }
@@ -259,7 +259,7 @@ describe Paper do
       subject { papers[2].updated_at }
 
       it { is_expected.to be_a DateTime }
-      it { expect(subject.to_s).to eq '2017-11-07T22:45:22+00:00' }
+      it { expect(subject.to_s).to eq '2019-10-08T13:29:33+00:00' }
     end
     context '1703.04834' do
       subject { papers[3].updated_at }
@@ -304,7 +304,7 @@ describe Paper do
       it { expect { papers[1].comment }.to raise_error Error::MissingField }
     end
     context '1710.02185' do
-      it { expect(papers[2].comment).to eq '31 pages, 17 figures; corrected author list' }
+      it { expect(papers[2].comment).to eq '27 pages, 13 figures, published version' }
     end
     context '1703.04834' do
       it { expect { papers[3].comment }.to raise_error Error::MissingField }
@@ -318,7 +318,7 @@ describe Paper do
       it { expect(papers[1].journal?).to be true }
     end
     context '1710.02185' do
-      it { expect(papers[2].journal?).to be false }
+      it { expect(papers[2].journal?).to be true }
     end
     context '1703.04834' do
       it { expect(papers[3].journal?).to be false }
@@ -332,7 +332,7 @@ describe Paper do
       it { expect(papers[1].journal).to eq 'In the 28th International Conference on Machine Learning, July 2011, Washington, USA' }
     end
     context '1710.02185' do
-      it { expect { papers[2].journal }.to raise_error Error::MissingField }
+      it { expect(papers[2].journal).to eq 'Class. Quantum Grav. 35 065010 (2018)' }
     end
     context '1703.04834' do
       it { expect { papers[3].journal }.to raise_error Error::MissingField }
@@ -360,7 +360,7 @@ describe Paper do
       it { expect(papers[1].pdf_url).to eq 'http://arxiv.org/pdf/1105.5379v1' }
     end
     context '1710.02185' do
-      it { expect(papers[2].pdf_url).to eq 'http://arxiv.org/pdf/1710.02185v3' }
+      it { expect(papers[2].pdf_url).to eq 'http://arxiv.org/pdf/1710.02185v4' }
     end
     context '1703.04834' do
       it { expect(papers[3].pdf_url).to eq 'http://arxiv.org/pdf/1703.04834v1' }
