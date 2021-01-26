@@ -59,7 +59,7 @@ module Arx
 
       yield query if block_given?
 
-      document = Nokogiri::XML(open ENDPOINT + query.to_s + '&max_results=10000').remove_namespaces!
+      document = Nokogiri::XML(URI.open ENDPOINT + query.to_s + '&max_results=10000').remove_namespaces!
       results = Paper.parse(document, single: ids.size == 1)
 
       if results.is_a? Paper

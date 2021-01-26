@@ -2,7 +2,7 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/ArXiv_web.svg/1200px-ArXiv_web.svg.png" width="15%" align="right"></img>
 
-[![Ruby Version](https://img.shields.io/badge/ruby-~%3E%202.5-red.svg)](https://github.com/eonu/arx/blob/503a1c95ac450dbc20623491060c3fc32d213627/arx.gemspec#L19)
+[![Ruby Version](https://img.shields.io/badge/ruby-%3E=%202.5-red.svg)](https://github.com/eonu/arx/blob/503a1c95ac450dbc20623491060c3fc32d213627/arx.gemspec#L19)
 [![Gem](https://img.shields.io/gem/v/arx.svg)](https://rubygems.org/gems/arx)
 [![License](https://img.shields.io/github/license/eonu/arx.svg)](https://github.com/eonu/arx/blob/master/LICENSE)
 
@@ -12,48 +12,52 @@
 
 **A Ruby interface for querying academic papers on the arXiv search API.**
 
-<img src="https://i.ibb.co/19Djpzk/arxiv.png" width="25%" align="left"></img>
+[arXiv](https://arxiv.org/) provides an advanced search utility on their website, as well as an extensive [search API](https://arxiv.org/help/api) that allows for the external querying of academic papers hosted on their website.
 
-> arXiv is an e-print service in the fields of physics, mathematics, non-linear science, computer science, quantitative biology, quantitative finance and statistics.
+Although [Scholastica](https://github.com/scholastica) offer a great [Ruby gem](https://github.com/scholastica/arxiv) for retrieving papers from arXiv through the search API, this gem only allows for the retrieval of one paper at a time, and only supports searching for paper by ID.
 
----
+> Arx is a gem that allows for quick and easy querying of the arXiv search API, without having to worry about manually writing your own search query strings or parsing the resulting XML query response to find the data you need.
 
-[arXiv](https://arxiv.org/) provides an advanced search utility (shown left) on their website, as well as an extensive [search API](https://arxiv.org/help/api) that allows for the external querying of academic papers hosted on their website.
+## Examples
 
-Although [Scholastica](https://github.com/scholastica) offer a great [Ruby gem](https://github.com/scholastica/arxiv) for retrieving papers from arXiv through the search API, this gem is only intended for retrieving one paper at a time, and only supports searching for paper by ID.
+1. Suppose we wish to search for papers in the `cs.FL` (Formal Languages and Automata Theory) category whose title contains `"Buchi Automata"`, not authored by `Tomáš Babiak`, sorted by submission date (latest first).
 
-*Arx is a gem that allows for quick and easy querying of the arXiv search API, without having to worry about manually writing your own search query strings or parse the resulting XML query response to find the data you need.*
+  ```ruby
+  require 'arx'
 
-## Example
+  papers = Arx(sort_by: :date_submitted) do |query|
+    query.category('cs.FL')
+    query.title('Buchi Automata').and_not.author('Tomáš Babiak')
+  end
+  ```
 
-Suppose we wish to search for:
+2. Suppose we wish to retrieve the main category of the paper with arXiv ID `1809.09415`, the name of the first author and the date it was published.
 
-> Papers in the `cs.FL` (Formal Languages and Automata Theory) category whose title contains `"Buchi Automata"`, not authored by `Tomáš Babiak`, sorted by submission date (latest first).
+  ```ruby
+  require 'arx'
 
-This query can be executed with the following code:
-
-```ruby
-require 'arx'
-
-papers = Arx(sort_by: :date_submitted) do |query|
-  query.category('cs.FL')
-  query.title('Buchi Automata').and_not.author('Tomáš Babiak')
-end
-```
+  paper = Arx('1809.09415')
+  paper.authors.first.name
+  #=> "Christof Löding"
+  paper.categories.first.full_name # or paper.primary_category.full_name
+  #=> "Formal Languages and Automata Theory"
+  paper.published_at
+  #=> #<DateTime: 2018-09-25T11:40:39+00:00 ((2458387j,42039s,0n),+0s,2299161j)>
+  ```
 
 ## Features
 
 - Ruby classes `Arx::Paper`, `Arx::Author` and `Arx::Category` that wrap the resulting Atom XML query result from the search API.
 - Supports querying by a paper's ID, title, author(s), abstract, subject category, comment, journal reference, or report number.
-- Provides a small embedded DSL for writing queries.
+- Provides a small DSL for writing queries.
 - Supports searching fields by exact match.
 
 ## Installation
 
 To install Arx, run the following in your terminal:
 
-```bash
-$ gem install arx
+```console
+gem install arx
 ```
 
 ## Documentation
@@ -84,7 +88,7 @@ Obviously writing out queries like this can quickly become time-consuming and te
 
 ---
 
-The `Arx::Query` class provides a small embedded DSL for writing these query strings.
+The `Arx::Query` class provides a small DSL for writing these query strings.
 
 #### Sorting criteria and order
 
