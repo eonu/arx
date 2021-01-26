@@ -234,6 +234,19 @@ module Arx
       end
     end
 
+    # Downloads the paper and saves it in PDF format at the specified path.
+    #
+    # @param path [String] The file path to store the PDF at.
+    def save(path)
+      begin
+        pdf_content = URI.open(pdf_url).read
+        File.open(path, 'wb') {|f| f.write pdf_content}
+      rescue
+        File.delete(path) if File.file? path
+        raise
+      end
+    end
+
     inspector *ATTRIBUTES
   end
 end
