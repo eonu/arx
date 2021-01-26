@@ -6,7 +6,7 @@ module Arx
   VERSION = {
     major: 1,
     minor: 2,
-    patch: 0,
+    patch: 1,
     meta: nil,
   }.compact.values.join('.').freeze
 end
