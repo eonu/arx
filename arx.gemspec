@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
     Gemfile LICENSE CHANGELOG.md README.md Rakefile arx.gemspec
   ]
 
-  spec.required_ruby_version = '~> 2.5'
+  spec.required_ruby_version = '>= 2.5'
 
   spec.add_runtime_dependency 'nokogiri', '~> 1.10'
   spec.add_runtime_dependency 'nokogiri-happymapper', '~> 0.8'
