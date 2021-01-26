@@ -645,4 +645,21 @@ describe Paper do
       it { is_expected.not_to eq 1 }
     end
   end
+  context '#save' do
+    context 'with an existing directory' do
+      # TODO
+    end
+    context 'with a non-existing directory' do
+      # TODO
+    end
+    context 'with an existing file path' do
+      # TODO
+    end
+    context 'with a non-existing file path' do
+      # TODO
+    end
+    context 'with an invalid file path type' do
+      # TODO
+    end
+  end
 end
