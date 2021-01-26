@@ -1,3 +1,21 @@
+# 1.2.1
+
+#### Major changes
+
+- Add support for saving PDFs with `Paper#save` (see #81). ([#90](https://github.com/eonu/arx/pull/90))
+- Change gem Ruby version specifier from `~> 2.5` to `>= 2.5`. ([#86](https://github.com/eonu/arx/pull/86))
+
+#### Minor changes
+
+- Remove arXiv logo from `README.md`. ([#87](https://github.com/eonu/arx/pull/87))
+- Use `URI.open` instead of `Kernel.open` (see #82). ([#86](https://github.com/eonu/arx/pull/86))
+- Add CI rubies `2.7` and `3.0` (see #84). ([#86](https://github.com/eonu/arx/pull/86))
+- Remove unnecessary arXiv information from `README.md` (see #83). ([#86](https://github.com/eonu/arx/pull/86))
+- Remove system gem update directive in `.travis.yml`. ([#78](https://github.com/eonu/arx/pull/78))
+- Remove version specifier for `bundler` gem in `arx.gemspec`. ([#77](https://github.com/eonu/arx/pull/77))
+- Update specs using paper `1710.02185` to account for revision and acceptance by journal (_congratulations!_). ([#76](https://github.com/eonu/arx/pull/76))
+- Update email address in `LICENSE.md`. ([#73](https://github.com/eonu/arx/pull/73))
+
 # 1.2.0
 
 #### Major changes
