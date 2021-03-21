@@ -29,6 +29,18 @@ module Arx
         raise ArgumentError.new("Expected `sort_order` to be one of #{permitted}, got: #{value}") unless permitted.include? value
       end
 
+      # Validates the paging fields of the query string: +start+ and +max_results+.
+      #
+      # @param start [Integer] The start value to validate.
+      # @param max_results [Integer] The max_results value to validate.
+      # @raise
+      #   [TypeError] If the value of +start+ is not an +Integer+.
+      #   [TypeError] If the value of +max_results+ is not an +Integer+.
+      def paging(start, max_results)
+        raise TypeError.new("Expected `start` to be an Integer, got: #{start.class}") unless start.is_a? Integer
+        raise TypeError.new("Expected `max_results` to be an Integer, got: #{max_results.class}") unless max_results.is_a? Integer
+      end
+
       # Validates a list of arXiv paper identifiers.
       #
       # @param ids [Array<String>] The identifiers to validate.
