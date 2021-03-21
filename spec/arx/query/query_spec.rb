@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Query do
+  let(:default_arguments) {'sortBy=relevance&sortOrder=descending&start=0&max_results=10'}
+
   context '.initialize' do
     subject { Query }
 
@@ -8,17 +10,17 @@ describe Query do
     it { is_expected.to respond_to(:new).with_unlimited_arguments }
 
     context 'with no arguments' do
-      it { expect(subject.new.to_s).to eq 'sortBy=relevance&sortOrder=descending&start=0&max_results=10' }
+      it { expect(subject.new.to_s).to eq default_arguments }
     end
     context 'with IDs' do
       context '1105.5379' do
-        it { expect(subject.new('1105.5379').to_s).to eq 'sortBy=relevance&sortOrder=descending&start=0&max_results=10&id_list=1105.5379' }
+        it { expect(subject.new('1105.5379').to_s).to eq "#{default_arguments}&id_list=1105.5379" }
       end
       context 'cond-mat/9609089' do
-        it { expect(subject.new('cond-mat/9609089').to_s).to eq 'sortBy=relevance&sortOrder=descending&start=0&max_results=10&id_list=cond-mat/9609089' }
+        it { expect(subject.new('cond-mat/9609089').to_s).to eq "#{default_arguments}&id_list=cond-mat/9609089" }
       end
       context '1105.5379, cond-mat/9609089 and cs/0003044' do
-        it { expect(subject.new(*%w[1105.5379 cond-mat/9609089 cs/0003044]).to_s).to eq 'sortBy=relevance&sortOrder=descending&start=0&max_results=10&id_list=1105.5379,cond-mat/9609089,cs/0003044' }
+        it { expect(subject.new(*%w[1105.5379 cond-mat/9609089 cs/0003044]).to_s).to eq "#{default_arguments}&id_list=1105.5379,cond-mat/9609089,cs/0003044" }
       end
     end
     context 'with key-word arguments' do
@@ -109,29 +111,29 @@ describe Query do
       let(:query) { Query.new }
 
       context 'without a query string' do
-        it { expect(query.send(field, 'cs.AI').to_s).to eq "sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=#{Query::FIELDS[field]}:%22cs.AI%22" }
+        it { expect(query.send(field, 'cs.AI').to_s).to eq "#{default_arguments}&search_query=#{Query::FIELDS[field]}:%22cs.AI%22" }
       end
       context 'without a prior connective' do
-        it { expect(query.title('test').send(field, 'cs.AI').to_s).to eq "sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=ti:%22test%22+AND+#{Query::FIELDS[field]}:%22cs.AI%22" }
+        it { expect(query.title('test').send(field, 'cs.AI').to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+AND+#{Query::FIELDS[field]}:%22cs.AI%22" }
       end
       context 'with a prior connective' do
         Query::CONNECTIVES.keys.each do |connective|
-          it { expect(query.title('test').send(connective).send(field, 'cs.AI').to_s).to eq "sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=ti:%22test%22+#{Query::CONNECTIVES[connective]}+#{Query::FIELDS[field]}:%22cs.AI%22" }
+          it { expect(query.title('test').send(connective).send(field, 'cs.AI').to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+#{Query::CONNECTIVES[connective]}+#{Query::FIELDS[field]}:%22cs.AI%22" }
         end
       end
       context 'exact: false' do
-        it { expect(query.send(field, 'cs.AI', exact: false).to_s).to eq "sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=#{Query::FIELDS[field]}:cs.AI" }
+        it { expect(query.send(field, 'cs.AI', exact: false).to_s).to eq "#{default_arguments}&search_query=#{Query::FIELDS[field]}:cs.AI" }
       end
       context 'with multiple values' do
-        it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG').to_s).to eq "sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:%22cs.AI%22+AND+#{Query::FIELDS[field]}:%22cs.LG%22%29" }
+        it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG').to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:%22cs.AI%22+AND+#{Query::FIELDS[field]}:%22cs.LG%22%29" }
 
         context 'exact: false' do
-          it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG', exact: false).to_s).to eq "sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:cs.AI+AND+#{Query::FIELDS[field]}:cs.LG%29" }
+          it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG', exact: false).to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:cs.AI+AND+#{Query::FIELDS[field]}:cs.LG%29" }
         end
 
         Query::CONNECTIVES.keys.each do |connective|
           context "connective: #{connective}" do
-            it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG', connective: connective).to_s).to eq "sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:%22cs.AI%22+#{Query::CONNECTIVES[connective]}+#{Query::FIELDS[field]}:%22cs.LG%22%29" }
+            it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG', connective: connective).to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:%22cs.AI%22+#{Query::CONNECTIVES[connective]}+#{Query::FIELDS[field]}:%22cs.LG%22%29" }
           end
         end
       end
@@ -142,18 +144,18 @@ describe Query do
     subject { Query }
 
     context 'with no search query' do
-      it { expect(subject.new.group {}.to_s).to eq 'sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=%28%29' }
+      it { expect(subject.new.group {}.to_s).to eq "#{default_arguments}&search_query=%28%29" }
       it do
         query = subject.new.tap do |q|
           q.group { q.title 'Buchi automata' }
         end
-        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=%28ti:%22Buchi+automata%22%29'
+        expect(query.to_s).to eq "#{default_arguments}&search_query=%28ti:%22Buchi+automata%22%29"
       end
       it do
         query = subject.new.tap do |q|
           q.group { q.group { q.group {} } }
         end
-        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=%28+%28+%28%29%29%29'
+        expect(query.to_s).to eq "#{default_arguments}&search_query=%28+%28+%28%29%29%29"
       end
     end
     context 'with no block' do
@@ -172,7 +174,7 @@ describe Query do
             q.author 'Tomáš Babiak'
           end
         end
-        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=ti:%22Buchi+automata%22+AND+%28cat:%22cs.FL%22+ANDNOT+au:%22Tom%C3%A1%C5%A1+Babiak%22%29'
+        expect(query.to_s).to eq "#{default_arguments}&search_query=ti:%22Buchi+automata%22+AND+%28cat:%22cs.FL%22+ANDNOT+au:%22Tom%C3%A1%C5%A1+Babiak%22%29"
       end
       it do
         query = subject.new.tap do |q|
@@ -183,7 +185,7 @@ describe Query do
             q.author 'Tomáš Babiak'
           end
         end
-        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=ti:%22Buchi+automata%22+AND+%28%28cat:%22cs.FL%22+OR+cat:%22cs.CC%22%29+ANDNOT+au:%22Tom%C3%A1%C5%A1+Babiak%22%29'
+        expect(query.to_s).to eq "#{default_arguments}&search_query=ti:%22Buchi+automata%22+AND+%28%28cat:%22cs.FL%22+OR+cat:%22cs.CC%22%29+ANDNOT+au:%22Tom%C3%A1%C5%A1+Babiak%22%29"
       end
       it do
         query = subject.new.tap do |q|
@@ -194,7 +196,7 @@ describe Query do
             q.category 'cs.FL', 'cs.CC', connective: :or
           end
         end
-        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=ti:%22Buchi+automata%22+AND+%28au:%22Tom%C3%A1%C5%A1+Babiak%22+OR+%28cat:%22cs.FL%22+OR+cat:%22cs.CC%22%29%29'
+        expect(query.to_s).to eq "#{default_arguments}&search_query=ti:%22Buchi+automata%22+AND+%28au:%22Tom%C3%A1%C5%A1+Babiak%22+OR+%28cat:%22cs.FL%22+OR+cat:%22cs.CC%22%29%29"
       end
       it do
         query = subject.new.tap do |q|
@@ -203,7 +205,7 @@ describe Query do
             q.category 'cs.FL', 'cs.CC', connective: :and_not
           end
         end
-        expect(query.to_s).to eq 'sortBy=relevance&sortOrder=descending&start=0&max_results=10&search_query=ti:%22Buchi+automata%22+AND+%28%28cat:%22cs.FL%22+ANDNOT+cat:%22cs.CC%22%29%29'
+        expect(query.to_s).to eq "#{default_arguments}&search_query=ti:%22Buchi+automata%22+AND+%28%28cat:%22cs.FL%22+ANDNOT+cat:%22cs.CC%22%29%29"
       end
     end
   end
