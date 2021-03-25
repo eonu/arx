@@ -27,14 +27,15 @@ module Arx
     # @see https://arxiv.org/help/prep arXiv metadata fields
     # @see https://arxiv.org/help/api/user-manual#query_details arXiv user manual (query details)
     FIELDS = {
-      title: 'ti',     # Title
-      author: 'au',    # Author
-      abstract: 'abs', # Abstract
-      comment: 'co',   # Comment
-      journal: 'jr',   # Journal reference
-      category: 'cat', # Subject category
-      report: 'rn',    # Report number
-      all: 'all'       # All (of the above)
+      title: 'ti',                          # Title
+      author: 'au',                         # Author
+      abstract: 'abs',                      # Abstract
+      comment: 'co',                        # Comment
+      journal: 'jr',                        # Journal reference
+      category: 'cat',                      # Subject category
+      report: 'rn',                         # Report number
+      last_updated_date: 'lastUpdatedDate', # Last updated date
+      all: 'all'                            # All (of the above)
     }
 
     # Supported criteria for the +sortBy+ parameter.
@@ -147,6 +148,13 @@ module Arx
     # Search for papers by {https://arxiv.org/help/prep#report report number}.
     #
     # @param values [Array<String>] Report number(s) of papers to search for.
+    # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
+    # @return [self]
+
+    # @!method last_updated_date(*values, connective: :and)
+    # Search for papers by lastUpdatedDate.
+    #
+    # @param values [Array<String>] lastUpdatedDate (String or range) of papers to search for.
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
     # @return [self]
 
