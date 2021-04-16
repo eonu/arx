@@ -42,7 +42,7 @@ module Arx
     # Supported criteria for the +sortBy+ parameter.
     SORT_BY = {
       relevance: 'relevance',
-      last_updated: 'lastUpdated',
+      last_updated: 'lastUpdatedDate',
       date_submitted: 'submittedDate'
     }
 
