@@ -108,6 +108,26 @@ Arx::Query.new(sort_by: :date_submitted, sort_order: :ascending)
 Arx::Query.new #=> sortBy=relevance&sortOrder=descending
 ```
 
+#### Paging
+
+The arXiv API offers a paging mechanism that allows you to get chucks of the result set at a time. It can be used through the `start` and `max_results` keyword arguments (in the `Arx::Query` initializer):
+
+- `start` is the index of the first returned result (using 0-based indexing)
+
+- `max_results` is the number of results returned by the query
+
+```ruby
+# Get results 10-29
+Arx::Query.new(start: 10, max_results: 20)
+#=> start=10&max_results=20
+```
+
+**Note**: The default values are those of the arXiv API: `start` defaults to `0` and `max_results` defaults to `10`:
+
+```ruby
+Arx::Query.new #=> start=0&max_results=10
+```
+
 #### Searching by ID
 
 The arXiv search API doesn't only support searching for papers by metadata fields, but also by ID. When searching by ID, a different URL query string parameter `id_list` is used (instead of `search_query` as seen before).

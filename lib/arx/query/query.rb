@@ -12,7 +12,9 @@ module Arx
       search_query: 'search_query',
       id_list: 'id_list',
       sort_by: 'sortBy',
-      sort_order: 'sortOrder'
+      sort_order: 'sortOrder',
+      start: 'start',
+      max_results: 'max_results',
     }
 
     # Logical connectives supported by the arXiv search API.
@@ -55,8 +57,10 @@ module Arx
     # @param ids [Array<String>] The IDs of the arXiv papers to restrict the query to.
     # @param sort_by [Symbol] The sorting criteria for the returned results (see {SORT_BY}).
     # @param sort_order [Symbol] The sorting order for the returned results (see {SORT_ORDER}).
+    # @param start [Integer] The index of the first returned result.
+    # @param max_results [Integer] The number of results returned by the query
     # @return [Query] The initialized query object.
-    def initialize(*ids, sort_by: :relevance, sort_order: :descending)
+    def initialize(*ids, sort_by: :relevance, sort_order: :descending, start: 0, max_results: 10)
       @query = String.new
 
       Validate.sort_by sort_by, permitted: SORT_BY.keys
@@ -64,6 +68,9 @@ module Arx
 
       Validate.sort_order sort_order, permitted: SORT_ORDER.keys
       @query << "&#{PARAMS[:sort_order]}=#{SORT_ORDER[sort_order]}"
+
+      Validate.paging start, max_results
+      @query << "&#{PARAMS[:start]}=#{start}&#{PARAMS[:max_results]}=#{max_results}"
 
       ids.flatten!
       unless ids.empty?
