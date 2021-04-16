@@ -92,7 +92,9 @@ end
 # @param query [Query, NilClass] Predefined search query object.
 # @param sort_by [Symbol] The sorting criteria for the returned results (see {Arx::Query::SORT_BY}).
 # @param sort_order [Symbol] The sorting order for the returned results (see {Arx::Query::SORT_ORDER}).
+# @param start [Integer] The index of the first returned result.
+# @param max_results [Integer] The number of results returned by the query
 # @return [Array<Paper>, Paper] The {Arx::Paper}(s) found by the search query.
-def Arx(*ids, query: nil, sort_by: :relevance, sort_order: :descending, &block)
-  Arx.search *ids, query: query, sort_by: sort_by, sort_order: sort_order, &block
+def Arx(*ids, query: nil, sort_by: :relevance, sort_order: :descending, start: 0, max_results: 10, &block)
+  Arx.search *ids, query: query, sort_by: sort_by, sort_order: sort_order, start: start, max_results: max_results, &block
 end
