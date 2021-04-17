@@ -23,7 +23,7 @@ Although [Scholastica](https://github.com/scholastica) offer a great [Ruby gem](
   ```ruby
   require 'arx'
 
-  papers = Arx(sort_by: :date_submitted) do |query|
+  papers = Arx(sort_by: :submitted_at) do |query|
     query.category('cs.FL')
     query.title('Buchi Automata').and_not.author('Tomáš Babiak')
   end
@@ -92,13 +92,13 @@ The `Arx::Query` class provides a small DSL for writing these query strings.
 
 The order in which search results are returned can be modified through the `sort_by` and `sort_order` keyword arguments (in the `Arx::Query` initializer):
 
-- `sort_by` accepts the symbols: `:relevance`, `:last_updated` or `:date_submitted`
+- `sort_by` accepts the symbols: `:relevance`, `:updated_at` or `:submitted_at`
 
 - `sort_order` accepts the symbols: `:ascending` or `:descending`
 
 ```ruby
 # Sort by submission date in ascending order (earliest first)
-Arx::Query.new(sort_by: :date_submitted, sort_order: :ascending)
+Arx::Query.new(sort_by: :submitted_at, sort_order: :ascending)
 #=> sortBy=submittedDate&sortOrder=ascending
 ```
 
@@ -153,16 +153,16 @@ The arXiv search API supports searches for the following paper metadata fields:
 
 ```ruby
 FIELDS = {
-  title: 'ti',                          # Title
-  author: 'au',                         # Author
-  abstract: 'abs',                      # Abstract
-  comment: 'co',                        # Comment
-  journal: 'jr',                        # Journal reference
-  category: 'cat',                      # Subject category
-  report: 'rn',                         # Report number
-  last_updated_date: 'lastUpdatedDate', # Last updated date
-  submitted_date: 'submittedDate',      # Submission date
-  all: 'all'                            # All (of the above)
+  title: 'ti',                   # Title
+  author: 'au',                  # Author
+  abstract: 'abs',               # Abstract
+  comment: 'co',                 # Comment
+  journal: 'jr',                 # Journal reference
+  category: 'cat',               # Subject category
+  report: 'rn',                  # Report number
+  updated_at: 'lastUpdatedDate', # Last updated date
+  submitted_at: 'submittedDate', # Submission date
+  all: 'all'                     # All (of the above)
 }
 ```
 
@@ -278,7 +278,7 @@ Calling the `Arx()` method with a block allows for the construction and executio
 
 ```ruby
 # Papers in the cs.FL category whose title contains "Buchi Automata", not authored by Tomáš Babiak
-results = Arx(sort_by: :date_submitted) do |query|
+results = Arx(sort_by: :submitted_at) do |query|
   query.category('cs.FL')
   query.title('Buchi Automata').and_not.author('Tomáš Babiak')
 end
@@ -294,7 +294,7 @@ The `Arx()` method accepts a predefined `Arx::Query` object through the `query` 
 
 ```ruby
 # Papers in the cs.FL category whose title contains "Buchi Automata", not authored by Tomáš Babiak
-q = Arx::Query.new(sort_by: :date_submitted)
+q = Arx::Query.new(sort_by: :submitted_at)
 q.category('cs.FL')
 q.title('Buchi Automata').and_not.author('Tomáš Babiak')
 

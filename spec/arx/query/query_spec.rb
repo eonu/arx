@@ -81,7 +81,7 @@ describe Query do
       end
     end
     context 'with IDs and key-word arguments' do
-      it { expect(subject.new('1105.5379', 'cond-mat/9609089', sort_by: :date_submitted, sort_order: :ascending).to_s).to eq 'sortBy=submittedDate&sortOrder=ascending&start=0&max_results=10&id_list=1105.5379,cond-mat/9609089' }
+      it { expect(subject.new('1105.5379', 'cond-mat/9609089', sort_by: :submitted_at, sort_order: :ascending).to_s).to eq 'sortBy=submittedDate&sortOrder=ascending&start=0&max_results=10&id_list=1105.5379,cond-mat/9609089' }
     end
   end
 
