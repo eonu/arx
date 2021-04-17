@@ -57,7 +57,7 @@ module Arx
       end
     end
 
-    # A string representation of the {Author} object.
+    # A string representation of the {Category} object.
     #
     # @return [String]
     def to_s
