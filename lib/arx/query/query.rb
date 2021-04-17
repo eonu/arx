@@ -37,6 +37,7 @@ module Arx
       category: 'cat',                      # Subject category
       report: 'rn',                         # Report number
       last_updated_date: 'lastUpdatedDate', # Last updated date
+      submitted_date: 'submittedDate',      # Submission date
       all: 'all'                            # All (of the above)
     }
 
@@ -161,7 +162,14 @@ module Arx
     # @!method last_updated_date(*values, connective: :and)
     # Search for papers by lastUpdatedDate.
     #
-    # @param values [Array<String>] lastUpdatedDate (String or range) of papers to search for.
+    # @param values [Array<String>] lastUpdatedDate (string or range) of papers to search for.
+    # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
+    # @return [self]
+
+    # @!method submitted_date(*values, connective: :and)
+    # Search for papers by submittedDate.
+    #
+    # @param values [Array<String>] submittedDate (string or range) of papers to search for.
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
     # @return [self]
 
@@ -174,7 +182,8 @@ module Arx
     # @return [self]
 
     FIELDS.each do |name, field|
-      define_method(name) do |*values, exact: true, connective: :and|
+      exact = ![:last_updated_date, :submitted_date].include?(name)
+      define_method(name) do |*values, exact: exact, connective: :and|
         return if values.empty?
 
         values.flatten!

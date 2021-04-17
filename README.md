@@ -161,6 +161,7 @@ FIELDS = {
   category: 'cat',                      # Subject category
   report: 'rn',                         # Report number
   last_updated_date: 'lastUpdatedDate', # Last updated date
+  submitted_date: 'submittedDate',      # Submission date
   all: 'all'                            # All (of the above)
 }
 ```
