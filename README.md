@@ -46,7 +46,7 @@ Although [Scholastica](https://github.com/scholastica) offer a great [Ruby gem](
 ## Features
 
 - Ruby classes `Arx::Paper`, `Arx::Author` and `Arx::Category` that wrap the resulting Atom XML query result from the search API.
-- Supports querying by a paper's ID, title, author(s), abstract, subject category, comment, journal reference, or report number.
+- Supports querying by a paper's ID, title, author(s), abstract, subject category, comment, journal reference, report number or last updated date.
 - Provides a small DSL for writing queries.
 - Supports searching fields by exact match.
 
@@ -153,14 +153,15 @@ The arXiv search API supports searches for the following paper metadata fields:
 
 ```ruby
 FIELDS = {
-  title: 'ti',     # Title
-  author: 'au',    # Author
-  abstract: 'abs', # Abstract
-  comment: 'co',   # Comment
-  journal: 'jr',   # Journal reference
-  category: 'cat', # Subject category
-  report: 'rn',    # Report number
-  all: 'all'       # All (of the above)
+  title: 'ti',                          # Title
+  author: 'au',                         # Author
+  abstract: 'abs',                      # Abstract
+  comment: 'co',                        # Comment
+  journal: 'jr',                        # Journal reference
+  category: 'cat',                      # Subject category
+  report: 'rn',                         # Report number
+  last_updated_date: 'lastUpdatedDate', # Last updated date
+  all: 'all'                            # All (of the above)
 }
 ```
 
