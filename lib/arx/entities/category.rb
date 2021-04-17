@@ -48,12 +48,20 @@ module Arx
     # Equality check against another category.
     #
     # @param category [Category] The category to compare against.
+    # @return [Boolean]
     def ==(category)
       if category.is_a? Category
         name == category.name
       else
         false
       end
+    end
+
+    # A string representation of the {Author} object.
+    #
+    # @return [String]
+    def to_s
+      "Arx::Category(name: #{name}, full_name: #{full_name || 'nil'})"
     end
 
     inspector *ATTRIBUTES

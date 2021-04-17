@@ -54,12 +54,20 @@ module Arx
     #
     # @note This only performs a basic equality check between the authors' names.
     # @param author [Author] The author to compare against.
+    # @return [Boolean]
     def ==(author)
       if author.is_a? Author
         name == author.name
       else
         false
       end
+    end
+
+    # A string representation of the {Author} object.
+    #
+    # @return [String]
+    def to_s
+      "Arx::Author(name: #{name}, affiliations: [#{affiliations.join(', ')}])"
     end
 
     inspector *ATTRIBUTES

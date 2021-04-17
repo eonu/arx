@@ -226,6 +226,7 @@ module Arx
     # @note This only performs a basic equality check between the papers' identifiers (disregarding version).
     #   This means that a different version of the same paper will be viewed as equal.
     # @param paper [Paper] The paper to compare against.
+    # @return [Boolean]
     def ==(paper)
       if paper.is_a? Paper
         id == paper.id
@@ -245,6 +246,17 @@ module Arx
         File.delete(path) if File.file? path
         raise
       end
+    end
+
+    # A string representation of the {Paper} object.
+    #
+    # @return [String]
+    def to_s
+      _id = id true
+      _published_at = published_at.strftime("%Y-%m-%d")
+      _authors = authors.map(&:name)
+      _authors = [*_authors.first(2), '...'] if _authors.size > 2
+      "Arx::Paper(id: #{_id}, published_at: #{_published_at}, authors: [#{_authors.join(', ')}], title: #{title})"
     end
 
     inspector *ATTRIBUTES

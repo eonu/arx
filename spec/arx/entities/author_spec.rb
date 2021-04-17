@@ -34,49 +34,36 @@ describe Author do
   context '#to_h' do
     context 'cond-mat/9609089' do
       subject { authors[0].to_h }
-
       it { is_expected.to be_a Hash }
       it { expect(subject.keys).to all be_a Symbol }
       it { is_expected.to eq({affiliated?: true, affiliations: ["Philipps University Marburg, Germany"], name: "K. Bott"}) }
     end
     context '1105.5379' do
       subject { authors[1].to_h }
-
       it { is_expected.to eq({name: "Aapo Kyrola", affiliated?: false, affiliations: []}) }
     end
     context '1710.02185' do
       subject { Arx.get('1710.02185').authors.first.to_h }
-
       it { is_expected.to eq({name: "The LIGO Scientific Collaboration", affiliated?: false, affiliations: []}) }
     end
   end
   context '#as_json' do
     context 'cond-mat/9609089' do
       subject { authors[0].as_json }
-
-      it { is_expected.to be_a Hash }
-      it { expect(subject.keys).to all be_a String }
       it { is_expected.to eq({'affiliated?'=>true, 'affiliations'=>["Philipps University Marburg, Germany"], 'name'=>"K. Bott"}) }
     end
     context '1105.5379' do
       subject { authors[1].as_json }
-
-      it { is_expected.to be_a Hash }
-      it { expect(subject.keys).to all be_a String }
       it { is_expected.to eq({'name'=>"Aapo Kyrola", 'affiliated?'=>false, 'affiliations'=>[]}) }
     end
   end
   context '#to_json' do
     context 'cond-mat/9609089' do
       subject { authors[0].to_json }
-
-      it { is_expected.to be_a String }
       it { is_expected.to eq "{\"name\":\"K. Bott\",\"affiliated?\":true,\"affiliations\":[\"Philipps University Marburg, Germany\"]}" }
     end
     context '1105.5379' do
       subject { authors[1].to_json }
-
-      it { is_expected.to be_a String }
       it { is_expected.to eq "{\"name\":\"Aapo Kyrola\",\"affiliated?\":false,\"affiliations\":[]}" }
     end
   end
@@ -106,10 +93,19 @@ describe Author do
     end
     context 'with other objects' do
       subject { authors[1] }
-
       it { is_expected.not_to eq 'Aapo Kyrola' }
       it { is_expected.not_to eq :'Aapo Kyrola' }
       it { is_expected.not_to eq 1 }
+    end
+  end
+  context '#to_s' do
+    context 'cond-mat/9609089' do
+      subject { authors[0].to_s }
+      it { is_expected.to eq('Arx::Author(name: K. Bott, affiliations: [Philipps University Marburg, Germany])') }
+    end
+    context '1105.5379' do
+      subject { authors[1].to_s }
+      it { is_expected.to eq('Arx::Author(name: Aapo Kyrola, affiliations: [])') }
     end
   end
 end
