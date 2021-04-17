@@ -82,12 +82,10 @@ describe Paper do
     end
     context '1807.06918v1' do
       subject { Arx.get('1807.06918v1').version }
-
       it { is_expected.to eq 1 }
     end
     context '1807.06918v2' do
       subject { Arx.get('1807.06918v2').version }
-
       it { is_expected.to eq 2 }
     end
   end
@@ -127,29 +125,21 @@ describe Paper do
   context '#authors' do
     context 'cond-mat/9609089' do
       subject { papers[0].authors }
-
-      it { is_expected.to be_an Array }
       it { is_expected.to all be_an Author }
       it { expect(subject.map &:name).to eq ['F. Gebhard', 'K. Bott', 'M. Scheidler', 'P. Thomas', 'S. W. Koch'] }
     end
     context '1105.5379' do
       subject { papers[1].authors }
-
-      it { is_expected.to be_an Array }
       it { is_expected.to all be_an Author }
       it { expect(subject.map &:name).to eq ['Joseph K. Bradley', 'Aapo Kyrola', 'Danny Bickson', 'Carlos Guestrin'] }
     end
     context '1710.02185' do
       subject { papers[2].authors }
-
-      it { is_expected.to be_an Array }
       it { is_expected.to all be_an Author }
       it { expect(subject.size).to eq 960 } # 960 authors, no way I'm listing all of them!
     end
     context '1703.04834' do
       subject { papers[3].authors }
-
-      it { is_expected.to be_an Array }
       it { is_expected.to all be_an Author }
       it { expect(subject.map &:name).to eq ['Arthur Milchior'] }
     end
@@ -157,25 +147,21 @@ describe Paper do
   context '#primary_category' do
     context 'cond-mat/9609089' do
       subject { papers[0].primary_category }
-
       it { is_expected.to be_a Category }
       it { expect(subject.name).to eq 'cond-mat' }
     end
     context '1105.5379' do
       subject { papers[1].primary_category }
-
       it { is_expected.to be_a Category }
       it { expect(subject.name).to eq 'cs.LG' }
     end
     context '1710.02185' do
       subject { papers[2].primary_category }
-
       it { is_expected.to be_a Category }
       it { expect(subject.name).to eq 'gr-qc' }
     end
     context '1703.04834' do
       subject { papers[3].primary_category }
-
       it { is_expected.to be_a Category }
       it { expect(subject.name).to eq 'cs.FL' }
     end
@@ -188,29 +174,21 @@ describe Paper do
   context '#categories' do
     context 'cond-mat/9609089' do
       subject { papers[0].categories }
-
-      it { is_expected.to be_an Array }
       it { is_expected.to all be_an Category }
       it { expect(subject.map &:name).to eq %w[cond-mat chem-ph] }
     end
     context '1105.5379' do
       subject { papers[1].categories }
-
-      it { is_expected.to be_an Array }
       it { is_expected.to all be_an Category }
       it { expect(subject.map &:name).to eq %w[cs.LG cs.IT math.IT] }
     end
     context '1710.02185' do
       subject { papers[2].categories }
-
-      it { is_expected.to be_an Array }
       it { is_expected.to all be_an Category }
       it { expect(subject.map &:name).to eq %w[gr-qc astro-ph.IM] }
     end
     context '1703.04834' do
       subject { papers[3].categories }
-
-      it { is_expected.to be_an Array }
       it { is_expected.to all be_an Category }
       it { expect(subject.map &:name).to eq ['cs.FL', '03D05', 'F.1.1; F.4.1'] }
       it { expect(subject[1...2].map &:full_name).to all be_nil } # MSC or ACM classes
@@ -219,25 +197,21 @@ describe Paper do
   context '#published_at' do
     context 'cond-mat/9609089' do
       subject { papers[0].published_at }
-
       it { is_expected.to be_a DateTime }
       it { expect(subject.to_s).to eq '1996-09-10T13:52:54+00:00' }
     end
     context '1105.5379' do
       subject { papers[1].published_at }
-
       it { is_expected.to be_a DateTime }
       it { expect(subject.to_s).to eq '2011-05-26T19:19:30+00:00' }
     end
     context '1710.02185' do
       subject { papers[2].published_at }
-
       it { is_expected.to be_a DateTime }
       it { expect(subject.to_s).to eq '2017-10-05T19:18:51+00:00' }
     end
     context '1703.04834' do
       subject { papers[3].published_at }
-
       it { is_expected.to be_a DateTime }
       it { expect(subject.to_s).to eq '2017-03-14T23:41:24+00:00' }
     end
@@ -245,25 +219,21 @@ describe Paper do
   context '#updated_at' do
     context 'cond-mat/9609089' do
       subject { papers[0].updated_at }
-
       it { is_expected.to be_a DateTime }
       it { expect(subject.to_s).to eq '1996-09-10T13:52:54+00:00' }
     end
     context '1105.5379' do
       subject { papers[1].updated_at }
-
       it { is_expected.to be_a DateTime }
       it { expect(subject.to_s).to eq '2011-05-26T19:19:30+00:00' }
     end
     context '1710.02185' do
       subject { papers[2].updated_at }
-
       it { is_expected.to be_a DateTime }
       it { expect(subject.to_s).to eq '2019-10-08T13:29:33+00:00' }
     end
     context '1703.04834' do
       subject { papers[3].updated_at }
-
       it { is_expected.to be_a DateTime }
       it { expect(subject.to_s).to eq '2017-03-14T23:41:24+00:00' }
     end
@@ -398,9 +368,6 @@ describe Paper do
     context 'cond-mat/9609089' do
       context 'deep: true' do
         subject { papers[0].to_h(true) }
-
-        it { is_expected.to be_a Hash }
-        it { expect(subject.keys).to all be_a Symbol }
         it do
           is_expected.to eq({
             id: "cond-mat/9609089",
@@ -436,9 +403,6 @@ describe Paper do
       end
       context 'deep: false' do
         subject { papers[0].to_h(false) }
-
-        it { is_expected.to be_a Hash }
-        it { expect(subject.keys).to all be_a Symbol }
         it { expect(subject[:authors]).to all be_an Author }
         it { expect(subject[:categories]).to all be_a Category }
         it { expect(subject[:primary_category]).to be_a Category }
@@ -467,9 +431,6 @@ describe Paper do
     context '1105.5379' do
       context 'deep: true' do
         subject { papers[1].to_h(true) }
-
-        it { is_expected.to be_a Hash }
-        it { expect(subject.keys).to all be_a Symbol }
         it do
           is_expected.to eq({
             id: "1105.5379",
@@ -503,9 +464,6 @@ describe Paper do
       end
       context 'deep: false' do
         subject { papers[1].to_h(false) }
-
-        it { is_expected.to be_a Hash }
-        it { expect(subject.keys).to all be_a Symbol }
         it { expect(subject[:authors]).to all be_an Author }
         it { expect(subject[:categories]).to all be_a Category }
         it { expect(subject[:primary_category]).to be_a Category }
@@ -533,9 +491,6 @@ describe Paper do
   context '#as_json' do
     context 'cond-mat/9609089' do
       subject { papers[0].as_json }
-
-      it { is_expected.to be_a Hash }
-      it { expect(subject.keys).to all be_a String }
       it do
         is_expected.to eq({
           "id"=>"cond-mat/9609089",
@@ -571,9 +526,6 @@ describe Paper do
     end
     context '1703.04834' do
       subject { papers[3].as_json }
-
-      it { is_expected.to be_a Hash }
-      it { expect(subject.keys).to all be_a String }
       it do
         is_expected.to eq({
           "id"=>"1703.04834",
@@ -605,14 +557,10 @@ describe Paper do
   context '#to_json' do
     context 'cond-mat/9609089' do
       subject { papers[0].to_json }
-
-      it { is_expected.to be_a String }
       it { is_expected.to eq("{\"id\":\"cond-mat/9609089\",\"url\":\"http://arxiv.org/abs/cond-mat/9609089\",\"version\":1,\"revision?\":false,\"title\":\"Optical absorption of non-interacting tight-binding electrons in a Peierls-distorted chain at half band-filling\",\"summary\":\"In this first of three articles on the optical absorption of electrons in half-filled Peierls-distorted chains we present analytical results for non-interacting tight-binding electrons. We carefully derive explicit expressions for the current operator, the dipole transition matrix elements, and the optical absorption for electrons with a cosine dispersion relation of band width $W$ and dimerization parameter $\\\\delta$. New correction (``$\\\\eta$''-)terms to the current operator are identified. A broad band-to-band transition is found in the frequency range $W\\\\delta < \\\\omega < W$ whose shape is determined by the joint density of states for the upper and lower Peierls subbands and the strong momentum dependence of the transition matrix elements.\",\"authors\":[{\"name\":\"F. Gebhard\",\"affiliated?\":true,\"affiliations\":[\"ILL Grenoble, France\"]},{\"name\":\"K. Bott\",\"affiliated?\":true,\"affiliations\":[\"Philipps University Marburg, Germany\"]},{\"name\":\"M. Scheidler\",\"affiliated?\":true,\"affiliations\":[\"Philipps University Marburg, Germany\"]},{\"name\":\"P. Thomas\",\"affiliated?\":true,\"affiliations\":[\"Philipps University Marburg, Germany\"]},{\"name\":\"S. W. Koch\",\"affiliated?\":true,\"affiliations\":[\"Philipps University Marburg, Germany\"]}],\"primary_category\":{\"name\":\"cond-mat\",\"full_name\":\"Condensed Matter\"},\"categories\":[{\"name\":\"cond-mat\",\"full_name\":\"Condensed Matter\"},{\"name\":\"chem-ph\",\"full_name\":\"Chemical Physics\"}],\"published_at\":\"1996-09-10T13:52:54+00:00\",\"updated_at\":\"1996-09-10T13:52:54+00:00\",\"comment?\":true,\"comment\":\"17 pages REVTEX 3.0, 2 postscript figures; hardcopy versions before May 96 are obsolete; accepted for publication in The Philosophical Magazine B\",\"journal?\":true,\"journal\":\"Phil. Mag. B 75, pp. 1-12 (1997)\",\"pdf?\":true,\"pdf_url\":\"http://arxiv.org/pdf/cond-mat/9609089v1\",\"doi?\":true,\"doi_url\":\"http://dx.doi.org/10.1080/13642819708205700\"}") }
     end
     context '1703.04834' do
       subject { papers[3].to_json }
-
-      it { is_expected.to be_a String }
       it { is_expected.to eq("{\"id\":\"1703.04834\",\"url\":\"http://arxiv.org/abs/1703.04834\",\"version\":1,\"revision?\":false,\"title\":\"A Quasi-Linear Time Algorithm Deciding Whether Weak Büchi Automata Reading Vectors of Reals Recognize Saturated Languages\",\"summary\":\"This work considers weak deterministic B\\\\\\\"uchi automata reading encodings of non-negative $d$-vectors of reals in a fixed base. A saturated language is a language which contains all encoding of elements belonging to a set of $d$-vectors of reals. A Real Vector Automaton is an automaton which recognizes a saturated language. It is explained how to decide in quasi-linear time whether a minimal weak deterministic B\\\\\\\"uchi automaton is a Real Vector Automaton. The problem is solved both for the two standard encodings of vectors of numbers: the sequential encoding and the parallel encoding. This algorithm runs in linear time for minimal weak B\\\\\\\"uchi automata accepting set of reals. Finally, the same problem is also solved for parallel encoding of automata reading vectors of relative reals.\",\"authors\":[{\"name\":\"Arthur Milchior\",\"affiliated?\":false,\"affiliations\":[]}],\"primary_category\":{\"name\":\"cs.FL\",\"full_name\":\"Formal Languages and Automata Theory\"},\"categories\":[{\"name\":\"cs.FL\",\"full_name\":\"Formal Languages and Automata Theory\"},{\"name\":\"03D05\",\"full_name\":null},{\"name\":\"F.1.1; F.4.1\",\"full_name\":null}],\"published_at\":\"2017-03-14T23:41:24+00:00\",\"updated_at\":\"2017-03-14T23:41:24+00:00\",\"comment?\":false,\"journal?\":false,\"pdf?\":true,\"pdf_url\":\"http://arxiv.org/pdf/1703.04834v1\",\"doi?\":false}") }
     end
   end
@@ -620,26 +568,22 @@ describe Paper do
     context 'with an Arx::Paper' do
       context 'with equal IDs' do
         subject { papers[0] }
-
         it { is_expected.to eq papers[0] }
       end
       context 'with different IDs' do
         subject { papers[0] }
-
         it { is_expected.not_to eq papers[1] }
       end
       context 'with equal IDs and different versions' do
         it do
           version1 = Arx.get('1807.06918v1')
           version2 = Arx.get('1807.06918v2')
-
           expect(version1).to eq version2
         end
       end
     end
     context 'with other objects' do
       subject { papers[0] }
-
       it { is_expected.not_to eq 'cond-mat/9609089' }
       it { is_expected.not_to eq :'cond-mat/9609089' }
       it { is_expected.not_to eq 1 }
@@ -660,6 +604,16 @@ describe Paper do
     end
     context 'with an invalid file path type' do
       # TODO
+    end
+  end
+  context '#to_s' do
+    context 'cond-mat/9609089' do
+      subject { papers[0].to_s }
+      it { is_expected.to eq('Arx::Paper(id: cond-mat/9609089v1, published_at: 1996-09-10, authors: [F. Gebhard, K. Bott, ...], title: Optical absorption of non-interacting tight-binding electrons in a Peierls-distorted chain at half band-filling)') }
+    end
+    context '1703.04834' do
+      subject { papers[3].to_s }
+      it { is_expected.to eq('Arx::Paper(id: 1703.04834v1, published_at: 2017-03-14, authors: [Arthur Milchior], title: A Quasi-Linear Time Algorithm Deciding Whether Weak Büchi Automata Reading Vectors of Reals Recognize Saturated Languages)') }
     end
   end
 end
