@@ -81,7 +81,7 @@ describe Query do
       end
     end
     context 'with IDs and key-word arguments' do
-      it { expect(subject.new('1105.5379', 'cond-mat/9609089', sort_by: :date_submitted, sort_order: :ascending).to_s).to eq 'sortBy=submittedDate&sortOrder=ascending&start=0&max_results=10&id_list=1105.5379,cond-mat/9609089' }
+      it { expect(subject.new('1105.5379', 'cond-mat/9609089', sort_by: :submitted_at, sort_order: :ascending).to_s).to eq 'sortBy=submittedDate&sortOrder=ascending&start=0&max_results=10&id_list=1105.5379,cond-mat/9609089' }
     end
   end
 
@@ -111,21 +111,21 @@ describe Query do
       let(:query) { Query.new }
 
       context 'without a query string' do
-        it { expect(query.send(field, 'cs.AI').to_s).to eq "#{default_arguments}&search_query=#{Query::FIELDS[field]}:%22cs.AI%22" }
+        it { expect(query.send(field, 'cs.AI', exact: true).to_s).to eq "#{default_arguments}&search_query=#{Query::FIELDS[field]}:%22cs.AI%22" }
       end
       context 'without a prior connective' do
-        it { expect(query.title('test').send(field, 'cs.AI').to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+AND+#{Query::FIELDS[field]}:%22cs.AI%22" }
+        it { expect(query.title('test').send(field, 'cs.AI', exact: true).to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+AND+#{Query::FIELDS[field]}:%22cs.AI%22" }
       end
       context 'with a prior connective' do
         Query::CONNECTIVES.keys.each do |connective|
-          it { expect(query.title('test').send(connective).send(field, 'cs.AI').to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+#{Query::CONNECTIVES[connective]}+#{Query::FIELDS[field]}:%22cs.AI%22" }
+          it { expect(query.title('test').send(connective).send(field, 'cs.AI', exact: true).to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+#{Query::CONNECTIVES[connective]}+#{Query::FIELDS[field]}:%22cs.AI%22" }
         end
       end
       context 'exact: false' do
         it { expect(query.send(field, 'cs.AI', exact: false).to_s).to eq "#{default_arguments}&search_query=#{Query::FIELDS[field]}:cs.AI" }
       end
       context 'with multiple values' do
-        it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG').to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:%22cs.AI%22+AND+#{Query::FIELDS[field]}:%22cs.LG%22%29" }
+        it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG', exact: true).to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:%22cs.AI%22+AND+#{Query::FIELDS[field]}:%22cs.LG%22%29" }
 
         context 'exact: false' do
           it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG', exact: false).to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:cs.AI+AND+#{Query::FIELDS[field]}:cs.LG%29" }
@@ -133,7 +133,7 @@ describe Query do
 
         Query::CONNECTIVES.keys.each do |connective|
           context "connective: #{connective}" do
-            it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG', connective: connective).to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:%22cs.AI%22+#{Query::CONNECTIVES[connective]}+#{Query::FIELDS[field]}:%22cs.LG%22%29" }
+            it { expect(query.title('test').send(field, 'cs.AI', 'cs.LG', connective: connective, exact: true).to_s).to eq "#{default_arguments}&search_query=ti:%22test%22+AND+%28#{Query::FIELDS[field]}:%22cs.AI%22+#{Query::CONNECTIVES[connective]}+#{Query::FIELDS[field]}:%22cs.LG%22%29" }
           end
         end
       end

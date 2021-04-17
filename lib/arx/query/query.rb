@@ -29,22 +29,23 @@ module Arx
     # @see https://arxiv.org/help/prep arXiv metadata fields
     # @see https://arxiv.org/help/api/user-manual#query_details arXiv user manual (query details)
     FIELDS = {
-      title: 'ti',                          # Title
-      author: 'au',                         # Author
-      abstract: 'abs',                      # Abstract
-      comment: 'co',                        # Comment
-      journal: 'jr',                        # Journal reference
-      category: 'cat',                      # Subject category
-      report: 'rn',                         # Report number
-      last_updated_date: 'lastUpdatedDate', # Last updated date
-      all: 'all'                            # All (of the above)
+      title: 'ti',                   # Title
+      author: 'au',                  # Author
+      abstract: 'abs',               # Abstract
+      comment: 'co',                 # Comment
+      journal: 'jr',                 # Journal reference
+      category: 'cat',               # Subject category
+      report: 'rn',                  # Report number
+      updated_at: 'lastUpdatedDate', # Last updated date
+      submitted_at: 'submittedDate', # Submission date
+      all: 'all'                     # All (of the above)
     }
 
     # Supported criteria for the +sortBy+ parameter.
     SORT_BY = {
       relevance: 'relevance',
-      last_updated: 'lastUpdatedDate',
-      date_submitted: 'submittedDate'
+      updated_at: 'lastUpdatedDate',
+      submitted_at: 'submittedDate'
     }
 
     # Supported criteria for the +sortOrder+ parameter.
@@ -158,10 +159,17 @@ module Arx
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
     # @return [self]
 
-    # @!method last_updated_date(*values, connective: :and)
+    # @!method updated_at(*values, connective: :and)
     # Search for papers by lastUpdatedDate.
     #
-    # @param values [Array<String>] lastUpdatedDate (String or range) of papers to search for.
+    # @param values [Array<String>] lastUpdatedDate (string or range) of papers to search for.
+    # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
+    # @return [self]
+
+    # @!method submitted_at(*values, connective: :and)
+    # Search for papers by submittedDate.
+    #
+    # @param values [Array<String>] submittedDate (string or range) of papers to search for.
     # @param connective [Symbol] The logical connective to use (see {CONNECTIVES}). Only applies if there are multiple values.
     # @return [self]
 
@@ -174,7 +182,8 @@ module Arx
     # @return [self]
 
     FIELDS.each do |name, field|
-      define_method(name) do |*values, exact: true, connective: :and|
+      _exact = ![:updated_at, :submitted_at].include?(name)
+      define_method(name) do |*values, exact: _exact, connective: :and|
         return if values.empty?
 
         values.flatten!
