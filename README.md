@@ -422,7 +422,7 @@ category.full_name
 #=> "Condensed Matter"
 ```
 
-# Acknowledgements
+## Acknowledgements
 
 A large portion of this library is based on the brilliant work done by [Scholastica](https://github.com/scholastica) in their [`arxiv`](https://github.com/scholastica/arxiv) gem for retrieving individual papers from arXiv through the search API.
 
@@ -430,15 +430,39 @@ Arx was created mostly due to the seemingly inactive nature of Scholastica's rep
 
 Nevertheless, a special thanks goes out to Scholastica for providing the influence for Arx.
 
+## Contributors
+
+All contributions to this repository are greatly appreciated. Contribution guidelines can be found [here](/CONTRIBUTING.md).
+
+<table>
+	<thead>
+		<tr>
+			<th align="center">
+        <a href="https://github.com/eonu">
+          <img src="https://avatars0.githubusercontent.com/u/24795571?s=460&v=4" alt="Edwin Onuonga" width="60px">
+          <br/><sub><b>Edwin Onuonga</b></sub>
+        </a>
+        <br/>
+        <a href="mailto:ed@eonu.net">✉️</a>
+        <a href="https://eonu.net">🌍</a>
+			</th>
+      <th align="center">
+        <a href="https://github.com/xuanxu">
+          <img src="https://avatars.githubusercontent.com/u/6528?v=4" alt="xuanxu" width="60px">
+          <br/><sub><b>xuanxu</b></sub>
+        </a>
+        <br/>
+        <a href="jjbazan@gmail.com">✉️</a>
+        <a href="http://juanjobazan.com/">🌍</a>
+			</th>
+			<!-- Add more <th></th> blocks for more contributors -->
+		</tr>
+	</thead>
+</table>
+
 ---
 
 <p align="center">
   <b>Arx</b> &copy; 2019-2020, Edwin Onuonga - Released under the <a href="http://mit-license.org/">MIT</a> License.<br/>
   <em>Authored and maintained by Edwin Onuonga.</em>
-
-  <p align="center">
-    <a href="https://eonu.net">eonu.net</a>&nbsp;&middot;&nbsp;
-    GitHub: <a href="https://github.com/eonu">@eonu</a>&nbsp;&middot;&nbsp;
-    Email: <a href="mailto:ed@eonu.net">ed@eonu.net</a>
-  </p>
 </p>
