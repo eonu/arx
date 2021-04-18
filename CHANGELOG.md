@@ -1,11 +1,28 @@
-# 1.2.1
+## 1.3.0
 
-#### Major changes
+### Major changes
+
+- Add support for paging. ([#92](https://github.com/eonu/arx/pull/92) by @xuanxu)
+- Allow searching by `last_updated_date`. ([#93](https://github.com/eonu/arx/pull/93) by @xuanxu)
+- Add `submitted_at` for submission date querying. ([#97](https://github.com/eonu/arx/pull/97))<br/>
+  This also changes `last_updated_date` from #93 to `updated_at`, and similarly for the `last_updated` and `date_submitted` [sort-by criteria](https://github.com/eonu/arx/blob/3d093658579fb2d99b92f0feedb2aa790a22e2c8/lib/arx/query/query.rb#L43).
+
+### Minor changes
+
+- Update `Arx()` to match new `Arx.search` signature (from #92). ([#94](https://github.com/eonu/arx/pull/94))
+- Change incorrect `lastUpdated` sort-by criterion to `lastUpdatedDate`. ([#96](https://github.com/eonu/arx/pull/96))
+- Add `to_s` methods for `Arx::Paper`, `Arx::Author` and `Arx::Category`. ([#99](https://github.com/eonu/arx/pull/99))
+- Add fix for JSON warning in Ruby >=2.7. ([#101](https://github.com/eonu/arx/pull/101))
+- Add contributors section to `README.md`. ([#102](https://github.com/eonu/arx/pull/102))
+
+## 1.2.1
+
+### Major changes
 
 - Add support for saving PDFs with `Paper#save` (see #81). ([#90](https://github.com/eonu/arx/pull/90))
 - Change gem Ruby version specifier from `~> 2.5` to `>= 2.5`. ([#86](https://github.com/eonu/arx/pull/86))
 
-#### Minor changes
+### Minor changes
 
 - Remove arXiv logo from `README.md`. ([#87](https://github.com/eonu/arx/pull/87))
 - Use `URI.open` instead of `Kernel.open` (see #82). ([#86](https://github.com/eonu/arx/pull/86))
@@ -16,9 +33,9 @@
 - Update specs using paper `1710.02185` to account for revision and acceptance by journal (_congratulations!_). ([#76](https://github.com/eonu/arx/pull/76))
 - Update email address in `LICENSE.md`. ([#73](https://github.com/eonu/arx/pull/73))
 
-# 1.2.0
+## 1.2.0
 
-#### Major changes
+### Major changes
 
 - Adds serialization support through the following methods ([#63](https://github.com/eonu/arx/pull/63)):
   - `to_h`: Serialize into a Ruby hash (with symbol keys). Accepts a boolean argument, representing whether or not to deep-serialize nested `Author` and `Category` objects (defaults to `false`).
@@ -51,7 +68,7 @@
 
 - Add equality operator (`==`) to entities. ([#68](https://github.com/eonu/arx/pull/68))
 
-#### Minor changes
+### Minor changes
 
 - Add more category mappings to `CATEGORIES`. ([#71](https://github.com/eonu/arx/pull/71))
 - Add licensing information to `README.md` under the *Acknowledgements* section. ([#66](https://github.com/eonu/arx/pull/66))
@@ -61,15 +78,15 @@
   - `coveralls` [`= 0.8.22` to `= 0.8.23`] ([#62](https://github.com/eonu/arx/pull/62))
   - `thor` [`~> 0.19.4` to `~> 0.20.3`] ([#67](https://github.com/eonu/arx/pull/67))
 
-# 1.1.0
+## 1.1.0
 
-#### Major changes
+### Major changes
 
 - Change `bundler` requirement to `>= 1.17` in `arx.gemspec`. ([#53](https://github.com/eonu/arx/pull/53))
 - Remove `Arx.find` alias of `Arx.search`. ([#57](https://github.com/eonu/arx/pull/57))
 - Add `Query#group` for subquery grouping support. ([#59](https://github.com/eonu/arx/pull/59))
 
-#### Minor changes
+### Minor changes
 
 - Add contributing guidelines (`CONTRIBUTING.md`). ([#48](https://github.com/eonu/arx/pull/48))
 - Add issue templates to `./github/ISSUE_TEMPLATE` for ([#49](https://github.com/eonu/arx/pull/49), [#54](https://github.com/eonu/arx/pull/54), [#55](https://github.com/eonu/arx/pull/55)):
@@ -86,14 +103,14 @@
 - Add `bin/console` for gem debugging. ([#60](https://github.com/eonu/arx/pull/60))
 - Modify `gem:debug` rake task to run `bin/console`. ([#60](https://github.com/eonu/arx/pull/60))
 
-# 1.0.1
+## 1.0.1
 
-#### Major changes
+### Major changes
 
 - Add cases to handle `nil` query returns. ([#45](https://github.com/eonu/arx/pull/45))
 - Add support for the `coveralls` gem (`.coveralls.yml` configuration file). ([#42](https://github.com/eonu/arx/pull/42))
 
-#### Minor changes
+### Minor changes
 
 - Add code coverage badge to `README.md`. ([#42](https://github.com/eonu/arx/pull/42))
 - Remove documentation badge from top of `README.md`. ([#42](https://github.com/eonu/arx/pull/42))
@@ -102,9 +119,9 @@
 - Add `/coverage/` directory to `.gitignore`. ([#45](https://github.com/eonu/arx/pull/45))
 - Remove version numbers from paper identifiers in error message in `README.md`. ([#46](https://github.com/eonu/arx/pull/46))
 
-# 1.0.0
+## 1.0.0
 
-#### Major changes
+### Major changes
 
 - Change `Query` connective instance methods ([#38](https://github.com/eonu/arx/pull/38)):
   - `#&` -> `#and`
@@ -116,15 +133,15 @@
 - Redefine `Arx.search` to user `Paper.parse`'s `search` key-word argument. ([#40](https://github.com/eonu/arx/pull/40))
 - Implement all tests. ([#40](https://github.com/eonu/arx/pull/40))
 
-#### Minor changes
+### Minor changes
 
 - Change declared regular expression literals from `%r""` to standard `//`. ([#39](https://github.com/eonu/arx/pull/39))
 - Remove `#extract_id` from `Query` and use `Cleaner.extract_id` instead. ([#39](https://github.com/eonu/arx/pull/39))
 - Redefine `Paper#revision?` to use the new `#version` instead of `#updated_at` and`#published_at`. ([#39](https://github.com/eonu/arx/pull/39))
 
-# 0.3.2
+## 0.3.2
 
-#### Major changes
+### Major changes
 
 - Add `Paper#category` alias for `Paper#primary_category`. ([#34](https://github.com/eonu/arx/pull/34))
 - Change `Author#affiliations?` to `Author#affiliated?`. ([#34](https://github.com/eonu/arx/pull/34))
@@ -135,47 +152,47 @@
 - Add `gem:release` rake task for preparing gem releases. ([#36](https://github.com/eonu/arx/pull/36))
 - Add `thor` gem development dependency. ([#36](https://github.com/eonu/arx/pull/36))
 
-#### Minor changes
+### Minor changes
 
 - Update documentation links to `rubydoc.info`'s GitHub service. ([#30](https://github.com/eonu/arx/pull/30))
 - Add email address to `LICENSE`. ([#31](https://github.com/eonu/arx/pull/31))
 - Improve `Error::MissingField` and `Error::MissingLink` error messages. ([#35](https://github.com/eonu/arx/pull/35))
 
-# 0.3.1
+## 0.3.1
 
-#### Major changes
+### Major changes
 
 - Add `.yardopts` for document generation configuration. ([#26](https://github.com/eonu/arx/pull/26))
 - Namespace errors in `Arx::Error` module and remove `Error` prefix from error classes. ([#26](https://github.com/eonu/arx/pull/26))
 - Move identifier format regular expression constant definitions from `Arx::Validate` to top-level namespace `Arx`. ([#26](https://github.com/eonu/arx/pull/26))
 
-#### Minor changes
+### Minor changes
 
 - Rename `lib/arx/exceptions.rb` to `lib/arx/errors.rb`. ([#26](https://github.com/eonu/arx/pull/26))
 - Make `Arx::Cleaner`, `Arx::Validate`, `Arx::Inspector`, `Arx::Link` private (hidden from `yard` documentation). ([#26](https://github.com/eonu/arx/pull/26))
 
-# 0.3.0
+## 0.3.0
 
-#### Major changes
+### Major changes
 
 - Add documentation, images, installation and usage instructions to `README.md`. ([#22](https://github.com/eonu/arx/pull/22), [#17](https://github.com/eonu/arx/pull/17))
 - Allow prior construction of a search query in `Arx.search`. ([#18](https://github.com/eonu/arx/pull/18))
 - Fix `Arx.search` query object yielding. ([#20](https://github.com/eonu/arx/pull/20))
 
-#### Minor changes
+### Minor changes
 
 - Remove conditional with `block_given?` in `Arx()` method. ([#16](https://github.com/eonu/arx/pull/16))
 - Remove leading ampersand (&) from search query string. ([#19](https://github.com/eonu/arx/pull/19))
 - Add base paper categories and more aliases. ([#21](https://github.com/eonu/arx/pull/21))
 
-# 0.2.0
+## 0.2.0
 
-#### Major changes
+### Major changes
 
 - Flatten provided values in `Arx::Paper`'s field instance methods (allow an array as the `values` splat parameter). ([#5](https://github.com/eonu/arx/pull/5))
 - Add `Arx.find` and `Arx.get` as aliases for `Arx.search`. ([#6](https://github.com/eonu/arx/pull/6), [#8](https://github.com/eonu/arx/pull/8))
 
-#### Minor changes
+### Minor changes
 
 - Add `homepage` and `metadata` fields to `arx.gemspec`. ([#1](https://github.com/eonu/arx/pull/1), [#14](https://github.com/eonu/arx/pull/14))
 - Specify required ruby version (`~> 2.5`) in `arx.gemspec`. ([#2](https://github.com/eonu/arx/pull/2))
@@ -186,6 +203,6 @@
 - Add ruby-head version to RVM rubies in `.travis.yml`. ([#12](https://github.com/eonu/arx/pull/12))
 - Remove unnecessary git-ignored files. ([#13](https://github.com/eonu/arx/pull/13), [#10](https://github.com/eonu/arx/pull/10))
 
-# 0.1.0
+## 0.1.0
 
 Initial commit! 🎉
