@@ -440,7 +440,8 @@ All contributions to this repository are greatly appreciated. Contribution guide
 			<th align="center">
         <a href="https://github.com/eonu">
           <img src="https://avatars0.githubusercontent.com/u/24795571?s=460&v=4" alt="Edwin Onuonga" width="60px">
-          <br/><sub><b>eonu</b><br/>(Edwin Onuonga)</sub>
+          <br/>eonu
+          <br/><sub>(Edwin Onuonga)</sub>
         </a>
         <br/>
         <a href="mailto:ed@eonu.net">✉️</a>
@@ -449,7 +450,8 @@ All contributions to this repository are greatly appreciated. Contribution guide
       <th align="center">
         <a href="https://github.com/xuanxu">
           <img src="https://avatars.githubusercontent.com/u/6528?v=4" alt="xuanxu" width="60px">
-          <br/><sub><b>xuanxu</b><br/>(Juanjo Bazán)</sub>
+          <br/>xuanxu
+          <br/><sub>(Juanjo Bazán)</sub>
         </a>
         <br/>
         <a href="jjbazan@gmail.com">✉️</a>
