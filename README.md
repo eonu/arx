@@ -440,7 +440,7 @@ All contributions to this repository are greatly appreciated. Contribution guide
 			<th align="center">
         <a href="https://github.com/eonu">
           <img src="https://avatars0.githubusercontent.com/u/24795571?s=460&v=4" alt="Edwin Onuonga" width="60px">
-          <br/><sub><b>eonu</b><br\>(Edwin Onuonga)</sub>
+          <br/><sub><b>eonu</b><br/>(Edwin Onuonga)</sub>
         </a>
         <br/>
         <a href="mailto:ed@eonu.net">✉️</a>
