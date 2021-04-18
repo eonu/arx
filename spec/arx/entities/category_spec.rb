@@ -111,7 +111,7 @@ describe Category do
   context '#to_s' do
     context 'cond-mat/9609089' do
       subject { categories[0].to_s }
-      it { puts subject; is_expected.to eq('Arx::Category(name: cond-mat, full_name: Condensed Matter)') }
+      it { is_expected.to eq('Arx::Category(name: cond-mat, full_name: Condensed Matter)') }
     end
     context '1105.5379' do
       subject { categories[1].to_s }

@@ -2,6 +2,18 @@
 
 require 'cgi'
 require 'json'
+
+# Temporary fix for JSON warning in Ruby >= 2.7.0
+# See: https://github.com/flori/json/issues/399#issuecomment-734863279
+if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.7.0')
+  module JSON
+    module_function
+    def parse(source, opts = {})
+      Parser.new(source, **opts).parse
+    end
+  end
+end
+
 require 'nokogiri'
 require 'open-uri'
 require 'happymapper'
